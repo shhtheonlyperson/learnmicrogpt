@@ -1,4 +1,6 @@
-import evidencePackJson from './evidence-pack.json'
+import evidencePackEnJson from './evidence-pack.en.json'
+import evidencePackZhTwJson from './evidence-pack.zh-TW.json'
+import type { Locale } from '../i18n'
 
 export type EvidenceLossPoint = {
   step: number
@@ -7,6 +9,7 @@ export type EvidenceLossPoint = {
 
 export type EvidencePack = {
   generatedAt: string
+  locale?: string
   source: {
     gistId: string
     gistUrl: string
@@ -32,4 +35,11 @@ export type EvidencePack = {
   }
 }
 
-export const evidencePack = evidencePackJson as EvidencePack
+export const evidencePacks: Record<Locale, EvidencePack> = {
+  'zh-TW': evidencePackZhTwJson as EvidencePack,
+  en: evidencePackEnJson as EvidencePack,
+}
+
+export function getEvidencePack(locale: Locale): EvidencePack {
+  return evidencePacks[locale]
+}

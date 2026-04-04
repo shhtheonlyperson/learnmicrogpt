@@ -1,5 +1,12 @@
-import type { AtlasSection } from './atlasSections'
-import type { LoopStep } from './loopSteps'
+import type { AtlasSection, LoopStep } from './copy'
+
+type UiCopy = {
+  labels: {
+    sourcePanelOriginLoop: string
+    sourcePanelOriginAtlas: string
+    sourcePanelEyebrowAtlas: string
+  }
+}
 
 export type SourceFocus = {
   origin: string
@@ -13,8 +20,8 @@ export type SourceFocus = {
   chips: string[]
 }
 
-export const sourceFocusFromLoopStep = (step: LoopStep): SourceFocus => ({
-  origin: `循環步驟 ${step.id}`,
+export const sourceFocusFromLoopStep = (step: LoopStep, ui: UiCopy): SourceFocus => ({
+  origin: `${ui.labels.sourcePanelOriginLoop} ${step.id}`,
   eyebrow: step.eyebrow,
   title: step.title,
   lineRange: step.lineRange,
@@ -25,9 +32,9 @@ export const sourceFocusFromLoopStep = (step: LoopStep): SourceFocus => ({
   chips: step.signal,
 })
 
-export const sourceFocusFromAtlasSection = (section: AtlasSection): SourceFocus => ({
-  origin: `地圖區段 ${section.lineRange}`,
-  eyebrow: '單檔地圖',
+export const sourceFocusFromAtlasSection = (section: AtlasSection, ui: UiCopy): SourceFocus => ({
+  origin: `${ui.labels.sourcePanelOriginAtlas} ${section.lineRange}`,
+  eyebrow: ui.labels.sourcePanelEyebrowAtlas,
   title: section.title,
   lineRange: section.lineRange,
   sourceHref: section.sourceHref,

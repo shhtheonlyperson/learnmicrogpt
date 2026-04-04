@@ -1,38 +1,40 @@
 import { SectionIntro } from '../components/SectionIntro'
-import { primitives } from '../content/primitives'
+import type { getCopy } from '../content/copy'
 
-export function PrimitiveInventorySection() {
+type PrimitiveInventorySectionProps = {
+  copy: ReturnType<typeof getCopy>
+}
+
+export function PrimitiveInventorySection({ copy }: PrimitiveInventorySectionProps) {
   return (
     <section className="content-section" id="primitives">
       <SectionIntro
+        description={copy.ui.sectionDescriptions.primitives}
         number="03"
-        title="原語清單"
-        description="這一區是在整理頁面真正想傳達的觀念：哪些東西仍然明顯是 GPT，哪些簡化讓它變得可教、可看、可拆。"
+        title={copy.ui.sectionTitles.primitives}
       />
 
       <div className="primitive-layout">
         <article className="loss-panel reveal primitive-panel">
           <div className="loss-copy">
-            <p className="eyebrow">這個觀點必須被講清楚</p>
-            <h3>它是玩具，是因為它小，不是因為它假</h3>
-            <p>
-              下方每個 primitive 都保留了一個核心 GPT 觀念，同時把平常會把它藏起來的工業級機械結構拿掉。這就是 `microgpt.py` 為什麼這麼適合教學。
-            </p>
+            <p className="eyebrow">{copy.ui.labels.primitivesEyebrow}</p>
+            <h3>{copy.ui.labels.primitivesTitle}</h3>
+            <p>{copy.ui.labels.primitivesBody}</p>
           </div>
         </article>
 
         <div className="primitive-grid reveal">
-          {primitives.map((primitive) => (
+          {copy.primitives.map((primitive) => (
             <article className="primitive-card" key={primitive.title}>
-              <p className="primitive-label">原語</p>
+              <p className="primitive-label">{copy.ui.labels.primitiveTag}</p>
               <h3>{primitive.title}</h3>
               <p className="primitive-role">{primitive.role}</p>
               <div className="primitive-note">
-                <span>保留了</span>
+                <span>{copy.ui.labels.kept}</span>
                 <p>{primitive.kept}</p>
               </div>
               <div className="primitive-note">
-                <span>簡化了</span>
+                <span>{copy.ui.labels.stripped}</span>
                 <p>{primitive.simplified}</p>
               </div>
             </article>

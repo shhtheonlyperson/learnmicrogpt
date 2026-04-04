@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import './App.css'
-import { atlasSections, type AtlasSection } from './content/atlasSections'
-import { loopSteps, type LoopStep } from './content/loopSteps'
+import { type AtlasSection, getCopy, type LoopStep } from './content/copy'
 import {
   sourceFocusFromAtlasSection,
   sourceFocusFromLoopStep,
@@ -13,40 +12,61 @@ import { PrimitiveInventorySection } from './sections/PrimitiveInventorySection'
 import { ReferenceRunSection } from './sections/ReferenceRunSection'
 import { SingleFileAtlasSection } from './sections/SingleFileAtlasSection'
 import { TradeoffSection } from './sections/TradeoffSection'
+import { useI18n } from './i18n'
 
 function App() {
-  const [activeStep, setActiveStep] = useState<LoopStep>(loopSteps[0]!)
-  const [activeSection, setActiveSection] = useState<AtlasSection>(atlasSections[0]!)
-  const [sourceFocus, setSourceFocus] = useState(() => sourceFocusFromLoopStep(loopSteps[0]!))
+  const { locale } = useI18n()
+  const copy = useMemo(() => getCopy(locale), [locale])
+
+  const [activeStepId, setActiveStepId] = useState(copy.loopSteps[0]!.id)
+  const [activeSectionLineRange, setActiveSectionLineRange] = useState(copy.atlasSections[0]!.lineRange)
+
+  const activeStep = copy.loopSteps.find((step) => step.id === activeStepId) ?? copy.loopSteps[0]!
+  const activeSection =
+    copy.atlasSections.find((section) => section.lineRange === activeSectionLineRange) ??
+    copy.atlasSections[0]!
+
+  const [sourceFocus, setSourceFocus] = useState(() => sourceFocusFromLoopStep(activeStep, copy.ui))
+
+  useEffect(() => {
+    setActiveStepId(copy.loopSteps[0]!.id)
+    setActiveSectionLineRange(copy.atlasSections[0]!.lineRange)
+    setSourceFocus(sourceFocusFromLoopStep(copy.loopSteps[0]!, copy.ui))
+  }, [copy])
 
   const handleSelectStep = (step: LoopStep) => {
-    setActiveStep(step)
-    setSourceFocus(sourceFocusFromLoopStep(step))
+    setActiveStepId(step.id)
+    setSourceFocus(sourceFocusFromLoopStep(step, copy.ui))
   }
 
   const handleSelectSection = (section: AtlasSection) => {
-    setActiveSection(section)
-    setSourceFocus(sourceFocusFromAtlasSection(section))
+    setActiveSectionLineRange(section.lineRange)
+    setSourceFocus(sourceFocusFromAtlasSection(section, copy.ui))
   }
 
   return (
     <main className="page-shell">
-      <HeroSection />
-      <section className="source-workbench" aria-label="學習迴圈與原始碼地圖">
+      <HeroSection copy={copy} />
+      <section className="source-workbench" aria-label={copy.ui.sectionTitles.loop}>
         <div className="source-workbench-main">
-          <LearningLoopSection activeStep={activeStep} onSelectStep={handleSelectStep} />
+          <LearningLoopSection
+            activeStep={activeStep}
+            copy={copy}
+            onSelectStep={handleSelectStep}
+          />
           <SingleFileAtlasSection
             activeSection={activeSection}
+            copy={copy}
             onSelectSection={handleSelectSection}
           />
         </div>
         <div className="source-workbench-aside">
-          <StickySourcePanel focus={sourceFocus} />
+          <StickySourcePanel copy={copy.ui} focus={sourceFocus} />
         </div>
       </section>
-      <PrimitiveInventorySection />
-      <TradeoffSection />
-      <ReferenceRunSection />
+      <PrimitiveInventorySection copy={copy} />
+      <TradeoffSection copy={copy} />
+      <ReferenceRunSection copy={copy} />
     </main>
   )
 }

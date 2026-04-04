@@ -1,4 +1,4 @@
-import { evidencePack, type EvidenceLossPoint } from './evidencePack'
+import { getEvidencePack, type EvidenceLossPoint } from './evidencePack'
 import { sourceLinks, gistRangeHref } from './sources'
 import type { Locale } from '../i18n'
 
@@ -65,8 +65,6 @@ export type ReferenceLink = {
   detail: string
 }
 
-const { source, quickRun } = evidencePack
-
 const sharedLoopSnippets = {
   load: `if not os.path.exists('input.txt'):\n    urllib.request.urlretrieve(names_url, 'input.txt')\ndocs = [line.strip() for line in open('input.txt') if line.strip()]\nrandom.shuffle(docs)`,
   tokenize: `uchars = sorted(set(''.join(docs)))\nBOS = len(uchars)\nvocab_size = len(uchars) + 1`,
@@ -84,12 +82,14 @@ const sharedLoopSnippets = {
 
 export function getCopy(locale: Locale) {
   const isZh = locale === 'zh-TW'
+  const evidencePack = getEvidencePack(locale)
+  const { source, quickRun } = evidencePack
 
   const heroMetrics: HeroMetric[] = isZh
     ? [
         { value: String(source.lineCount), label: '原始 gist 行數', note: '一個零依賴 Python 檔，直接包下完整訓練與推論流程。' },
         { value: quickRun.numDocs.toLocaleString('zh-TW'), label: 'training docs', note: '只靠一份打亂後的中文姓名清單，就夠把整個 loop 拆到見骨。' },
-        { value: String(quickRun.vocabSize), label: 'vocab size', note: '原始 evidence 仍是英文字元 vocab；中文版案例語境已改成台灣常見中文姓名。' },
+        { value: String(quickRun.vocabSize), label: 'vocab size', note: '這版 evidence 直接改用台灣常見中文姓名資料，因此 vocab 也跟著換成中文字符集合。' },
         { value: quickRun.numParams.toLocaleString('zh-TW'), label: 'scalar params', note: 'embedding、attention、MLP、LM head，全部攤在檯面上。' },
         { value: '1', label: 'Transformer blocks', note: '只留一層，不是偷工減料，是不想讓你被規模分心。' },
         { value: '4', label: 'attention heads', note: '每個 head 只有四維。寒酸得剛剛好，也因此超好教。' },
@@ -269,7 +269,7 @@ export function getCopy(locale: Locale) {
     checkpoints: isZh
       ? [
           `這些數字來自 raw gist 的可重現 ${evidencePack.quickRun.numSteps} 步切片，不是手寫 demo，也不是 UI 想像力。`,
-          '前期 loss 掉得快，是因為模型只需要先學會「長得像中文姓名」，不是突然頓悟宇宙真理。',
+          '前期 loss 掉得快，是因為模型只需要先學會「長得像中文姓名」，不是突然頓悟宇宙真理，也不是突然讀懂姓氏文化。',
           '最後的樣本依然粗糙，這很好；太滑順反而該先懷疑是不是在演。',
           '頁面應該把這些 artifact 當作 loop 閉合的證據，不是拿來假裝模型突然無所不能。',
         ]
@@ -285,7 +285,7 @@ export function getCopy(locale: Locale) {
     ? [
         { label: 'Karpathy 的 gist', href: sourceLinks.gist, detail: '這個頁面正在拆解的原始來源。' },
         { label: '原始 gist', href: sourceLinks.rawGist, detail: '如果你想看沒有 GitHub 介面的乾淨 200 行版本，這個連結最直接。' },
-        { label: '中文姓名 dataset（本地）', href: '#top', detail: '中文版案例目前改用本地整理的台灣常見中文姓名清單。' },
+        { label: '中文姓名 dataset（本地）', href: '#top', detail: '中文版案例目前直接使用本地整理的台灣常見中文姓名清單，並重跑了對應 evidence。' },
         { label: 'ccunpacked.dev', href: sourceLinks.inspiration, detail: '這個可探索 editorial 版型的結構靈感來源。' },
       ]
     : [

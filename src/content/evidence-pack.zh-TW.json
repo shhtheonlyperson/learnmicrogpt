@@ -1,0 +1,707 @@
+{
+  "generatedAt": "2026-04-04T12:33:57.815Z",
+  "locale": "zh-TW",
+  "source": {
+    "gistId": "8627fe009c40f57531cb18360106ce95",
+    "gistUrl": "https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95",
+    "rawGistUrl": "https://gist.githubusercontent.com/karpathy/8627fe009c40f57531cb18360106ce95/raw/microgpt.py",
+    "lineCount": 200,
+    "datasetUrl": "data/names_zh_tw.txt"
+  },
+  "quickRun": {
+    "numSteps": 120,
+    "patchNotes": [
+      "Replaced the raw gist training horizon with 120 steps for a fast reference pass.",
+      "Converted the training progress print from carriage-return updates to newline logs for parsable output.",
+      "Patched the corpus bootstrap so the run uses the local zh-TW Chinese-name dataset instead of the default English names file."
+    ],
+    "numDocs": 1383,
+    "vocabSize": 206,
+    "numParams": 9920,
+    "referenceRunPreview": "num docs: 1383\nvocab size: 206\nnum params: 9920\nstep    1 /  120 | loss 5.4708\nstep   24 /  120 | loss 3.8075\nstep  120 /  120 | loss 3.5437",
+    "losses": [
+      {
+        "step": 1,
+        "totalSteps": 120,
+        "loss": 5.4708
+      },
+      {
+        "step": 2,
+        "totalSteps": 120,
+        "loss": 5.2146
+      },
+      {
+        "step": 3,
+        "totalSteps": 120,
+        "loss": 5.2981
+      },
+      {
+        "step": 4,
+        "totalSteps": 120,
+        "loss": 5.023
+      },
+      {
+        "step": 5,
+        "totalSteps": 120,
+        "loss": 4.9757
+      },
+      {
+        "step": 6,
+        "totalSteps": 120,
+        "loss": 4.7474
+      },
+      {
+        "step": 7,
+        "totalSteps": 120,
+        "loss": 4.9896
+      },
+      {
+        "step": 8,
+        "totalSteps": 120,
+        "loss": 4.343
+      },
+      {
+        "step": 9,
+        "totalSteps": 120,
+        "loss": 4.1164
+      },
+      {
+        "step": 10,
+        "totalSteps": 120,
+        "loss": 3.9978
+      },
+      {
+        "step": 11,
+        "totalSteps": 120,
+        "loss": 3.593
+      },
+      {
+        "step": 12,
+        "totalSteps": 120,
+        "loss": 4.6645
+      },
+      {
+        "step": 13,
+        "totalSteps": 120,
+        "loss": 3.8974
+      },
+      {
+        "step": 14,
+        "totalSteps": 120,
+        "loss": 4.3074
+      },
+      {
+        "step": 15,
+        "totalSteps": 120,
+        "loss": 4.6169
+      },
+      {
+        "step": 16,
+        "totalSteps": 120,
+        "loss": 3.9438
+      },
+      {
+        "step": 17,
+        "totalSteps": 120,
+        "loss": 4.089
+      },
+      {
+        "step": 18,
+        "totalSteps": 120,
+        "loss": 4.0169
+      },
+      {
+        "step": 19,
+        "totalSteps": 120,
+        "loss": 3.885
+      },
+      {
+        "step": 20,
+        "totalSteps": 120,
+        "loss": 3.7963
+      },
+      {
+        "step": 21,
+        "totalSteps": 120,
+        "loss": 4.2533
+      },
+      {
+        "step": 22,
+        "totalSteps": 120,
+        "loss": 4.1517
+      },
+      {
+        "step": 23,
+        "totalSteps": 120,
+        "loss": 3.6463
+      },
+      {
+        "step": 24,
+        "totalSteps": 120,
+        "loss": 3.8075
+      },
+      {
+        "step": 25,
+        "totalSteps": 120,
+        "loss": 4.2552
+      },
+      {
+        "step": 26,
+        "totalSteps": 120,
+        "loss": 3.9973
+      },
+      {
+        "step": 27,
+        "totalSteps": 120,
+        "loss": 3.6308
+      },
+      {
+        "step": 28,
+        "totalSteps": 120,
+        "loss": 3.5296
+      },
+      {
+        "step": 29,
+        "totalSteps": 120,
+        "loss": 3.5296
+      },
+      {
+        "step": 30,
+        "totalSteps": 120,
+        "loss": 3.4019
+      },
+      {
+        "step": 31,
+        "totalSteps": 120,
+        "loss": 3.239
+      },
+      {
+        "step": 32,
+        "totalSteps": 120,
+        "loss": 3.1942
+      },
+      {
+        "step": 33,
+        "totalSteps": 120,
+        "loss": 3.5258
+      },
+      {
+        "step": 34,
+        "totalSteps": 120,
+        "loss": 4.076
+      },
+      {
+        "step": 35,
+        "totalSteps": 120,
+        "loss": 3.2338
+      },
+      {
+        "step": 36,
+        "totalSteps": 120,
+        "loss": 3.1649
+      },
+      {
+        "step": 37,
+        "totalSteps": 120,
+        "loss": 2.7075
+      },
+      {
+        "step": 38,
+        "totalSteps": 120,
+        "loss": 4.4516
+      },
+      {
+        "step": 39,
+        "totalSteps": 120,
+        "loss": 2.9758
+      },
+      {
+        "step": 40,
+        "totalSteps": 120,
+        "loss": 3.7533
+      },
+      {
+        "step": 41,
+        "totalSteps": 120,
+        "loss": 4.4248
+      },
+      {
+        "step": 42,
+        "totalSteps": 120,
+        "loss": 3.1887
+      },
+      {
+        "step": 43,
+        "totalSteps": 120,
+        "loss": 3.215
+      },
+      {
+        "step": 44,
+        "totalSteps": 120,
+        "loss": 4.3394
+      },
+      {
+        "step": 45,
+        "totalSteps": 120,
+        "loss": 2.9714
+      },
+      {
+        "step": 46,
+        "totalSteps": 120,
+        "loss": 3.9372
+      },
+      {
+        "step": 47,
+        "totalSteps": 120,
+        "loss": 3.6057
+      },
+      {
+        "step": 48,
+        "totalSteps": 120,
+        "loss": 3.6407
+      },
+      {
+        "step": 49,
+        "totalSteps": 120,
+        "loss": 3.6292
+      },
+      {
+        "step": 50,
+        "totalSteps": 120,
+        "loss": 3.9504
+      },
+      {
+        "step": 51,
+        "totalSteps": 120,
+        "loss": 3.194
+      },
+      {
+        "step": 52,
+        "totalSteps": 120,
+        "loss": 3.6817
+      },
+      {
+        "step": 53,
+        "totalSteps": 120,
+        "loss": 4.0499
+      },
+      {
+        "step": 54,
+        "totalSteps": 120,
+        "loss": 4.023
+      },
+      {
+        "step": 55,
+        "totalSteps": 120,
+        "loss": 3.7455
+      },
+      {
+        "step": 56,
+        "totalSteps": 120,
+        "loss": 2.9452
+      },
+      {
+        "step": 57,
+        "totalSteps": 120,
+        "loss": 3.5815
+      },
+      {
+        "step": 58,
+        "totalSteps": 120,
+        "loss": 3.5442
+      },
+      {
+        "step": 59,
+        "totalSteps": 120,
+        "loss": 3.3307
+      },
+      {
+        "step": 60,
+        "totalSteps": 120,
+        "loss": 3.2683
+      },
+      {
+        "step": 61,
+        "totalSteps": 120,
+        "loss": 3.012
+      },
+      {
+        "step": 62,
+        "totalSteps": 120,
+        "loss": 4.5696
+      },
+      {
+        "step": 63,
+        "totalSteps": 120,
+        "loss": 4.1938
+      },
+      {
+        "step": 64,
+        "totalSteps": 120,
+        "loss": 3.3519
+      },
+      {
+        "step": 65,
+        "totalSteps": 120,
+        "loss": 2.847
+      },
+      {
+        "step": 66,
+        "totalSteps": 120,
+        "loss": 3.8306
+      },
+      {
+        "step": 67,
+        "totalSteps": 120,
+        "loss": 3.6655
+      },
+      {
+        "step": 68,
+        "totalSteps": 120,
+        "loss": 3.0975
+      },
+      {
+        "step": 69,
+        "totalSteps": 120,
+        "loss": 3.1962
+      },
+      {
+        "step": 70,
+        "totalSteps": 120,
+        "loss": 2.8181
+      },
+      {
+        "step": 71,
+        "totalSteps": 120,
+        "loss": 3.0935
+      },
+      {
+        "step": 72,
+        "totalSteps": 120,
+        "loss": 3.3924
+      },
+      {
+        "step": 73,
+        "totalSteps": 120,
+        "loss": 2.5641
+      },
+      {
+        "step": 74,
+        "totalSteps": 120,
+        "loss": 2.4946
+      },
+      {
+        "step": 75,
+        "totalSteps": 120,
+        "loss": 3.1767
+      },
+      {
+        "step": 76,
+        "totalSteps": 120,
+        "loss": 2.1869
+      },
+      {
+        "step": 77,
+        "totalSteps": 120,
+        "loss": 2.7344
+      },
+      {
+        "step": 78,
+        "totalSteps": 120,
+        "loss": 3.5191
+      },
+      {
+        "step": 79,
+        "totalSteps": 120,
+        "loss": 2.713
+      },
+      {
+        "step": 80,
+        "totalSteps": 120,
+        "loss": 2.7251
+      },
+      {
+        "step": 81,
+        "totalSteps": 120,
+        "loss": 4.7734
+      },
+      {
+        "step": 82,
+        "totalSteps": 120,
+        "loss": 3.8771
+      },
+      {
+        "step": 83,
+        "totalSteps": 120,
+        "loss": 5.0223
+      },
+      {
+        "step": 84,
+        "totalSteps": 120,
+        "loss": 3.0758
+      },
+      {
+        "step": 85,
+        "totalSteps": 120,
+        "loss": 2.3584
+      },
+      {
+        "step": 86,
+        "totalSteps": 120,
+        "loss": 2.8598
+      },
+      {
+        "step": 87,
+        "totalSteps": 120,
+        "loss": 2.0011
+      },
+      {
+        "step": 88,
+        "totalSteps": 120,
+        "loss": 3.575
+      },
+      {
+        "step": 89,
+        "totalSteps": 120,
+        "loss": 3.3144
+      },
+      {
+        "step": 90,
+        "totalSteps": 120,
+        "loss": 4.3392
+      },
+      {
+        "step": 91,
+        "totalSteps": 120,
+        "loss": 3.3048
+      },
+      {
+        "step": 92,
+        "totalSteps": 120,
+        "loss": 2.6401
+      },
+      {
+        "step": 93,
+        "totalSteps": 120,
+        "loss": 3.5781
+      },
+      {
+        "step": 94,
+        "totalSteps": 120,
+        "loss": 2.7367
+      },
+      {
+        "step": 95,
+        "totalSteps": 120,
+        "loss": 3.0079
+      },
+      {
+        "step": 96,
+        "totalSteps": 120,
+        "loss": 3.2572
+      },
+      {
+        "step": 97,
+        "totalSteps": 120,
+        "loss": 3.2409
+      },
+      {
+        "step": 98,
+        "totalSteps": 120,
+        "loss": 3.5919
+      },
+      {
+        "step": 99,
+        "totalSteps": 120,
+        "loss": 3.0534
+      },
+      {
+        "step": 100,
+        "totalSteps": 120,
+        "loss": 2.259
+      },
+      {
+        "step": 101,
+        "totalSteps": 120,
+        "loss": 3.564
+      },
+      {
+        "step": 102,
+        "totalSteps": 120,
+        "loss": 3.5585
+      },
+      {
+        "step": 103,
+        "totalSteps": 120,
+        "loss": 2.9572
+      },
+      {
+        "step": 104,
+        "totalSteps": 120,
+        "loss": 2.7421
+      },
+      {
+        "step": 105,
+        "totalSteps": 120,
+        "loss": 3.4396
+      },
+      {
+        "step": 106,
+        "totalSteps": 120,
+        "loss": 3.5576
+      },
+      {
+        "step": 107,
+        "totalSteps": 120,
+        "loss": 2.5163
+      },
+      {
+        "step": 108,
+        "totalSteps": 120,
+        "loss": 3.2278
+      },
+      {
+        "step": 109,
+        "totalSteps": 120,
+        "loss": 2.1323
+      },
+      {
+        "step": 110,
+        "totalSteps": 120,
+        "loss": 3.319
+      },
+      {
+        "step": 111,
+        "totalSteps": 120,
+        "loss": 2.8711
+      },
+      {
+        "step": 112,
+        "totalSteps": 120,
+        "loss": 3.7413
+      },
+      {
+        "step": 113,
+        "totalSteps": 120,
+        "loss": 3.1586
+      },
+      {
+        "step": 114,
+        "totalSteps": 120,
+        "loss": 2.2179
+      },
+      {
+        "step": 115,
+        "totalSteps": 120,
+        "loss": 3.4001
+      },
+      {
+        "step": 116,
+        "totalSteps": 120,
+        "loss": 3.0017
+      },
+      {
+        "step": 117,
+        "totalSteps": 120,
+        "loss": 2.5805
+      },
+      {
+        "step": 118,
+        "totalSteps": 120,
+        "loss": 3.6609
+      },
+      {
+        "step": 119,
+        "totalSteps": 120,
+        "loss": 4.3992
+      },
+      {
+        "step": 120,
+        "totalSteps": 120,
+        "loss": 3.5437
+      }
+    ],
+    "lossChart": [
+      {
+        "step": 1,
+        "loss": 5.4708
+      },
+      {
+        "step": 12,
+        "loss": 4.6645
+      },
+      {
+        "step": 24,
+        "loss": 3.8075
+      },
+      {
+        "step": 36,
+        "loss": 3.1649
+      },
+      {
+        "step": 48,
+        "loss": 3.6407
+      },
+      {
+        "step": 60,
+        "loss": 3.2683
+      },
+      {
+        "step": 72,
+        "loss": 3.3924
+      },
+      {
+        "step": 84,
+        "loss": 3.0758
+      },
+      {
+        "step": 96,
+        "loss": 3.2572
+      },
+      {
+        "step": 108,
+        "loss": 3.2278
+      },
+      {
+        "step": 120,
+        "loss": 3.5437
+      }
+    ],
+    "samples": [
+      "林建宏",
+      "林婕婷",
+      "陳欣樺",
+      "林瑋宇",
+      "林芷婷",
+      "林栩婷",
+      "林思婷",
+      "林筱婷",
+      "陳予娟",
+      "江文婷",
+      "林栩婷",
+      "林恩美",
+      "林彭婷",
+      "陳欣婷",
+      "陳偉涵",
+      "林敬婷",
+      "陳敏妤",
+      "林勝婷",
+      "林孟妤",
+      "陳柏婷"
+    ],
+    "featuredSamples": [
+      "林建宏",
+      "林婕婷",
+      "陳欣樺",
+      "林瑋宇",
+      "林芷婷",
+      "林栩婷",
+      "林思婷",
+      "林筱婷",
+      "陳予娟",
+      "江文婷",
+      "林栩婷",
+      "林恩美"
+    ]
+  }
+}

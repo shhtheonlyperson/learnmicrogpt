@@ -92,9 +92,40 @@
   padding: clamp(1rem, 3vw, 2rem);
 }
 
+.hero-topbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .hero-copy-stack {
   display: grid;
   gap: 1rem;
+}
+
+.locale-toggle {
+  display: inline-flex;
+  gap: 0.45rem;
+  padding: 0.28rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.locale-chip {
+  min-height: 2.2rem;
+  padding: 0.35rem 0.8rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+}
+
+.locale-chip.active {
+  color: #fff8f0;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
 }
 
 .eyebrow,
@@ -1031,6 +1062,10 @@
   .hero-copy {
     padding: 0.35rem;
     gap: 1.1rem;
+  }
+
+  .hero-topbar {
+    justify-content: flex-start;
   }
 
   .hero-copy h1 {

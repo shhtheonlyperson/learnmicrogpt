@@ -1,6 +1,7 @@
 import { motion, useAnimationFrame, useSpring } from 'motion/react'
-import { useEffect, useRef, useState } from 'react'
-import { loopSteps, type LoopStep } from './content/loopSteps'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { getCopy, type LoopStep } from './content/copy'
+import { useI18n } from './i18n'
 
 type LearningLoopFilmProps = {
   selectedStepId: string
@@ -16,8 +17,7 @@ type LoopScene = {
 }
 
 export const FLOW_STEP_MS = 3200
-export const FLOW_TOTAL_MS = loopSteps.length * FLOW_STEP_MS
-
+export const FLOW_TOTAL_MS = 11 * FLOW_STEP_MS
 const TRACK_SPACING = 196
 const CARD_WIDTH = 184
 const COMPACT_QUERY = '(max-width: 760px)'
@@ -58,9 +58,7 @@ const useMediaQuery = (query: string) => {
   )
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return
-    }
+    if (typeof window === 'undefined') return
 
     const media = window.matchMedia(query)
     const onChange = (event: MediaQueryListEvent) => {
@@ -68,28 +66,10 @@ const useMediaQuery = (query: string) => {
     }
 
     media.addEventListener('change', onChange)
-
     return () => media.removeEventListener('change', onChange)
   }, [query])
 
   return matches
-}
-
-const getScene = (elapsedMs: number): LoopScene => {
-  const segmentIndex = Math.floor(elapsedMs / FLOW_STEP_MS)
-  const localMs = elapsedMs % FLOW_STEP_MS
-  const currentStep = loopSteps[segmentIndex]!
-  const nextStep = loopSteps[(segmentIndex + 1) % loopSteps.length]!
-  const transition = `${currentStep.flowStage} => ${currentStep.targetLabel} => ${nextStep.flowStage}`
-
-  return {
-    currentStep,
-    nextStep,
-    progress: mapRange(localMs, 0, FLOW_STEP_MS, 0, 1),
-    segmentIndex,
-    transcript: transition,
-    transcriptLength: Math.floor(mapRange(localMs, 180, 1680, 0, transition.length)),
-  }
 }
 
 const AbstractStageMark = ({
@@ -179,6 +159,7 @@ const StageNode = ({
   nextIndex,
   progress,
   step,
+  statusLabels,
 }: {
   index: number
   scenePosition: number
@@ -186,6 +167,7 @@ const StageNode = ({
   nextIndex: number
   progress: number
   step: LoopStep
+  statusLabels: { current: string; next: string; idle: string }
 }) => {
   const distance = Math.abs(index - scenePosition)
   const emphasis = clamp01(1 - distance * 0.42)
@@ -208,10 +190,7 @@ const StageNode = ({
         borderRadius: '1.35rem',
         border: `1px solid ${withAlpha(step.palette.glow, 0.12 + emphasis * 0.28)}`,
         background: [
-          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha(
-            step.palette.accent,
-            0.08 + emphasis * 0.14,
-          )})`,
+          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha(step.palette.accent, 0.08 + emphasis * 0.14)})`,
           withAlpha('#0f1217', 0.78 + emphasis * 0.08),
         ].join(','),
         boxShadow: isCurrent || isNext ? `0 20px 60px ${withAlpha(step.palette.accent, 0.18)}` : 'none',
@@ -255,7 +234,7 @@ const StageNode = ({
             color: withAlpha('#fff7ee', isCurrent || isNext ? 0.58 : 0.34),
           }}
         >
-          {isCurrent ? '進行中' : isNext ? '即將進入' : '待命'}
+          {isCurrent ? statusLabels.current : isNext ? statusLabels.next : statusLabels.idle}
         </span>
       </div>
 
@@ -312,20 +291,13 @@ const CompactStageCard = ({
 
   return (
     <motion.article
-      animate={{
-        opacity: active ? 1 : 0.86,
-        scale: active ? 1 : 0.98,
-        y: active ? -2 : 2,
-      }}
+      animate={{ opacity: active ? 1 : 0.86, scale: active ? 1 : 0.98, y: active ? -2 : 2 }}
       style={{
         padding: '0.95rem',
         borderRadius: '1.2rem',
         border: `1px solid ${withAlpha(step.palette.glow, active ? 0.28 : 0.18)}`,
         background: [
-          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha(
-            step.palette.accent,
-            active ? 0.16 : 0.1,
-          )})`,
+          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha(step.palette.accent, active ? 0.16 : 0.1)})`,
           withAlpha('#0f1217', 0.82),
         ].join(','),
         boxShadow: active ? `0 16px 42px ${withAlpha(step.palette.accent, 0.16)}` : 'none',
@@ -414,9 +386,10 @@ const renderCompactFilm = (
   packetX: ReturnType<typeof useSpring>,
   progressScale: ReturnType<typeof useSpring>,
   typedTranscript: string,
+  ui: ReturnType<typeof getCopy>['ui'],
 ) => (
   <section
-    aria-label="動態學習迴圈"
+    aria-label={ui.sectionTitles.loop}
     style={{
       position: 'relative',
       width: '100%',
@@ -452,7 +425,7 @@ const renderCompactFilm = (
             color: withAlpha('#fff7ee', 0.58),
           }}
         >
-          執行軌跡
+          {ui.labels.executionTrace}
         </div>
 
         <div
@@ -470,7 +443,7 @@ const renderCompactFilm = (
             border: `1px solid ${withAlpha(scene.currentStep.palette.glow, 0.18)}`,
           }}
         >
-          交接 {Math.round(scene.progress * 100)}%
+          {ui.labels.handoff} {Math.round(scene.progress * 100)}%
         </div>
       </div>
 
@@ -483,7 +456,7 @@ const renderCompactFilm = (
           color: '#fff7ee',
         }}
       >
-        {scene.currentStep.flowStage} 到 {scene.nextStep.flowStage}
+        {scene.currentStep.flowStage} {ui.labels.to} {scene.nextStep.flowStage}
       </div>
 
       <div
@@ -497,7 +470,7 @@ const renderCompactFilm = (
       </div>
     </div>
 
-    <CompactStageCard label="目前階段" progress={scene.progress} step={scene.currentStep} tone="current" />
+    <CompactStageCard label={ui.labels.currentStage} progress={scene.progress} step={scene.currentStep} tone="current" />
 
     <div
       style={{
@@ -552,10 +525,7 @@ const renderCompactFilm = (
           fontSize: '0.72rem',
           letterSpacing: '0.05em',
           color: '#fff7ee',
-          background: `linear-gradient(135deg, ${withAlpha(
-            scene.currentStep.palette.glow,
-            0.24,
-          )}, ${withAlpha(scene.nextStep.palette.accent, 0.28)})`,
+          background: `linear-gradient(135deg, ${withAlpha(scene.currentStep.palette.glow, 0.24)}, ${withAlpha(scene.nextStep.palette.accent, 0.28)})`,
           border: `1px solid ${withAlpha('#ffffff', 0.12)}`,
           boxShadow: `0 0 28px ${withAlpha(scene.currentStep.palette.glow, 0.22)}`,
         }}
@@ -564,7 +534,7 @@ const renderCompactFilm = (
       </motion.div>
     </div>
 
-    <CompactStageCard label="下一步" progress={scene.progress + 0.18} step={scene.nextStep} tone="next" />
+    <CompactStageCard label={ui.labels.nextStage} progress={scene.progress + 0.18} step={scene.nextStep} tone="next" />
 
     <div
       style={{
@@ -584,7 +554,7 @@ const renderCompactFilm = (
           color: withAlpha('#fff7ee', 0.44),
         }}
       >
-        即時轉換紀錄
+        {ui.labels.liveTransitionLog}
       </div>
 
       <div
@@ -616,7 +586,9 @@ const renderCompactFilm = (
           color: withAlpha('#fff7ee', 0.58),
         }}
       >
-        <span>目前原始碼：{scene.currentStep.lineRange}</span>
+        <span>
+          {ui.labels.currentSource}: {scene.currentStep.lineRange}
+        </span>
         <span>
           {scene.currentStep.id} / {scene.nextStep.id}
         </span>
@@ -626,6 +598,28 @@ const renderCompactFilm = (
 )
 
 export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
+  const { locale } = useI18n()
+  const copy = useMemo(() => getCopy(locale), [locale])
+  const loopSteps = copy.loopSteps
+  const FLOW_TOTAL_MS = loopSteps.length * FLOW_STEP_MS
+
+  const getScene = (elapsedMs: number): LoopScene => {
+    const segmentIndex = Math.floor(elapsedMs / FLOW_STEP_MS)
+    const localMs = elapsedMs % FLOW_STEP_MS
+    const currentStep = loopSteps[segmentIndex]!
+    const nextStep = loopSteps[(segmentIndex + 1) % loopSteps.length]!
+    const transition = `${currentStep.flowStage} => ${currentStep.targetLabel} => ${nextStep.flowStage}`
+
+    return {
+      currentStep,
+      nextStep,
+      progress: mapRange(localMs, 0, FLOW_STEP_MS, 0, 1),
+      segmentIndex,
+      transcript: transition,
+      transcriptLength: Math.floor(mapRange(localMs, 180, 1680, 0, transition.length)),
+    }
+  }
+
   const selectedIndex = Math.max(
     0,
     loopSteps.findIndex((item) => item.id === selectedStepId),
@@ -635,6 +629,12 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
   const animationStartRef = useRef<number | null>(null)
   const [scene, setScene] = useState<LoopScene>(() => getScene(initialOffset))
   const isCompact = useMediaQuery(COMPACT_QUERY)
+
+  useEffect(() => {
+    startOffsetRef.current = initialOffset
+    animationStartRef.current = null
+    setScene(getScene(initialOffset))
+  }, [initialOffset, locale])
 
   const railX = useSpring(0, { stiffness: 170, damping: 26 })
   const packetX = useSpring(-44, { stiffness: 220, damping: 24 })
@@ -660,12 +660,12 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
   const railWidth = (loopSteps.length - 1) * TRACK_SPACING + CARD_WIDTH
 
   if (isCompact) {
-    return renderCompactFilm(scene, packetX, progressScale, typedTranscript)
+    return renderCompactFilm(scene, packetX, progressScale, typedTranscript, copy.ui)
   }
 
   return (
     <section
-      aria-label="動態學習迴圈"
+      aria-label={copy.ui.sectionTitles.loop}
       style={{
         position: 'relative',
         aspectRatio: '16 / 9',
@@ -710,7 +710,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
                 color: withAlpha('#fff7ee', 0.56),
               }}
             >
-              執行軌跡
+              {copy.ui.labels.executionTrace}
             </div>
 
             <div
@@ -722,7 +722,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
                 color: '#fff7ee',
               }}
             >
-              {scene.currentStep.flowStage} 到 {scene.nextStep.flowStage}
+              {scene.currentStep.flowStage} {copy.ui.labels.to} {scene.nextStep.flowStage}
             </div>
 
             <div
@@ -737,13 +737,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
             </div>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gap: '0.6rem',
-              justifyItems: 'end',
-            }}
-          >
+          <div style={{ display: 'grid', gap: '0.6rem', justifyItems: 'end' }}>
             <div
               style={{
                 display: 'inline-flex',
@@ -779,7 +773,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
                 border: `1px solid ${withAlpha(scene.currentStep.palette.glow, 0.18)}`,
               }}
             >
-              交接進度 {Math.round(scene.progress * 100)}%
+              {copy.ui.labels.handoff} {Math.round(scene.progress * 100)}%
             </div>
           </div>
         </div>
@@ -803,10 +797,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
             transform: 'translate(-50%, -50%)',
             borderLeft: `1px solid ${withAlpha('#ffffff', 0.08)}`,
             borderRight: `1px solid ${withAlpha('#ffffff', 0.08)}`,
-            background: `linear-gradient(180deg, ${withAlpha(
-              scene.currentStep.palette.glow,
-              0.06,
-            )}, ${withAlpha(scene.nextStep.palette.glow, 0.02)})`,
+            background: `linear-gradient(180deg, ${withAlpha(scene.currentStep.palette.glow, 0.06)}, ${withAlpha(scene.nextStep.palette.glow, 0.02)})`,
             pointerEvents: 'none',
           }}
         />
@@ -828,10 +819,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
               right: CARD_WIDTH / 2,
               top: '9.6rem',
               height: '1px',
-              background: `linear-gradient(90deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha(
-                '#ffffff',
-                0.18,
-              )}, ${withAlpha('#ffffff', 0.08)})`,
+              background: `linear-gradient(90deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha('#ffffff', 0.18)}, ${withAlpha('#ffffff', 0.08)})`,
             }}
           />
 
@@ -842,10 +830,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
               right: CARD_WIDTH / 2,
               top: '9.6rem',
               height: '1px',
-              background: `linear-gradient(90deg, transparent, ${withAlpha(
-                scene.currentStep.palette.glow,
-                0.42,
-              )}, transparent)`,
+              background: `linear-gradient(90deg, transparent, ${withAlpha(scene.currentStep.palette.glow, 0.42)}, transparent)`,
               filter: 'blur(6px)',
             }}
           />
@@ -858,13 +843,24 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
                 nextIndex={(scene.segmentIndex + 1) % loopSteps.length}
                 progress={scene.progress}
                 scenePosition={scenePosition}
+                statusLabels={copy.ui.labels.stageStatus}
                 step={step}
               />
 
               <motion.div
                 animate={{
-                  opacity: index === scene.segmentIndex ? 1 : index === (scene.segmentIndex + 1) % loopSteps.length ? 0.72 : 0.28,
-                  scale: index === scene.segmentIndex ? 1.25 : index === (scene.segmentIndex + 1) % loopSteps.length ? 1.05 : 0.82,
+                  opacity:
+                    index === scene.segmentIndex
+                      ? 1
+                      : index === (scene.segmentIndex + 1) % loopSteps.length
+                        ? 0.72
+                        : 0.28,
+                  scale:
+                    index === scene.segmentIndex
+                      ? 1.25
+                      : index === (scene.segmentIndex + 1) % loopSteps.length
+                        ? 1.05
+                        : 0.82,
                 }}
                 style={{
                   position: 'absolute',
@@ -947,10 +943,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               color: '#fff7ee',
-              background: `linear-gradient(135deg, ${withAlpha(
-                scene.currentStep.palette.glow,
-                0.24,
-              )}, ${withAlpha(scene.nextStep.palette.accent, 0.28)})`,
+              background: `linear-gradient(135deg, ${withAlpha(scene.currentStep.palette.glow, 0.24)}, ${withAlpha(scene.nextStep.palette.accent, 0.28)})`,
               border: `1px solid ${withAlpha('#ffffff', 0.12)}`,
               boxShadow: `0 0 32px ${withAlpha(scene.currentStep.palette.glow, 0.24)}`,
             }}
@@ -992,7 +985,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
                 color: withAlpha('#fff7ee', 0.42),
               }}
             >
-              即時轉換紀錄
+              {copy.ui.labels.liveTransitionLog}
             </div>
 
             <div
@@ -1015,13 +1008,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
             </div>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              justifyItems: 'end',
-              gap: '0.35rem',
-            }}
-          >
+          <div style={{ display: 'grid', justifyItems: 'end', gap: '0.35rem' }}>
             <div
               style={{
                 fontFamily: '"IBM Plex Mono", monospace',
@@ -1031,7 +1018,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
                 color: withAlpha('#fff7ee', 0.42),
               }}
             >
-              目前原始碼行數
+              {copy.ui.labels.currentSource}
             </div>
 
             <div
@@ -1061,16 +1048,9 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
 
             return (
               <motion.div
-                animate={{
-                  opacity: isCurrent ? 1 : isNext ? 0.78 : 0.34,
-                  y: isCurrent ? -4 : 0,
-                }}
+                animate={{ opacity: isCurrent ? 1 : isNext ? 0.78 : 0.34, y: isCurrent ? -4 : 0 }}
                 key={step.id}
-                style={{
-                  display: 'grid',
-                  justifyItems: 'center',
-                  gap: '0.4rem',
-                }}
+                style={{ display: 'grid', justifyItems: 'center', gap: '0.4rem' }}
                 transition={{ type: 'spring', stiffness: 260, damping: 22 }}
               >
                 <div
