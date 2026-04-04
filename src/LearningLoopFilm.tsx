@@ -1,5 +1,5 @@
 import { motion, useAnimationFrame, useSpring } from 'motion/react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { loopSteps, type LoopStep } from './content/loopSteps'
 
 type LearningLoopFilmProps = {
@@ -15,11 +15,12 @@ type LoopScene = {
   transcriptLength: number
 }
 
-export const FLOW_STEP_MS = 2800
+export const FLOW_STEP_MS = 3200
 export const FLOW_TOTAL_MS = loopSteps.length * FLOW_STEP_MS
 
-const TRACK_SPACING = 188
-const CARD_WIDTH = 168
+const TRACK_SPACING = 196
+const CARD_WIDTH = 184
+const COMPACT_QUERY = '(max-width: 760px)'
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value))
 
@@ -49,6 +50,29 @@ const withAlpha = (hex: string, alpha: number) => {
   const b = Number.parseInt(value.slice(4, 6), 16)
 
   return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
+const useMediaQuery = (query: string) => {
+  const [matches, setMatches] = useState(() =>
+    typeof window === 'undefined' ? false : window.matchMedia(query).matches,
+  )
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const media = window.matchMedia(query)
+    const onChange = (event: MediaQueryListEvent) => {
+      setMatches(event.matches)
+    }
+
+    media.addEventListener('change', onChange)
+
+    return () => media.removeEventListener('change', onChange)
+  }, [query])
+
+  return matches
 }
 
 const getScene = (elapsedMs: number): LoopScene => {
@@ -273,6 +297,334 @@ const StageNode = ({
   )
 }
 
+const CompactStageCard = ({
+  label,
+  step,
+  progress,
+  tone,
+}: {
+  label: string
+  step: LoopStep
+  progress: number
+  tone: 'current' | 'next'
+}) => {
+  const active = tone === 'current'
+
+  return (
+    <motion.article
+      animate={{
+        opacity: active ? 1 : 0.86,
+        scale: active ? 1 : 0.98,
+        y: active ? -2 : 2,
+      }}
+      style={{
+        padding: '0.95rem',
+        borderRadius: '1.2rem',
+        border: `1px solid ${withAlpha(step.palette.glow, active ? 0.28 : 0.18)}`,
+        background: [
+          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha(
+            step.palette.accent,
+            active ? 0.16 : 0.1,
+          )})`,
+          withAlpha('#0f1217', 0.82),
+        ].join(','),
+        boxShadow: active ? `0 16px 42px ${withAlpha(step.palette.accent, 0.16)}` : 'none',
+      }}
+      transition={{ type: 'spring', stiffness: 220, damping: 24 }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '0.75rem',
+          marginBottom: '0.8rem',
+        }}
+      >
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: '1.85rem',
+            padding: '0 0.7rem',
+            borderRadius: '999px',
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.68rem',
+            letterSpacing: '0.06em',
+            color: '#fff7ee',
+            background: withAlpha('#ffffff', 0.06),
+            border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
+          }}
+        >
+          {label}
+        </span>
+
+        <span
+          style={{
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.7rem',
+            letterSpacing: '0.05em',
+            color: withAlpha('#fff7ee', 0.62),
+          }}
+        >
+          {step.lineRange}
+        </span>
+      </div>
+
+      <div
+        style={{
+          marginBottom: '0.75rem',
+          padding: '0.3rem',
+          borderRadius: '0.95rem',
+          background: withAlpha('#ffffff', 0.03),
+          border: `1px solid ${withAlpha('#ffffff', 0.06)}`,
+        }}
+      >
+        <AbstractStageMark emphasis={active ? 1 : 0.64} progress={progress} step={step} />
+      </div>
+
+      <div
+        style={{
+          fontFamily: '"Instrument Serif", serif',
+          fontSize: '1.5rem',
+          lineHeight: 1.04,
+          letterSpacing: '-0.02em',
+          color: '#fff7ee',
+          marginBottom: '0.45rem',
+        }}
+      >
+        {step.flowStage}
+      </div>
+
+      <div
+        style={{
+          fontSize: '0.9rem',
+          lineHeight: 1.62,
+          color: withAlpha('#fff7ee', 0.7),
+        }}
+      >
+        {step.title}
+      </div>
+    </motion.article>
+  )
+}
+
+const renderCompactFilm = (
+  scene: LoopScene,
+  packetX: ReturnType<typeof useSpring>,
+  progressScale: ReturnType<typeof useSpring>,
+  typedTranscript: string,
+) => (
+  <section
+    aria-label="動態學習迴圈"
+    style={{
+      position: 'relative',
+      width: '100%',
+      minHeight: '35rem',
+      overflow: 'hidden',
+      borderRadius: '1.35rem',
+      border: `1px solid ${withAlpha('#ffffff', 0.12)}`,
+      backgroundImage: [
+        `radial-gradient(circle at 18% 16%, ${withAlpha(scene.currentStep.palette.glow, 0.18)}, transparent 26%)`,
+        `radial-gradient(circle at 82% 18%, ${withAlpha(scene.nextStep.palette.glow, 0.14)}, transparent 28%)`,
+        'linear-gradient(160deg, #151218 0%, #0f1318 52%, #0a0f14 100%)',
+      ].join(','),
+      boxShadow: `inset 0 1px 0 ${withAlpha('#ffffff', 0.05)}`,
+      padding: '1rem',
+      display: 'grid',
+      gap: '0.9rem',
+    }}
+  >
+    <div style={{ display: 'grid', gap: '0.55rem' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: '0.75rem',
+          alignItems: 'center',
+        }}
+      >
+        <div
+          style={{
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.72rem',
+            letterSpacing: '0.08em',
+            color: withAlpha('#fff7ee', 0.58),
+          }}
+        >
+          執行軌跡
+        </div>
+
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: '2rem',
+            padding: '0 0.8rem',
+            borderRadius: '999px',
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.7rem',
+            letterSpacing: '0.05em',
+            color: withAlpha('#fff7ee', 0.72),
+            background: withAlpha(scene.currentStep.palette.accent, 0.16),
+            border: `1px solid ${withAlpha(scene.currentStep.palette.glow, 0.18)}`,
+          }}
+        >
+          交接 {Math.round(scene.progress * 100)}%
+        </div>
+      </div>
+
+      <div
+        style={{
+          fontFamily: '"Instrument Serif", serif',
+          fontSize: 'clamp(1.9rem, 7vw, 2.45rem)',
+          lineHeight: 1.08,
+          letterSpacing: '-0.02em',
+          color: '#fff7ee',
+        }}
+      >
+        {scene.currentStep.flowStage} 到 {scene.nextStep.flowStage}
+      </div>
+
+      <div
+        style={{
+          fontSize: '0.95rem',
+          lineHeight: 1.74,
+          color: withAlpha('#fff7ee', 0.68),
+        }}
+      >
+        {scene.currentStep.summary}
+      </div>
+    </div>
+
+    <CompactStageCard label="目前階段" progress={scene.progress} step={scene.currentStep} tone="current" />
+
+    <div
+      style={{
+        position: 'relative',
+        height: '4rem',
+        borderRadius: '1.2rem',
+        border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
+        background: withAlpha('#06080b', 0.34),
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          left: '1rem',
+          right: '1rem',
+          top: '50%',
+          height: '2px',
+          transform: 'translateY(-50%)',
+          borderRadius: '999px',
+          background: withAlpha('#ffffff', 0.08),
+          overflow: 'hidden',
+        }}
+      >
+        <motion.div
+          style={{
+            width: '100%',
+            height: '100%',
+            scaleX: progressScale,
+            transformOrigin: 'left center',
+            borderRadius: '999px',
+            background: `linear-gradient(90deg, ${scene.currentStep.palette.accent}, ${scene.nextStep.palette.accent})`,
+          }}
+        />
+      </div>
+
+      <motion.div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          x: packetX,
+          y: '-50%',
+          minWidth: '4.75rem',
+          minHeight: '2.35rem',
+          padding: '0 0.9rem',
+          borderRadius: '999px',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontFamily: '"IBM Plex Mono", monospace',
+          fontSize: '0.72rem',
+          letterSpacing: '0.05em',
+          color: '#fff7ee',
+          background: `linear-gradient(135deg, ${withAlpha(
+            scene.currentStep.palette.glow,
+            0.24,
+          )}, ${withAlpha(scene.nextStep.palette.accent, 0.28)})`,
+          border: `1px solid ${withAlpha('#ffffff', 0.12)}`,
+          boxShadow: `0 0 28px ${withAlpha(scene.currentStep.palette.glow, 0.22)}`,
+        }}
+      >
+        {scene.currentStep.targetLabel}
+      </motion.div>
+    </div>
+
+    <CompactStageCard label="下一步" progress={scene.progress + 0.18} step={scene.nextStep} tone="next" />
+
+    <div
+      style={{
+        display: 'grid',
+        gap: '0.7rem',
+        padding: '0.95rem',
+        borderRadius: '1.2rem',
+        border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
+        background: withAlpha('#06080b', 0.28),
+      }}
+    >
+      <div
+        style={{
+          fontFamily: '"IBM Plex Mono", monospace',
+          fontSize: '0.7rem',
+          letterSpacing: '0.06em',
+          color: withAlpha('#fff7ee', 0.44),
+        }}
+      >
+        即時轉換紀錄
+      </div>
+
+      <div
+        style={{
+          fontFamily: '"IBM Plex Mono", monospace',
+          fontSize: '0.9rem',
+          lineHeight: 1.7,
+          color: '#fff7ee',
+        }}
+      >
+        {typedTranscript}
+        <motion.span
+          animate={{ opacity: [1, 0.24, 1] }}
+          style={{ color: scene.currentStep.palette.glow }}
+          transition={{ duration: 0.8, repeat: Number.POSITIVE_INFINITY }}
+        >
+          ▌
+        </motion.span>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: '0.75rem',
+          fontFamily: '"IBM Plex Mono", monospace',
+          fontSize: '0.72rem',
+          letterSpacing: '0.05em',
+          color: withAlpha('#fff7ee', 0.58),
+        }}
+      >
+        <span>目前原始碼：{scene.currentStep.lineRange}</span>
+        <span>
+          {scene.currentStep.id} / {scene.nextStep.id}
+        </span>
+      </div>
+    </div>
+  </section>
+)
+
 export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
   const selectedIndex = Math.max(
     0,
@@ -282,6 +634,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
   const startOffsetRef = useRef(initialOffset)
   const animationStartRef = useRef<number | null>(null)
   const [scene, setScene] = useState<LoopScene>(() => getScene(initialOffset))
+  const isCompact = useMediaQuery(COMPACT_QUERY)
 
   const railX = useSpring(0, { stiffness: 170, damping: 26 })
   const packetX = useSpring(-44, { stiffness: 220, damping: 24 })
@@ -305,6 +658,10 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
   const scenePosition = scene.segmentIndex + scene.progress
   const typedTranscript = scene.transcript.slice(0, scene.transcriptLength)
   const railWidth = (loopSteps.length - 1) * TRACK_SPACING + CARD_WIDTH
+
+  if (isCompact) {
+    return renderCompactFilm(scene, packetX, progressScale, typedTranscript)
+  }
 
   return (
     <section

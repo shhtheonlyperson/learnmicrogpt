@@ -2,7 +2,7 @@
 
 :root {
   font-family: var(--body);
-  line-height: 1.5;
+  line-height: 1.72;
   font-weight: 400;
   color: var(--text);
   background:
@@ -27,9 +27,9 @@
   --teal-strong: #174b45;
   --shadow: 0 20px 60px rgba(72, 41, 18, 0.14);
 
-  --display: 'Instrument Serif', 'Times New Roman', serif;
-  --body: 'Manrope', 'Avenir Next', sans-serif;
-  --mono: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  --display: 'Instrument Serif', 'Iowan Old Style', 'Noto Serif TC', 'Songti TC', 'Times New Roman', serif;
+  --body: 'Manrope', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif;
+  --mono: 'IBM Plex Mono', 'SFMono-Regular', 'Menlo', 'Monaco', monospace;
 }
 
 * {
@@ -38,12 +38,15 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100svh;
+  overflow-x: hidden;
+  line-height: 1.72;
 }
 
 body::before {

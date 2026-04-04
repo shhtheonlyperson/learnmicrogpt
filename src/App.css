@@ -1,5 +1,5 @@
 .page-shell {
-  width: min(1240px, calc(100% - 2rem));
+  width: min(1240px, calc(100% - 1.75rem));
   margin: 0 auto;
   padding: 1.25rem 0 max(3rem, calc(2rem + env(safe-area-inset-bottom)));
 }
@@ -103,19 +103,19 @@
   margin: 0;
   font-family: var(--mono);
   font-size: 0.76rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-transform: none;
   color: var(--muted-strong);
 }
 
 .hero-copy h1 {
-  max-width: 12ch;
+  max-width: 10.5ch;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(4rem, 8vw, 7rem);
-  line-height: 0.93;
+  font-size: clamp(3.6rem, 7vw, 6.4rem);
+  line-height: 1.02;
   font-weight: 400;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.03em;
   color: var(--text-strong);
 }
 
@@ -139,6 +139,7 @@
 .hero-lede {
   max-width: 60ch;
   margin: 0;
+  line-height: 1.82;
 }
 
 .hero-thesis {
@@ -149,10 +150,10 @@
   border-radius: 1rem;
   border: 1px solid rgba(196, 81, 45, 0.2);
   background: rgba(255, 252, 247, 0.72);
-  font-family: var(--mono);
-  font-size: 0.86rem;
-  letter-spacing: 0.03em;
-  line-height: 1.7;
+  font-family: var(--body);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  line-height: 1.8;
   color: var(--text-strong);
 }
 
@@ -173,8 +174,8 @@
   text-decoration: none;
   font-family: var(--mono);
   font-size: 0.84rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-transform: none;
   transition:
     transform 180ms ease,
     background-color 180ms ease,
@@ -233,7 +234,7 @@
 
 .metric-card strong {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 0.95;
+  line-height: 1;
   margin-bottom: 0.3rem;
 }
 
@@ -245,8 +246,8 @@
   margin-bottom: 0.45rem;
   font-family: var(--mono);
   font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: none;
   color: var(--muted-strong);
 }
 
@@ -305,7 +306,7 @@
   overflow-wrap: anywhere;
   font-family: var(--mono);
   font-size: 0.92rem;
-  line-height: 1.65;
+  line-height: 1.72;
 }
 
 .terminal-block.code {
@@ -328,7 +329,7 @@
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 0.8rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 
 .sample-strip span {
@@ -374,13 +375,15 @@
 }
 
 .section-intro h2 {
-  font-size: clamp(2.4rem, 4.6vw, 4rem);
-  letter-spacing: -0.05em;
+  font-size: clamp(2.25rem, 4.2vw, 3.7rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
 }
 
 .section-intro p:last-child {
   max-width: 62ch;
   margin: 0.55rem 0 0;
+  line-height: 1.8;
 }
 
 .loop-layout,
@@ -453,14 +456,15 @@
 .atlas-row span {
   font-family: var(--mono);
   font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-transform: none;
   color: var(--muted-strong);
 }
 
 .step-chip strong,
 .atlas-row strong {
   font-size: 1.06rem;
+  line-height: 1.5;
   color: var(--text-strong);
 }
 
@@ -501,7 +505,7 @@
 .loop-player-footer span,
 .loop-player-footer strong {
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.72;
 }
 
 .loop-player-heading {
@@ -512,8 +516,9 @@
 }
 
 .loop-player-shell h3 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  letter-spacing: -0.05em;
+  font-size: clamp(2rem, 4vw, 3.05rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
 }
 
 .loop-player-heading span {
@@ -524,8 +529,8 @@
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: none;
   color: rgba(248, 239, 227, 0.76);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -550,8 +555,8 @@
 .loop-player-footer strong {
   font-family: var(--mono);
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-transform: none;
 }
 
 .spotlight-header {
@@ -564,8 +569,9 @@
 .atlas-detail h3,
 .loss-copy h3,
 .notes-card h3 {
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  letter-spacing: -0.05em;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
 }
 
 .spotlight-summary,
@@ -577,10 +583,10 @@
   margin: 1.1rem 0 0;
   padding-top: 0.9rem;
   border-top: 1px solid var(--border);
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  letter-spacing: 0.03em;
-  line-height: 1.65;
+  font-family: var(--body);
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+  line-height: 1.78;
   color: var(--muted-strong);
 }
 
@@ -600,8 +606,8 @@
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 0.76rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-transform: none;
   text-decoration: none;
 }
 
@@ -646,8 +652,8 @@
 .source-viewer-eyebrow {
   font-family: var(--mono);
   font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: none;
 }
 
 .source-origin {
@@ -670,9 +676,9 @@
   margin: 0;
   font-family: var(--display);
   font-size: clamp(2rem, 3.6vw, 3rem);
-  line-height: 0.96;
+  line-height: 1.04;
   font-weight: 400;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.02em;
   color: var(--text-strong);
 }
 
@@ -787,8 +793,8 @@
   margin: 0;
   font-family: var(--display);
   font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--text-strong);
 }
 
@@ -913,9 +919,14 @@
 .reference-list strong {
   font-family: var(--mono);
   font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-transform: none;
   color: var(--text-strong);
+}
+
+.source-viewer-snippet {
+  max-height: 28rem;
+  overflow: auto;
 }
 
 .reference-list span {
@@ -980,7 +991,7 @@
 
   .source-workbench-aside {
     position: static;
-    order: -1;
+    order: 0;
   }
 
   .metric-grid,
@@ -995,19 +1006,65 @@
 
 @media (max-width: 760px) {
   .page-shell {
-    width: min(100% - 1rem, 1240px);
-    padding-top: 0.5rem;
+    width: min(100% - 0.75rem, 1240px);
+    padding-top: 0.4rem;
   }
 
   .hero-panel,
-  .content-section {
+  .content-section,
+  .source-viewer {
     border-radius: 1.4rem;
+  }
+
+  .hero-panel {
+    gap: 1rem;
+    padding: 0.85rem;
   }
 
   .hero-copy,
   .hero-terminal,
-  .content-section {
+  .content-section,
+  .source-viewer {
     padding-inline: 1rem;
+  }
+
+  .hero-copy {
+    padding: 0.35rem;
+    gap: 1.1rem;
+  }
+
+  .hero-copy h1 {
+    max-width: none;
+    font-size: clamp(2.65rem, 11vw, 4.2rem);
+    line-height: 1.08;
+  }
+
+  .hero-thesis,
+  .hero-lede,
+  .section-intro p:last-child,
+  .spotlight-summary,
+  .spotlight-detail,
+  .atlas-row p,
+  .atlas-why,
+  .primitive-role,
+  .loss-copy p:last-child,
+  .notes-card li,
+  .reference-list span,
+  .metric-card p,
+  .tradeoff-conclusion,
+  .source-viewer-summary,
+  .source-viewer-detail {
+    font-size: 0.98rem;
+    line-height: 1.82;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .action {
+    width: 100%;
   }
 
   .metric-grid,
@@ -1027,16 +1084,35 @@
 
   .step-rail,
   .atlas-list {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(16rem, 82vw);
     overflow-x: auto;
+    padding-bottom: 0.4rem;
+    scroll-snap-type: x proximity;
   }
 
   .step-chip,
   .atlas-row {
-    min-width: 100%;
+    min-width: 0;
+    height: 100%;
+    scroll-snap-align: start;
   }
 
   .loop-player-footer {
     flex-direction: column;
+  }
+
+  .source-viewer {
+    padding: 1rem;
+  }
+
+  .source-viewer-header {
+    align-items: start;
+  }
+
+  .source-viewer-snippet {
+    max-height: 18rem;
   }
 
   .loss-chart {
