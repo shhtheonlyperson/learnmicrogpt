@@ -6,26 +6,26 @@
   font-weight: 400;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(217, 154, 104, 0.18), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(23, 75, 69, 0.18), transparent 30%),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.45), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.08), transparent 28%),
     var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg: #efe8dc;
-  --card: #f8f1e5;
-  --text: #312724;
-  --text-strong: #181210;
-  --muted: #645751;
-  --muted-strong: #816e65;
-  --border: rgba(91, 69, 55, 0.18);
-  --accent: #c4512d;
-  --accent-strong: #8e2f18;
-  --teal: #3d7668;
-  --teal-strong: #174b45;
-  --shadow: 0 20px 60px rgba(72, 41, 18, 0.14);
+  --bg: #e7e5e0;
+  --card: #f3f2ee;
+  --text: #2d2c2a;
+  --text-strong: #111111;
+  --muted: #555453;
+  --muted-strong: #6a6967;
+  --border: rgba(17, 17, 17, 0.16);
+  --accent: #4b4b4b;
+  --accent-strong: #151515;
+  --teal: #707070;
+  --teal-strong: #262626;
+  --shadow: 0 18px 48px rgba(0, 0, 0, 0.1);
 
   --display: 'Instrument Serif', 'Iowan Old Style', 'Noto Serif TC', 'Songti TC', 'Times New Roman', serif;
   --body: 'Manrope', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif;
@@ -54,10 +54,10 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    linear-gradient(rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.12)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.05'/%3E%3Cpath d='M12 34c39-14 80-16 124-5 28 7 49 8 72 2' stroke='rgba(0,0,0,0.08)' fill='none' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M-8 116c48-18 106-18 170-4 18 4 37 5 58 1' stroke='rgba(0,0,0,0.06)' fill='none' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E");
   pointer-events: none;
-  opacity: 0.65;
+  opacity: 0.72;
 }
 
 a,
@@ -85,6 +85,6 @@ svg {
 }
 
 ::selection {
-  color: #fff5eb;
-  background: rgba(196, 81, 45, 0.82);
+  color: #f5f5f5;
+  background: rgba(30, 30, 30, 0.82);
 }
