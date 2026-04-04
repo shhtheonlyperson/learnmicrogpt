@@ -887,21 +887,6 @@ export const LearningLoopFilm = () => {
           borderRadius: '1.2rem',
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '13rem',
-            height: '100%',
-            transform: 'translate(-50%, -50%)',
-            borderLeft: `1px solid ${withAlpha('#ffffff', 0.08)}`,
-            borderRight: `1px solid ${withAlpha('#ffffff', 0.08)}`,
-            background: `linear-gradient(180deg, ${withAlpha(scene.currentStep.palette.glow, 0.06)}, ${withAlpha(scene.nextStep.palette.glow, 0.02)})`,
-            pointerEvents: 'none',
-          }}
-        />
-
         <motion.div
           style={{
             position: 'absolute',
@@ -988,41 +973,26 @@ export const LearningLoopFilm = () => {
         <div
           style={{
             position: 'absolute',
-            left: '50%',
+            left: '1rem',
+            right: '1rem',
             top: '50%',
-            width: '9.5rem',
-            height: '3.6rem',
-            transform: 'translate(-50%, -6%)',
+            height: '2px',
+            transform: 'translateY(-50%)',
             borderRadius: '999px',
-            border: `1px solid ${withAlpha('#ffffff', 0.1)}`,
-            background: withAlpha('#06080b', 0.42),
-            backdropFilter: 'blur(12px)',
+            background: withAlpha('#ffffff', 0.08),
+            overflow: 'hidden',
           }}
         >
-          <div
+          <motion.div
             style={{
-              position: 'absolute',
-              left: '1rem',
-              right: '1rem',
-              top: '50%',
-              height: '2px',
-              transform: 'translateY(-50%)',
+              width: '100%',
+              height: '100%',
+              scaleX: progressScale,
+              transformOrigin: 'left center',
               borderRadius: '999px',
-              background: withAlpha('#ffffff', 0.08),
-              overflow: 'hidden',
+              background: `linear-gradient(90deg, ${withAlpha('#6a6a6a', 0.95)}, ${withAlpha('#222222', 0.95)})`,
             }}
-          >
-            <motion.div
-              style={{
-                width: '100%',
-                height: '100%',
-                scaleX: progressScale,
-                transformOrigin: 'left center',
-                borderRadius: '999px',
-                background: `linear-gradient(90deg, ${withAlpha('#6a6a6a', 0.95)}, ${withAlpha('#222222', 0.95)})`,
-              }}
-            />
-          </div>
+          />
         </div>
       </div>
 
