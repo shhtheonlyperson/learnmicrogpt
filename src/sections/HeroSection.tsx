@@ -44,30 +44,6 @@ export function HeroSection({ copy }: HeroSectionProps) {
           ))}
         </div>
       </div>
-
-      <aside className="hero-terminal reveal">
-        <div className="terminal-topbar">
-          <span />
-          <span />
-          <span />
-        </div>
-
-        <div className="terminal-block">
-          <p className="terminal-label">{copy.heroContent.terminalLabel}</p>
-          <pre>{copy.proofArtifacts.referenceRun}</pre>
-        </div>
-
-        <div className="terminal-block code">
-          <p className="terminal-label">{copy.heroContent.coreMoveLabel}</p>
-          <pre>{copy.heroContent.coreMoveSnippet}</pre>
-        </div>
-
-        <div className="sample-strip">
-          {copy.proofArtifacts.generatedNames.slice(0, 6).map((name) => (
-            <span key={name}>{name}</span>
-          ))}
-        </div>
-      </aside>
     </section>
   )
 }

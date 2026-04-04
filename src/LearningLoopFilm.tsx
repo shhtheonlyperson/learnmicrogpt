@@ -3,10 +3,6 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { getCopy, type LoopStep } from './content/copy'
 import { useI18n } from './i18n-context'
 
-type LearningLoopFilmProps = {
-  selectedStepId: string
-}
-
 type LoopScene = {
   currentStep: LoopStep
   nextStep: LoopStep
@@ -17,7 +13,6 @@ type LoopScene = {
 }
 
 export const FLOW_STEP_MS = 3200
-export const FLOW_TOTAL_MS = 11 * FLOW_STEP_MS
 const TRACK_SPACING = 196
 const CARD_WIDTH = 184
 const COMPACT_QUERY = '(max-width: 760px)'
@@ -381,6 +376,160 @@ const CompactStageCard = ({
   )
 }
 
+const LoopInlineContext = ({
+  step,
+  ui,
+  compact = false,
+}: {
+  step: LoopStep
+  ui: ReturnType<typeof getCopy>['ui']
+  compact?: boolean
+}) => (
+  <article
+    style={{
+      display: 'grid',
+      gap: compact ? '0.75rem' : '0.9rem',
+      padding: compact ? '0.95rem' : '1rem',
+      borderRadius: compact ? '1.15rem' : '1.25rem',
+      border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
+      background: withAlpha('#06080b', compact ? 0.3 : 0.34),
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: '0.75rem',
+      }}
+    >
+      <div style={{ display: 'grid', gap: '0.35rem' }}>
+        <div
+          style={{
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.7rem',
+            letterSpacing: '0.08em',
+            color: withAlpha('#fff7ee', 0.44),
+          }}
+        >
+          {step.eyebrow}
+        </div>
+        <div
+          style={{
+            fontFamily: '"Instrument Serif", serif',
+            fontSize: compact ? '1.6rem' : '1.95rem',
+            lineHeight: 1.02,
+            letterSpacing: '-0.03em',
+            color: '#fff7ee',
+          }}
+        >
+          {step.title}
+        </div>
+      </div>
+
+      <a
+        href={step.sourceHref}
+        rel="noreferrer"
+        target="_blank"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          minHeight: '2rem',
+          padding: '0 0.8rem',
+          borderRadius: '999px',
+          textDecoration: 'none',
+          fontFamily: '"IBM Plex Mono", monospace',
+          fontSize: '0.7rem',
+          letterSpacing: '0.05em',
+          color: '#fff7ee',
+          background: withAlpha('#ffffff', 0.05),
+          border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
+        }}
+      >
+        {ui.labels.openSource} · {ui.labels.line.replace('{lineRange}', step.lineRange)}
+      </a>
+    </div>
+
+    <div
+      style={{
+        display: 'grid',
+        gap: '0.55rem',
+        color: withAlpha('#fff7ee', 0.72),
+      }}
+    >
+      <div style={{ fontSize: compact ? '0.92rem' : '0.98rem', lineHeight: 1.68 }}>{step.summary}</div>
+      <div style={{ fontSize: compact ? '0.88rem' : '0.94rem', lineHeight: 1.72, color: withAlpha('#fff7ee', 0.58) }}>
+        {step.detail}
+      </div>
+    </div>
+
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
+      {step.signal.map((item) => (
+        <span
+          key={item}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: '2rem',
+            padding: '0.35rem 0.75rem',
+            borderRadius: '999px',
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.72rem',
+            letterSpacing: '0.03em',
+            color: withAlpha('#fff7ee', 0.72),
+            background: withAlpha('#ffffff', 0.05),
+            border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
+          }}
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
+      {step.flowTokens.map((token) => (
+        <span
+          key={`${step.id}-${token}`}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: '2rem',
+            padding: '0.35rem 0.8rem',
+            borderRadius: '999px',
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.72rem',
+            letterSpacing: '0.03em',
+            color: withAlpha('#fff7ee', 0.76),
+            background: withAlpha(step.palette.accent, 0.16),
+            border: `1px solid ${withAlpha(step.palette.glow, 0.18)}`,
+          }}
+        >
+          {token}
+        </span>
+      ))}
+    </div>
+
+    <pre
+      style={{
+        margin: 0,
+        padding: compact ? '0.85rem' : '0.95rem',
+        borderRadius: '1rem',
+        background: withAlpha('#ffffff', 0.04),
+        border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
+        whiteSpace: 'pre-wrap',
+        overflowWrap: 'anywhere',
+        fontFamily: '"IBM Plex Mono", monospace',
+        fontSize: compact ? '0.82rem' : '0.88rem',
+        lineHeight: 1.7,
+        color: '#fff7ee',
+      }}
+    >
+      {step.snippet}
+    </pre>
+  </article>
+)
+
 const renderCompactFilm = (
   scene: LoopScene,
   progressScale: ReturnType<typeof useSpring>,
@@ -392,7 +541,7 @@ const renderCompactFilm = (
     style={{
       position: 'relative',
       width: '100%',
-      minHeight: '35rem',
+      minHeight: 'clamp(44rem, 82svh, 56rem)',
       overflow: 'hidden',
       borderRadius: '1.35rem',
       border: `1px solid ${withAlpha('#ffffff', 0.12)}`,
@@ -513,68 +662,59 @@ const renderCompactFilm = (
       style={{
         display: 'grid',
         gap: '0.7rem',
-        padding: '0.95rem',
-        borderRadius: '1.2rem',
-        border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
-        background: withAlpha('#06080b', 0.28),
+        padding: 0,
       }}
     >
       <div
         style={{
-          fontFamily: '"IBM Plex Mono", monospace',
-          fontSize: '0.7rem',
-          letterSpacing: '0.06em',
-          color: withAlpha('#fff7ee', 0.44),
+          display: 'grid',
+          gap: '0.45rem',
+          padding: '0.95rem',
+          borderRadius: '1.2rem',
+          border: `1px solid ${withAlpha('#ffffff', 0.08)}`,
+          background: withAlpha('#06080b', 0.24),
         }}
       >
-        {ui.labels.liveTransitionLog}
-      </div>
-
-      <div
-        style={{
-          fontFamily: '"IBM Plex Mono", monospace',
-          fontSize: '0.9rem',
-          lineHeight: 1.7,
-          color: '#fff7ee',
-        }}
-      >
-        {typedTranscript}
-        <motion.span
-          animate={{ opacity: [1, 0.24, 1] }}
-          style={{ color: scene.currentStep.palette.glow }}
-          transition={{ duration: 0.8, repeat: Number.POSITIVE_INFINITY }}
+        <div
+          style={{
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.7rem',
+            letterSpacing: '0.06em',
+            color: withAlpha('#fff7ee', 0.44),
+          }}
         >
-          ▌
-        </motion.span>
+          {ui.labels.liveTransitionLog}
+        </div>
+
+        <div
+          style={{
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: '0.9rem',
+            lineHeight: 1.7,
+            color: '#fff7ee',
+          }}
+        >
+          {typedTranscript}
+          <motion.span
+            animate={{ opacity: [1, 0.24, 1] }}
+            style={{ color: scene.currentStep.palette.glow }}
+            transition={{ duration: 0.8, repeat: Number.POSITIVE_INFINITY }}
+          >
+            ▌
+          </motion.span>
+        </div>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          gap: '0.75rem',
-          fontFamily: '"IBM Plex Mono", monospace',
-          fontSize: '0.72rem',
-          letterSpacing: '0.05em',
-          color: withAlpha('#fff7ee', 0.58),
-        }}
-      >
-        <span>
-          {ui.labels.currentSource}: {scene.currentStep.lineRange}
-        </span>
-        <span>
-          {scene.currentStep.id} / {scene.nextStep.id}
-        </span>
-      </div>
+      <LoopInlineContext compact step={scene.currentStep} ui={ui} />
     </div>
   </section>
 )
 
-export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
+export const LearningLoopFilm = () => {
   const { locale } = useI18n()
   const copy = useMemo(() => getCopy(locale), [locale])
   const loopSteps = copy.loopSteps
-  const FLOW_TOTAL_MS = loopSteps.length * FLOW_STEP_MS
+  const totalDurationMs = loopSteps.length * FLOW_STEP_MS
 
   const getScene = (elapsedMs: number): LoopScene => {
     const segmentIndex = Math.floor(elapsedMs / FLOW_STEP_MS)
@@ -593,14 +733,9 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
     }
   }
 
-  const selectedIndex = Math.max(
-    0,
-    loopSteps.findIndex((item) => item.id === selectedStepId),
-  )
-  const initialOffset = selectedIndex * FLOW_STEP_MS
-  const startOffsetRef = useRef(initialOffset)
+  const startOffsetRef = useRef(0)
   const animationStartRef = useRef<number | null>(null)
-  const [scene, setScene] = useState<LoopScene>(() => getScene(initialOffset))
+  const [scene, setScene] = useState<LoopScene>(() => getScene(0))
   const isCompact = useMediaQuery(COMPACT_QUERY)
 
   const railX = useSpring(0, { stiffness: 170, damping: 26 })
@@ -611,7 +746,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
       animationStartRef.current = time
     }
 
-    const elapsedMs = (startOffsetRef.current + (time - animationStartRef.current)) % FLOW_TOTAL_MS
+    const elapsedMs = (startOffsetRef.current + (time - animationStartRef.current)) % totalDurationMs
     const nextScene = getScene(elapsedMs)
     const scenePosition = nextScene.segmentIndex + nextScene.progress
 
@@ -633,8 +768,8 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
       aria-label={copy.ui.sectionTitles.loop}
       style={{
         position: 'relative',
-        aspectRatio: '16 / 9',
         width: '100%',
+        minHeight: 'clamp(50rem, 88svh, 66rem)',
         overflow: 'hidden',
         borderRadius: '1.55rem',
         border: `1px solid ${withAlpha('#ffffff', 0.12)}`,
@@ -747,7 +882,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
       <div
         style={{
           position: 'absolute',
-          inset: '10.4rem 1.2rem 4.9rem',
+          inset: '10.4rem 1.2rem 18.4rem',
           overflow: 'hidden',
           borderRadius: '1.2rem',
         }}
@@ -973,54 +1108,8 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
           </div>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${loopSteps.length}, minmax(0, 1fr))`,
-            gap: '0.5rem',
-          }}
-        >
-          {loopSteps.map((step, index) => {
-            const isCurrent = index === scene.segmentIndex
-            const isNext = index === (scene.segmentIndex + 1) % loopSteps.length
-
-            return (
-              <motion.div
-                animate={{ opacity: isCurrent ? 1 : isNext ? 0.78 : 0.34, y: isCurrent ? -4 : 0 }}
-                key={step.id}
-                style={{ display: 'grid', justifyItems: 'center', gap: '0.4rem' }}
-                transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-              >
-                <div
-                  style={{
-                    width: '100%',
-                    height: '0.2rem',
-                    borderRadius: '999px',
-                    background: isCurrent
-                      ? step.palette.accent
-                      : isNext
-                        ? withAlpha(step.palette.accent, 0.64)
-                        : withAlpha('#ffffff', 0.14),
-                  }}
-                />
-                <div
-                  style={{
-                    fontFamily: '"IBM Plex Mono", monospace',
-                    fontSize: '0.66rem',
-                    letterSpacing: '0.14em',
-                    textTransform: 'uppercase',
-                    color: withAlpha('#fff7ee', isCurrent || isNext ? 0.72 : 0.34),
-                  }}
-                >
-                  {step.id}
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
+        <LoopInlineContext step={scene.currentStep} ui={copy.ui} />
       </div>
     </section>
   )
 }
-
-export type { LearningLoopFilmProps }

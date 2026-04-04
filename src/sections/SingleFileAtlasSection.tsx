@@ -58,7 +58,7 @@ export function SingleFileAtlasSection({
               </div>
             ))}
           </div>
-          <p className="source-panel-hint">{copy.ui.labels.sharedSourceHint}</p>
+          <pre className="snippet-card atlas-snippet">{activeSection.snippet}</pre>
         </article>
       </div>
     </section>

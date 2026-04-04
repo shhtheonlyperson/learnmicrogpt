@@ -1,5 +1,5 @@
-import { Suspense, lazy } from 'react'
-import { FLOW_TOTAL_MS, LearningLoopFilm } from '../LearningLoopFilm'
+import { Suspense, lazy, type CSSProperties } from 'react'
+import { FLOW_STEP_MS, LearningLoopFilm } from '../LearningLoopFilm'
 import { SourceMeta } from '../components/SourceMeta'
 import { SectionIntro } from '../components/SectionIntro'
 import { TokenizerPlayground } from '../components/TokenizerPlayground'
@@ -11,16 +11,14 @@ const ForwardPassPlayground = lazy(async () => {
 })
 
 type LearningLoopSectionProps = {
-  activeStep: LoopStep
-  onSelectStep: (step: LoopStep) => void
   copy: ReturnType<typeof getCopy>
 }
 
-export function LearningLoopSection({
-  activeStep,
-  onSelectStep,
-  copy,
-}: LearningLoopSectionProps) {
+export function LearningLoopSection({ copy }: LearningLoopSectionProps) {
+  const tokenizerStep = copy.loopSteps.find((step) => step.id === '02')
+  const forwardPassStep = copy.loopSteps.find((step) => step.id === '05')
+  const flowTotalMs = copy.loopSteps.length * FLOW_STEP_MS
+
   return (
     <section className="content-section" id="loop">
       <SectionIntro
@@ -29,96 +27,114 @@ export function LearningLoopSection({
         title={copy.ui.sectionTitles.loop}
       />
 
-      <div className="loop-layout">
-        <div className="step-rail reveal">
+      <div className="loop-unified">
+        <section className="loop-player-shell reveal" aria-label={copy.ui.sectionTitles.loop}>
+          <div className="loop-player-copy">
+            <p className="eyebrow">{copy.ui.labels.loopEyebrow}</p>
+            <div className="loop-player-heading">
+              <h3>{copy.ui.sectionTitles.loop}</h3>
+              <span>{copy.ui.labels.executionTrace}</span>
+            </div>
+            <p>{copy.ui.labels.loopBody}</p>
+          </div>
+
+          <LearningLoopFilm />
+
+          <div className="loop-player-footer">
+            <span>{copy.ui.labels.start}：{copy.loopSteps[0]?.flowStage}</span>
+            <strong>{copy.ui.labels.executionTrace}</strong>
+            <span>
+              {(flowTotalMs / 1000).toFixed(1)} 秒，{copy.ui.labels.across}
+            </span>
+          </div>
+        </section>
+
+        <div className="loop-inline-grid">
           {copy.loopSteps.map((step) => (
-            <button
-              className={step.id === activeStep.id ? 'step-chip active' : 'step-chip'}
-              key={step.id}
-              onClick={() => onSelectStep(step)}
-              type="button"
-            >
-              <span>{step.id}</span>
-              <strong>{step.title}</strong>
-            </button>
+            <InlineLoopCard copy={copy} key={step.id} step={step} />
           ))}
         </div>
 
-        <div className="spotlight-stack">
-          <section className="loop-player-shell reveal" aria-label={copy.ui.sectionTitles.loop}>
-            <div className="loop-player-copy">
-              <p className="eyebrow">{copy.ui.labels.loopEyebrow}</p>
-              <div className="loop-player-heading">
-                <h3>{activeStep.title}</h3>
-                <span>{activeStep.pulseLabel}</span>
-              </div>
-              <p>{copy.ui.labels.loopBody}</p>
-            </div>
+        {tokenizerStep ? (
+          <TokenizerPlayground
+            key={`tokenizer-static-${tokenizerStep.id}-${copy.ui.labels.loopBody}`}
+            step={tokenizerStep}
+          />
+        ) : null}
 
-            <LearningLoopFilm key={`${activeStep.id}-${copy.ui.sectionTitles.loop}`} selectedStepId={activeStep.id} />
-
-            <div className="loop-player-footer">
-              <span>
-                {copy.ui.labels.start}：{activeStep.flowStage}
-              </span>
-              <strong>{copy.ui.labels.executionTrace}</strong>
-              <span>
-                {(FLOW_TOTAL_MS / 1000).toFixed(1)} 秒，{copy.ui.labels.across}
-              </span>
-            </div>
-          </section>
-
-          <article className="spotlight-card reveal">
-            <div className="spotlight-header">
-              <p className="eyebrow">{activeStep.eyebrow}</p>
-              <h3>{activeStep.title}</h3>
-            </div>
-            <SourceMeta
-              href={activeStep.sourceHref}
-              label={copy.ui.labels.openSource}
-              lineLabel={copy.ui.labels.line}
-              lineRange={activeStep.lineRange}
-            />
-            <p className="spotlight-summary">{activeStep.summary}</p>
-            <p className="spotlight-detail">{activeStep.detail}</p>
-
-            <div className="signal-row">
-              {activeStep.signal.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
-            <p className="source-panel-hint">{copy.ui.labels.rightPanelHint}</p>
-          </article>
-
-          {activeStep.visualKind === 'chars' ? (
-            <TokenizerPlayground
-              key={`tokenizer-${activeStep.id}-${copy.ui.labels.loopBody}`}
-              step={activeStep}
-            />
-          ) : null}
-
-          {['merge', 'attention', 'logits'].includes(activeStep.visualKind) ? (
-            <Suspense
-              fallback={
-                <article className="internals-playground reveal">
-                  <div className="internals-header">
-                    <div>
-                      <p className="eyebrow">{copy.ui.labels.loopEyebrow}</p>
-                      <h3>{activeStep.title}</h3>
-                    </div>
-                    <p>{copy.ui.labels.loopBody}</p>
+        {forwardPassStep ? (
+          <Suspense
+            fallback={
+              <article className="internals-playground reveal">
+                <div className="internals-header">
+                  <div>
+                    <p className="eyebrow">{copy.ui.labels.loopEyebrow}</p>
+                    <h3>{forwardPassStep.title}</h3>
                   </div>
-                </article>
-              }
-            >
-              <ForwardPassPlayground
-                key={`internals-${activeStep.id}-${copy.ui.labels.loopBody}`}
-                step={activeStep}
-              />
-            </Suspense>
-          ) : null}
-        </div>
+                  <p>{copy.ui.labels.loopBody}</p>
+                </div>
+              </article>
+            }
+          >
+            <ForwardPassPlayground
+              key={`internals-static-${forwardPassStep.id}-${copy.ui.labels.loopBody}`}
+              step={forwardPassStep}
+            />
+          </Suspense>
+        ) : null}
       </div>
     </section>
+  )
+}
+
+function InlineLoopCard({
+  copy,
+  step,
+}: {
+  copy: ReturnType<typeof getCopy>
+  step: LoopStep
+}) {
+  const style = {
+    '--loop-card-accent': step.palette.accent,
+    '--loop-card-strong': step.palette.accentStrong,
+    '--loop-card-glow': step.palette.glow,
+  } as CSSProperties
+
+  return (
+    <article className="loop-inline-card reveal" style={style}>
+      <div className="loop-inline-head">
+        <div>
+          <p className="eyebrow">
+            {step.id} · {step.eyebrow}
+          </p>
+          <h3>{step.title}</h3>
+        </div>
+        <span className="loop-inline-pulse">{step.pulseLabel}</span>
+      </div>
+
+      <SourceMeta
+        href={step.sourceHref}
+        label={copy.ui.labels.openSource}
+        lineLabel={copy.ui.labels.line}
+        lineRange={step.lineRange}
+      />
+
+      <p className="spotlight-summary">{step.summary}</p>
+      <p className="spotlight-detail">{step.detail}</p>
+
+      <div className="signal-row">
+        {step.signal.map((item) => (
+          <span key={item}>{item}</span>
+        ))}
+      </div>
+
+      <div className="loop-inline-flow">
+        {step.flowTokens.map((token) => (
+          <span key={`${step.id}-${token}`}>{token}</span>
+        ))}
+      </div>
+
+      <pre className="snippet-card loop-inline-snippet">{step.snippet}</pre>
+    </article>
   )
 }
