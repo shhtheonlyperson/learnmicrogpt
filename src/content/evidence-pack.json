@@ -1,0 +1,705 @@
+{
+  "generatedAt": "2026-04-04T08:29:08.458Z",
+  "source": {
+    "gistId": "8627fe009c40f57531cb18360106ce95",
+    "gistUrl": "https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95",
+    "rawGistUrl": "https://gist.githubusercontent.com/karpathy/8627fe009c40f57531cb18360106ce95/raw/microgpt.py",
+    "lineCount": 200,
+    "datasetUrl": "https://raw.githubusercontent.com/karpathy/makemore/988aa59/names.txt"
+  },
+  "quickRun": {
+    "numSteps": 120,
+    "patchNotes": [
+      "Replaced the raw gist training horizon with 120 steps for a fast reference pass.",
+      "Converted the training progress print from carriage-return updates to newline logs for parsable output."
+    ],
+    "numDocs": 32033,
+    "vocabSize": 27,
+    "numParams": 4192,
+    "referenceRunPreview": "num docs: 32033\nvocab size: 27\nnum params: 4192\nstep    1 /  120 | loss 3.3660\nstep   24 /  120 | loss 2.0368\nstep  120 /  120 | loss 2.6491",
+    "losses": [
+      {
+        "step": 1,
+        "totalSteps": 120,
+        "loss": 3.366
+      },
+      {
+        "step": 2,
+        "totalSteps": 120,
+        "loss": 3.4243
+      },
+      {
+        "step": 3,
+        "totalSteps": 120,
+        "loss": 3.1778
+      },
+      {
+        "step": 4,
+        "totalSteps": 120,
+        "loss": 3.0669
+      },
+      {
+        "step": 5,
+        "totalSteps": 120,
+        "loss": 3.2217
+      },
+      {
+        "step": 6,
+        "totalSteps": 120,
+        "loss": 2.9494
+      },
+      {
+        "step": 7,
+        "totalSteps": 120,
+        "loss": 3.292
+      },
+      {
+        "step": 8,
+        "totalSteps": 120,
+        "loss": 3.3236
+      },
+      {
+        "step": 9,
+        "totalSteps": 120,
+        "loss": 2.9053
+      },
+      {
+        "step": 10,
+        "totalSteps": 120,
+        "loss": 3.2237
+      },
+      {
+        "step": 11,
+        "totalSteps": 120,
+        "loss": 2.806
+      },
+      {
+        "step": 12,
+        "totalSteps": 120,
+        "loss": 2.9389
+      },
+      {
+        "step": 13,
+        "totalSteps": 120,
+        "loss": 3.0681
+      },
+      {
+        "step": 14,
+        "totalSteps": 120,
+        "loss": 3.0892
+      },
+      {
+        "step": 15,
+        "totalSteps": 120,
+        "loss": 3.05
+      },
+      {
+        "step": 16,
+        "totalSteps": 120,
+        "loss": 2.7462
+      },
+      {
+        "step": 17,
+        "totalSteps": 120,
+        "loss": 2.9119
+      },
+      {
+        "step": 18,
+        "totalSteps": 120,
+        "loss": 2.8789
+      },
+      {
+        "step": 19,
+        "totalSteps": 120,
+        "loss": 2.7305
+      },
+      {
+        "step": 20,
+        "totalSteps": 120,
+        "loss": 2.7398
+      },
+      {
+        "step": 21,
+        "totalSteps": 120,
+        "loss": 3.6672
+      },
+      {
+        "step": 22,
+        "totalSteps": 120,
+        "loss": 2.7913
+      },
+      {
+        "step": 23,
+        "totalSteps": 120,
+        "loss": 2.8478
+      },
+      {
+        "step": 24,
+        "totalSteps": 120,
+        "loss": 2.0368
+      },
+      {
+        "step": 25,
+        "totalSteps": 120,
+        "loss": 3.3963
+      },
+      {
+        "step": 26,
+        "totalSteps": 120,
+        "loss": 2.8583
+      },
+      {
+        "step": 27,
+        "totalSteps": 120,
+        "loss": 3.2642
+      },
+      {
+        "step": 28,
+        "totalSteps": 120,
+        "loss": 2.9037
+      },
+      {
+        "step": 29,
+        "totalSteps": 120,
+        "loss": 2.3431
+      },
+      {
+        "step": 30,
+        "totalSteps": 120,
+        "loss": 2.325
+      },
+      {
+        "step": 31,
+        "totalSteps": 120,
+        "loss": 2.9024
+      },
+      {
+        "step": 32,
+        "totalSteps": 120,
+        "loss": 2.9304
+      },
+      {
+        "step": 33,
+        "totalSteps": 120,
+        "loss": 2.7101
+      },
+      {
+        "step": 34,
+        "totalSteps": 120,
+        "loss": 2.2079
+      },
+      {
+        "step": 35,
+        "totalSteps": 120,
+        "loss": 3.1416
+      },
+      {
+        "step": 36,
+        "totalSteps": 120,
+        "loss": 2.6821
+      },
+      {
+        "step": 37,
+        "totalSteps": 120,
+        "loss": 2.4739
+      },
+      {
+        "step": 38,
+        "totalSteps": 120,
+        "loss": 2.8767
+      },
+      {
+        "step": 39,
+        "totalSteps": 120,
+        "loss": 2.2786
+      },
+      {
+        "step": 40,
+        "totalSteps": 120,
+        "loss": 2.8556
+      },
+      {
+        "step": 41,
+        "totalSteps": 120,
+        "loss": 2.301
+      },
+      {
+        "step": 42,
+        "totalSteps": 120,
+        "loss": 2.4548
+      },
+      {
+        "step": 43,
+        "totalSteps": 120,
+        "loss": 2.9006
+      },
+      {
+        "step": 44,
+        "totalSteps": 120,
+        "loss": 2.494
+      },
+      {
+        "step": 45,
+        "totalSteps": 120,
+        "loss": 2.1218
+      },
+      {
+        "step": 46,
+        "totalSteps": 120,
+        "loss": 3.1384
+      },
+      {
+        "step": 47,
+        "totalSteps": 120,
+        "loss": 2.4841
+      },
+      {
+        "step": 48,
+        "totalSteps": 120,
+        "loss": 3.1163
+      },
+      {
+        "step": 49,
+        "totalSteps": 120,
+        "loss": 2.7454
+      },
+      {
+        "step": 50,
+        "totalSteps": 120,
+        "loss": 2.4893
+      },
+      {
+        "step": 51,
+        "totalSteps": 120,
+        "loss": 3.6915
+      },
+      {
+        "step": 52,
+        "totalSteps": 120,
+        "loss": 2.8065
+      },
+      {
+        "step": 53,
+        "totalSteps": 120,
+        "loss": 2.9915
+      },
+      {
+        "step": 54,
+        "totalSteps": 120,
+        "loss": 2.1765
+      },
+      {
+        "step": 55,
+        "totalSteps": 120,
+        "loss": 2.7429
+      },
+      {
+        "step": 56,
+        "totalSteps": 120,
+        "loss": 2.1115
+      },
+      {
+        "step": 57,
+        "totalSteps": 120,
+        "loss": 2.475
+      },
+      {
+        "step": 58,
+        "totalSteps": 120,
+        "loss": 2.5191
+      },
+      {
+        "step": 59,
+        "totalSteps": 120,
+        "loss": 2.597
+      },
+      {
+        "step": 60,
+        "totalSteps": 120,
+        "loss": 2.9674
+      },
+      {
+        "step": 61,
+        "totalSteps": 120,
+        "loss": 2.712
+      },
+      {
+        "step": 62,
+        "totalSteps": 120,
+        "loss": 2.5169
+      },
+      {
+        "step": 63,
+        "totalSteps": 120,
+        "loss": 2.7122
+      },
+      {
+        "step": 64,
+        "totalSteps": 120,
+        "loss": 2.9301
+      },
+      {
+        "step": 65,
+        "totalSteps": 120,
+        "loss": 2.788
+      },
+      {
+        "step": 66,
+        "totalSteps": 120,
+        "loss": 2.8019
+      },
+      {
+        "step": 67,
+        "totalSteps": 120,
+        "loss": 2.6541
+      },
+      {
+        "step": 68,
+        "totalSteps": 120,
+        "loss": 2.5848
+      },
+      {
+        "step": 69,
+        "totalSteps": 120,
+        "loss": 2.5972
+      },
+      {
+        "step": 70,
+        "totalSteps": 120,
+        "loss": 2.8912
+      },
+      {
+        "step": 71,
+        "totalSteps": 120,
+        "loss": 3.2411
+      },
+      {
+        "step": 72,
+        "totalSteps": 120,
+        "loss": 2.708
+      },
+      {
+        "step": 73,
+        "totalSteps": 120,
+        "loss": 2.5777
+      },
+      {
+        "step": 74,
+        "totalSteps": 120,
+        "loss": 2.2689
+      },
+      {
+        "step": 75,
+        "totalSteps": 120,
+        "loss": 2.3303
+      },
+      {
+        "step": 76,
+        "totalSteps": 120,
+        "loss": 2.7757
+      },
+      {
+        "step": 77,
+        "totalSteps": 120,
+        "loss": 2.7105
+      },
+      {
+        "step": 78,
+        "totalSteps": 120,
+        "loss": 2.9205
+      },
+      {
+        "step": 79,
+        "totalSteps": 120,
+        "loss": 2.3614
+      },
+      {
+        "step": 80,
+        "totalSteps": 120,
+        "loss": 2.381
+      },
+      {
+        "step": 81,
+        "totalSteps": 120,
+        "loss": 2.4331
+      },
+      {
+        "step": 82,
+        "totalSteps": 120,
+        "loss": 2.9849
+      },
+      {
+        "step": 83,
+        "totalSteps": 120,
+        "loss": 2.6576
+      },
+      {
+        "step": 84,
+        "totalSteps": 120,
+        "loss": 2.2185
+      },
+      {
+        "step": 85,
+        "totalSteps": 120,
+        "loss": 2.3217
+      },
+      {
+        "step": 86,
+        "totalSteps": 120,
+        "loss": 2.361
+      },
+      {
+        "step": 87,
+        "totalSteps": 120,
+        "loss": 2.9546
+      },
+      {
+        "step": 88,
+        "totalSteps": 120,
+        "loss": 2.7689
+      },
+      {
+        "step": 89,
+        "totalSteps": 120,
+        "loss": 2.8205
+      },
+      {
+        "step": 90,
+        "totalSteps": 120,
+        "loss": 2.3511
+      },
+      {
+        "step": 91,
+        "totalSteps": 120,
+        "loss": 2.605
+      },
+      {
+        "step": 92,
+        "totalSteps": 120,
+        "loss": 3.4917
+      },
+      {
+        "step": 93,
+        "totalSteps": 120,
+        "loss": 2.5779
+      },
+      {
+        "step": 94,
+        "totalSteps": 120,
+        "loss": 3.1263
+      },
+      {
+        "step": 95,
+        "totalSteps": 120,
+        "loss": 2.5051
+      },
+      {
+        "step": 96,
+        "totalSteps": 120,
+        "loss": 2.3758
+      },
+      {
+        "step": 97,
+        "totalSteps": 120,
+        "loss": 2.0386
+      },
+      {
+        "step": 98,
+        "totalSteps": 120,
+        "loss": 3.0796
+      },
+      {
+        "step": 99,
+        "totalSteps": 120,
+        "loss": 2.1468
+      },
+      {
+        "step": 100,
+        "totalSteps": 120,
+        "loss": 3.0052
+      },
+      {
+        "step": 101,
+        "totalSteps": 120,
+        "loss": 2.4923
+      },
+      {
+        "step": 102,
+        "totalSteps": 120,
+        "loss": 2.2051
+      },
+      {
+        "step": 103,
+        "totalSteps": 120,
+        "loss": 2.7207
+      },
+      {
+        "step": 104,
+        "totalSteps": 120,
+        "loss": 2.6415
+      },
+      {
+        "step": 105,
+        "totalSteps": 120,
+        "loss": 2.3378
+      },
+      {
+        "step": 106,
+        "totalSteps": 120,
+        "loss": 2.4821
+      },
+      {
+        "step": 107,
+        "totalSteps": 120,
+        "loss": 2.8893
+      },
+      {
+        "step": 108,
+        "totalSteps": 120,
+        "loss": 2.2248
+      },
+      {
+        "step": 109,
+        "totalSteps": 120,
+        "loss": 2.1133
+      },
+      {
+        "step": 110,
+        "totalSteps": 120,
+        "loss": 2.4556
+      },
+      {
+        "step": 111,
+        "totalSteps": 120,
+        "loss": 2.8215
+      },
+      {
+        "step": 112,
+        "totalSteps": 120,
+        "loss": 2.4396
+      },
+      {
+        "step": 113,
+        "totalSteps": 120,
+        "loss": 2.8307
+      },
+      {
+        "step": 114,
+        "totalSteps": 120,
+        "loss": 2.3627
+      },
+      {
+        "step": 115,
+        "totalSteps": 120,
+        "loss": 2.2038
+      },
+      {
+        "step": 116,
+        "totalSteps": 120,
+        "loss": 2.4272
+      },
+      {
+        "step": 117,
+        "totalSteps": 120,
+        "loss": 2.5384
+      },
+      {
+        "step": 118,
+        "totalSteps": 120,
+        "loss": 2.2984
+      },
+      {
+        "step": 119,
+        "totalSteps": 120,
+        "loss": 2.5659
+      },
+      {
+        "step": 120,
+        "totalSteps": 120,
+        "loss": 2.6491
+      }
+    ],
+    "lossChart": [
+      {
+        "step": 1,
+        "loss": 3.366
+      },
+      {
+        "step": 12,
+        "loss": 2.9389
+      },
+      {
+        "step": 24,
+        "loss": 2.0368
+      },
+      {
+        "step": 36,
+        "loss": 2.6821
+      },
+      {
+        "step": 48,
+        "loss": 3.1163
+      },
+      {
+        "step": 60,
+        "loss": 2.9674
+      },
+      {
+        "step": 72,
+        "loss": 2.708
+      },
+      {
+        "step": 84,
+        "loss": 2.2185
+      },
+      {
+        "step": 96,
+        "loss": 2.3758
+      },
+      {
+        "step": 108,
+        "loss": 2.2248
+      },
+      {
+        "step": 120,
+        "loss": 2.6491
+      }
+    ],
+    "samples": [
+      "hieti",
+      "aiu",
+      "jioaa",
+      "bedon",
+      "toeeae",
+      "iarie",
+      "trnai",
+      "aisi",
+      "ayeln",
+      "jahed",
+      "i",
+      "ardis",
+      "tiiin",
+      "miai",
+      "aemrme",
+      "aaran",
+      "kemne",
+      "janes",
+      "ara",
+      "aemea"
+    ],
+    "featuredSamples": [
+      "hieti",
+      "aiu",
+      "jioaa",
+      "bedon",
+      "toeeae",
+      "iarie",
+      "trnai",
+      "aisi",
+      "ayeln",
+      "jahed",
+      "i",
+      "ardis"
+    ]
+  }
+}
