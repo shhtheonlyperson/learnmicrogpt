@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-04T12:33:57.815Z",
+  "generatedAt": "2026-04-04T14:32:57.401Z",
   "locale": "zh-TW",
   "source": {
     "gistId": "8627fe009c40f57531cb18360106ce95",
@@ -665,6 +665,1568 @@
       {
         "step": 120,
         "loss": 3.5437
+      }
+    ],
+    "trainingSteps": [
+      {
+        "step": 1,
+        "doc": "林美娟",
+        "learningRate": 0.01,
+        "tokenIds": [
+          205,
+          90,
+          146,
+          36,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 2,
+        "doc": "林秀玲",
+        "learningRate": 0.00991667,
+        "tokenIds": [
+          205,
+          90,
+          137,
+          119,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 3,
+        "doc": "邱佳怡",
+        "learningRate": 0.00983333,
+        "tokenIds": [
+          205,
+          185,
+          6,
+          66,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 4,
+        "doc": "陳明軒",
+        "learningRate": 0.00975,
+        "tokenIds": [
+          205,
+          192,
+          76,
+          182,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 5,
+        "doc": "陳康宇",
+        "learningRate": 0.00966667,
+        "tokenIds": [
+          205,
+          192,
+          52,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 6,
+        "doc": "呂浩宇",
+        "learningRate": 0.00958333,
+        "tokenIds": [
+          205,
+          22,
+          104,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 7,
+        "doc": "廖婷妤",
+        "learningRate": 0.0095,
+        "tokenIds": [
+          205,
+          53,
+          39,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 8,
+        "doc": "朱皓宇",
+        "learningRate": 0.00941667,
+        "tokenIds": [
+          205,
+          87,
+          130,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 9,
+        "doc": "林婉瑜",
+        "learningRate": 0.00933333,
+        "tokenIds": [
+          205,
+          90,
+          37,
+          125,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 10,
+        "doc": "林筱雯",
+        "learningRate": 0.00925,
+        "tokenIds": [
+          205,
+          90,
+          140,
+          195,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 11,
+        "doc": "陳智偉",
+        "learningRate": 0.00916667,
+        "tokenIds": [
+          205,
+          192,
+          82,
+          10,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 12,
+        "doc": "張芷妤",
+        "learningRate": 0.00908333,
+        "tokenIds": [
+          205,
+          57,
+          156,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 13,
+        "doc": "廖怡安",
+        "learningRate": 0.009,
+        "tokenIds": [
+          205,
+          53,
+          66,
+          44,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 14,
+        "doc": "潘家豪",
+        "learningRate": 0.00891667,
+        "tokenIds": [
+          205,
+          112,
+          48,
+          179,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 15,
+        "doc": "黃芷涵",
+        "learningRate": 0.00883333,
+        "tokenIds": [
+          205,
+          203,
+          156,
+          105,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 16,
+        "doc": "簡玉婷",
+        "learningRate": 0.00875,
+        "tokenIds": [
+          205,
+          141,
+          117,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 17,
+        "doc": "鄭祐安",
+        "learningRate": 0.00866667,
+        "tokenIds": [
+          205,
+          187,
+          134,
+          44,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 18,
+        "doc": "張宜君",
+        "learningRate": 0.00858333,
+        "tokenIds": [
+          205,
+          57,
+          47,
+          20,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 19,
+        "doc": "張思潔",
+        "learningRate": 0.0085,
+        "tokenIds": [
+          205,
+          57,
+          65,
+          111,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 20,
+        "doc": "張筱涵",
+        "learningRate": 0.00841667,
+        "tokenIds": [
+          205,
+          57,
+          140,
+          105,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 21,
+        "doc": "彭芷婷",
+        "learningRate": 0.00833333,
+        "tokenIds": [
+          205,
+          61,
+          156,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 22,
+        "doc": "葉筱婷",
+        "learningRate": 0.00825,
+        "tokenIds": [
+          205,
+          167,
+          140,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 23,
+        "doc": "張盈如",
+        "learningRate": 0.00816667,
+        "tokenIds": [
+          205,
+          57,
+          131,
+          30,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 24,
+        "doc": "吳家豪",
+        "learningRate": 0.00808333,
+        "tokenIds": [
+          205,
+          21,
+          48,
+          179,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 25,
+        "doc": "蔡昱廷",
+        "learningRate": 0.008,
+        "tokenIds": [
+          205,
+          170,
+          79,
+          54,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 26,
+        "doc": "鍾品妤",
+        "learningRate": 0.00791667,
+        "tokenIds": [
+          205,
+          190,
+          24,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 27,
+        "doc": "陳威宏",
+        "learningRate": 0.00783333,
+        "tokenIds": [
+          205,
+          192,
+          35,
+          45,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 28,
+        "doc": "陳紹宇",
+        "learningRate": 0.00775,
+        "tokenIds": [
+          205,
+          192,
+          143,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 29,
+        "doc": "林盈潔",
+        "learningRate": 0.00766667,
+        "tokenIds": [
+          205,
+          90,
+          131,
+          111,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 30,
+        "doc": "黃怡安",
+        "learningRate": 0.00758333,
+        "tokenIds": [
+          205,
+          203,
+          66,
+          44,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 31,
+        "doc": "鄭宇軒",
+        "learningRate": 0.0075,
+        "tokenIds": [
+          205,
+          187,
+          43,
+          182,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 32,
+        "doc": "陳銘宏",
+        "learningRate": 0.00741667,
+        "tokenIds": [
+          205,
+          192,
+          188,
+          45,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 33,
+        "doc": "林菁蓉",
+        "learningRate": 0.00733333,
+        "tokenIds": [
+          205,
+          90,
+          164,
+          169,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 34,
+        "doc": "江怡安",
+        "learningRate": 0.00725,
+        "tokenIds": [
+          205,
+          100,
+          66,
+          44,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 35,
+        "doc": "林欣樺",
+        "learningRate": 0.00716667,
+        "tokenIds": [
+          205,
+          90,
+          98,
+          97,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 36,
+        "doc": "張昱蓉",
+        "learningRate": 0.00708333,
+        "tokenIds": [
+          205,
+          57,
+          79,
+          169,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 37,
+        "doc": "林育婷",
+        "learningRate": 0.007,
+        "tokenIds": [
+          205,
+          90,
+          152,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 38,
+        "doc": "賴鴻宇",
+        "learningRate": 0.00691667,
+        "tokenIds": [
+          205,
+          181,
+          202,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 39,
+        "doc": "林雅涵",
+        "learningRate": 0.00683333,
+        "tokenIds": [
+          205,
+          90,
+          194,
+          105,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 40,
+        "doc": "黃子涵",
+        "learningRate": 0.00675,
+        "tokenIds": [
+          205,
+          203,
+          41,
+          105,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 41,
+        "doc": "王哲豪",
+        "learningRate": 0.00666667,
+        "tokenIds": [
+          205,
+          118,
+          25,
+          179,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 42,
+        "doc": "陳浩然",
+        "learningRate": 0.00658333,
+        "tokenIds": [
+          205,
+          192,
+          104,
+          114,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 43,
+        "doc": "廖昱婷",
+        "learningRate": 0.0065,
+        "tokenIds": [
+          205,
+          53,
+          79,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 44,
+        "doc": "江淑芬",
+        "learningRate": 0.00641667,
+        "tokenIds": [
+          205,
+          100,
+          106,
+          155,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 45,
+        "doc": "林柔蓉",
+        "learningRate": 0.00633333,
+        "tokenIds": [
+          205,
+          90,
+          92,
+          169,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 46,
+        "doc": "高若妤",
+        "learningRate": 0.00625,
+        "tokenIds": [
+          205,
+          201,
+          158,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 47,
+        "doc": "潘建宏",
+        "learningRate": 0.00616667,
+        "tokenIds": [
+          205,
+          112,
+          55,
+          45,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 48,
+        "doc": "張婉如",
+        "learningRate": 0.00608333,
+        "tokenIds": [
+          205,
+          57,
+          37,
+          30,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 49,
+        "doc": "張淑華",
+        "learningRate": 0.006,
+        "tokenIds": [
+          205,
+          57,
+          106,
+          165,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 50,
+        "doc": "高淑芬",
+        "learningRate": 0.00591667,
+        "tokenIds": [
+          205,
+          201,
+          106,
+          155,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 51,
+        "doc": "賴祐安",
+        "learningRate": 0.00583333,
+        "tokenIds": [
+          205,
+          181,
+          134,
+          44,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 52,
+        "doc": "黃子萱",
+        "learningRate": 0.00575,
+        "tokenIds": [
+          205,
+          203,
+          41,
+          166,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 53,
+        "doc": "蕭宜君",
+        "learningRate": 0.00566667,
+        "tokenIds": [
+          205,
+          171,
+          47,
+          20,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 54,
+        "doc": "蕭淑芬",
+        "learningRate": 0.00558333,
+        "tokenIds": [
+          205,
+          171,
+          106,
+          155,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 55,
+        "doc": "李家瑜",
+        "learningRate": 0.0055,
+        "tokenIds": [
+          205,
+          88,
+          48,
+          125,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 56,
+        "doc": "鄭浩宇",
+        "learningRate": 0.00541667,
+        "tokenIds": [
+          205,
+          187,
+          104,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 57,
+        "doc": "彭雅婷",
+        "learningRate": 0.00533333,
+        "tokenIds": [
+          205,
+          61,
+          194,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 58,
+        "doc": "吳柏宇",
+        "learningRate": 0.00525,
+        "tokenIds": [
+          205,
+          21,
+          91,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 59,
+        "doc": "林琪雅",
+        "learningRate": 0.00516667,
+        "tokenIds": [
+          205,
+          90,
+          122,
+          194,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 60,
+        "doc": "高子涵",
+        "learningRate": 0.00508333,
+        "tokenIds": [
+          205,
+          201,
+          41,
+          105,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 61,
+        "doc": "林宜樺",
+        "learningRate": 0.005,
+        "tokenIds": [
+          205,
+          90,
+          47,
+          97,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 62,
+        "doc": "許承恩",
+        "learningRate": 0.00491667,
+        "tokenIds": [
+          205,
+          173,
+          69,
+          67,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 63,
+        "doc": "蔡承恩",
+        "learningRate": 0.00483333,
+        "tokenIds": [
+          205,
+          170,
+          69,
+          67,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 64,
+        "doc": "張宜靜",
+        "learningRate": 0.00475,
+        "tokenIds": [
+          205,
+          57,
+          47,
+          197,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 65,
+        "doc": "林欣妤",
+        "learningRate": 0.00466667,
+        "tokenIds": [
+          205,
+          90,
+          98,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 66,
+        "doc": "陳益誠",
+        "learningRate": 0.00458333,
+        "tokenIds": [
+          205,
+          192,
+          132,
+          176,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 67,
+        "doc": "游哲宇",
+        "learningRate": 0.0045,
+        "tokenIds": [
+          205,
+          109,
+          25,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 68,
+        "doc": "蔡建宏",
+        "learningRate": 0.00441667,
+        "tokenIds": [
+          205,
+          170,
+          55,
+          45,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 69,
+        "doc": "陳敬軒",
+        "learningRate": 0.00433333,
+        "tokenIds": [
+          205,
+          192,
+          72,
+          182,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 70,
+        "doc": "林栩蓉",
+        "learningRate": 0.00425,
+        "tokenIds": [
+          205,
+          90,
+          93,
+          169,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 71,
+        "doc": "陳皓廷",
+        "learningRate": 0.00416667,
+        "tokenIds": [
+          205,
+          192,
+          130,
+          54,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 72,
+        "doc": "鍾姿妤",
+        "learningRate": 0.00408333,
+        "tokenIds": [
+          205,
+          190,
+          34,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 73,
+        "doc": "張婉婷",
+        "learningRate": 0.004,
+        "tokenIds": [
+          205,
+          57,
+          37,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 74,
+        "doc": "林家蓉",
+        "learningRate": 0.00391667,
+        "tokenIds": [
+          205,
+          90,
+          48,
+          169,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 75,
+        "doc": "黃靜怡",
+        "learningRate": 0.00383333,
+        "tokenIds": [
+          205,
+          203,
+          197,
+          66,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 76,
+        "doc": "張若婷",
+        "learningRate": 0.00375,
+        "tokenIds": [
+          205,
+          57,
+          158,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 77,
+        "doc": "林馨瑜",
+        "learningRate": 0.00366667,
+        "tokenIds": [
+          205,
+          90,
+          200,
+          125,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 78,
+        "doc": "李品妤",
+        "learningRate": 0.00358333,
+        "tokenIds": [
+          205,
+          88,
+          24,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 79,
+        "doc": "林妍君",
+        "learningRate": 0.0035,
+        "tokenIds": [
+          205,
+          90,
+          31,
+          20,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 80,
+        "doc": "陳敏宏",
+        "learningRate": 0.00341667,
+        "tokenIds": [
+          205,
+          192,
+          71,
+          45,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 81,
+        "doc": "許聖傑",
+        "learningRate": 0.00333333,
+        "tokenIds": [
+          205,
+          173,
+          151,
+          12,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 82,
+        "doc": "王志偉",
+        "learningRate": 0.00325,
+        "tokenIds": [
+          205,
+          118,
+          64,
+          10,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 83,
+        "doc": "詹睿哲",
+        "learningRate": 0.00316667,
+        "tokenIds": [
+          205,
+          175,
+          133,
+          25,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 84,
+        "doc": "陳家銘",
+        "learningRate": 0.00308333,
+        "tokenIds": [
+          205,
+          192,
+          48,
+          188,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 85,
+        "doc": "陳威宇",
+        "learningRate": 0.003,
+        "tokenIds": [
+          205,
+          192,
+          35,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 86,
+        "doc": "江筱婷",
+        "learningRate": 0.00291667,
+        "tokenIds": [
+          205,
+          100,
+          140,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 87,
+        "doc": "張雅婷",
+        "learningRate": 0.00283333,
+        "tokenIds": [
+          205,
+          57,
+          194,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 88,
+        "doc": "林湘芸",
+        "learningRate": 0.00275,
+        "tokenIds": [
+          205,
+          90,
+          110,
+          157,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 89,
+        "doc": "邱姿妤",
+        "learningRate": 0.00266667,
+        "tokenIds": [
+          205,
+          185,
+          34,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 90,
+        "doc": "羅承恩",
+        "learningRate": 0.00258333,
+        "tokenIds": [
+          205,
+          145,
+          69,
+          67,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 91,
+        "doc": "廖欣怡",
+        "learningRate": 0.0025,
+        "tokenIds": [
+          205,
+          53,
+          98,
+          66,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 92,
+        "doc": "彭昱婷",
+        "learningRate": 0.00241667,
+        "tokenIds": [
+          205,
+          61,
+          79,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 93,
+        "doc": "陳柏丞",
+        "learningRate": 0.00233333,
+        "tokenIds": [
+          205,
+          192,
+          91,
+          0,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 94,
+        "doc": "林煦涵",
+        "learningRate": 0.00225,
+        "tokenIds": [
+          205,
+          90,
+          116,
+          105,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 95,
+        "doc": "廖奕婷",
+        "learningRate": 0.00216667,
+        "tokenIds": [
+          205,
+          53,
+          29,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 96,
+        "doc": "呂哲宇",
+        "learningRate": 0.00208333,
+        "tokenIds": [
+          205,
+          22,
+          25,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 97,
+        "doc": "許鴻宇",
+        "learningRate": 0.002,
+        "tokenIds": [
+          205,
+          173,
+          202,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 98,
+        "doc": "林依庭",
+        "learningRate": 0.00191667,
+        "tokenIds": [
+          205,
+          90,
+          7,
+          51,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 99,
+        "doc": "陳翊廷",
+        "learningRate": 0.00183333,
+        "tokenIds": [
+          205,
+          192,
+          148,
+          54,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 100,
+        "doc": "黃芷婷",
+        "learningRate": 0.00175,
+        "tokenIds": [
+          205,
+          203,
+          156,
+          39,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 101,
+        "doc": "徐子涵",
+        "learningRate": 0.00166667,
+        "tokenIds": [
+          205,
+          62,
+          41,
+          105,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 102,
+        "doc": "曾宇軒",
+        "learningRate": 0.00158333,
+        "tokenIds": [
+          205,
+          84,
+          43,
+          182,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 103,
+        "doc": "林柔萱",
+        "learningRate": 0.0015,
+        "tokenIds": [
+          205,
+          90,
+          92,
+          166,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 104,
+        "doc": "江姿妤",
+        "learningRate": 0.00141667,
+        "tokenIds": [
+          205,
+          100,
+          34,
+          32,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 105,
+        "doc": "林湘穎",
+        "learningRate": 0.00133333,
+        "tokenIds": [
+          205,
+          90,
+          110,
+          139,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 106,
+        "doc": "陳彥良",
+        "learningRate": 0.00125,
+        "tokenIds": [
+          205,
+          192,
+          59,
+          154,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 107,
+        "doc": "陳建豪",
+        "learningRate": 0.00116667,
+        "tokenIds": [
+          205,
+          192,
+          55,
+          179,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 108,
+        "doc": "許祐安",
+        "learningRate": 0.00108333,
+        "tokenIds": [
+          205,
+          173,
+          134,
+          44,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 109,
+        "doc": "陳哲宇",
+        "learningRate": 0.001,
+        "tokenIds": [
+          205,
+          192,
+          25,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 110,
+        "doc": "陳智翔",
+        "learningRate": 0.00091667,
+        "tokenIds": [
+          205,
+          192,
+          82,
+          149,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 111,
+        "doc": "林湘潔",
+        "learningRate": 0.00083333,
+        "tokenIds": [
+          205,
+          90,
+          110,
+          111,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 112,
+        "doc": "陳得勝",
+        "learningRate": 0.00075,
+        "tokenIds": [
+          205,
+          192,
+          63,
+          16,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 113,
+        "doc": "高靜怡",
+        "learningRate": 0.00066667,
+        "tokenIds": [
+          205,
+          201,
+          197,
+          66,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 114,
+        "doc": "陳祐安",
+        "learningRate": 0.00058333,
+        "tokenIds": [
+          205,
+          192,
+          134,
+          44,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 115,
+        "doc": "周鴻宇",
+        "learningRate": 0.0005,
+        "tokenIds": [
+          205,
+          23,
+          202,
+          43,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 116,
+        "doc": "林淑惠",
+        "learningRate": 0.00041667,
+        "tokenIds": [
+          205,
+          90,
+          106,
+          68,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 117,
+        "doc": "林韻涵",
+        "learningRate": 0.00033333,
+        "tokenIds": [
+          205,
+          90,
+          198,
+          105,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 118,
+        "doc": "徐佳怡",
+        "learningRate": 0.00025,
+        "tokenIds": [
+          205,
+          62,
+          6,
+          66,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 119,
+        "doc": "王宇辰",
+        "learningRate": 0.00016667,
+        "tokenIds": [
+          205,
+          118,
+          43,
+          183,
+          205
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 120,
+        "doc": "吳威廷",
+        "learningRate": 0.00008333,
+        "tokenIds": [
+          205,
+          21,
+          35,
+          54,
+          205
+        ],
+        "numTargets": 4
       }
     ],
     "samples": [

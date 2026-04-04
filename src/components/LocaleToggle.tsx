@@ -1,4 +1,5 @@
-import { useI18n, type Locale } from '../i18n'
+import { useI18n } from '../i18n-context'
+import type { Locale } from '../locale'
 
 const locales: Locale[] = ['zh-TW', 'en']
 

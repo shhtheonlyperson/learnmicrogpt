@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-04T12:32:12.341Z",
+  "generatedAt": "2026-04-04T14:32:57.737Z",
   "locale": "en",
   "source": {
     "gistId": "8627fe009c40f57531cb18360106ce95",
@@ -664,6 +664,1977 @@
       {
         "step": 120,
         "loss": 2.6491
+      }
+    ],
+    "trainingSteps": [
+      {
+        "step": 1,
+        "doc": "yuheng",
+        "learningRate": 0.01,
+        "tokenIds": [
+          26,
+          24,
+          20,
+          7,
+          4,
+          13,
+          6,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 2,
+        "doc": "diondre",
+        "learningRate": 0.00991667,
+        "tokenIds": [
+          26,
+          3,
+          8,
+          14,
+          13,
+          3,
+          17,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 3,
+        "doc": "xavien",
+        "learningRate": 0.00983333,
+        "tokenIds": [
+          26,
+          23,
+          0,
+          21,
+          8,
+          4,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 4,
+        "doc": "jori",
+        "learningRate": 0.00975,
+        "tokenIds": [
+          26,
+          9,
+          14,
+          17,
+          8,
+          26
+        ],
+        "numTargets": 5
+      },
+      {
+        "step": 5,
+        "doc": "juanluis",
+        "learningRate": 0.00966667,
+        "tokenIds": [
+          26,
+          9,
+          20,
+          0,
+          13,
+          11,
+          20,
+          8,
+          18,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 6,
+        "doc": "erandi",
+        "learningRate": 0.00958333,
+        "tokenIds": [
+          26,
+          4,
+          17,
+          0,
+          13,
+          3,
+          8,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 7,
+        "doc": "phia",
+        "learningRate": 0.0095,
+        "tokenIds": [
+          26,
+          15,
+          7,
+          8,
+          0,
+          26
+        ],
+        "numTargets": 5
+      },
+      {
+        "step": 8,
+        "doc": "samatha",
+        "learningRate": 0.00941667,
+        "tokenIds": [
+          26,
+          18,
+          0,
+          12,
+          0,
+          19,
+          7,
+          0,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 9,
+        "doc": "phoenix",
+        "learningRate": 0.00933333,
+        "tokenIds": [
+          26,
+          15,
+          7,
+          14,
+          4,
+          13,
+          8,
+          23,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 10,
+        "doc": "emmelynn",
+        "learningRate": 0.00925,
+        "tokenIds": [
+          26,
+          4,
+          12,
+          12,
+          4,
+          11,
+          24,
+          13,
+          13,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 11,
+        "doc": "hollan",
+        "learningRate": 0.00916667,
+        "tokenIds": [
+          26,
+          7,
+          14,
+          11,
+          11,
+          0,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 12,
+        "doc": "hollis",
+        "learningRate": 0.00908333,
+        "tokenIds": [
+          26,
+          7,
+          14,
+          11,
+          11,
+          8,
+          18,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 13,
+        "doc": "callalily",
+        "learningRate": 0.009,
+        "tokenIds": [
+          26,
+          2,
+          0,
+          11,
+          11,
+          0,
+          11,
+          8,
+          11,
+          24,
+          26
+        ],
+        "numTargets": 10
+      },
+      {
+        "step": 14,
+        "doc": "adelayde",
+        "learningRate": 0.00891667,
+        "tokenIds": [
+          26,
+          0,
+          3,
+          4,
+          11,
+          0,
+          24,
+          3,
+          4,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 15,
+        "doc": "josephyne",
+        "learningRate": 0.00883333,
+        "tokenIds": [
+          26,
+          9,
+          14,
+          18,
+          4,
+          15,
+          7,
+          24,
+          13,
+          4,
+          26
+        ],
+        "numTargets": 10
+      },
+      {
+        "step": 16,
+        "doc": "weldon",
+        "learningRate": 0.00875,
+        "tokenIds": [
+          26,
+          22,
+          4,
+          11,
+          3,
+          14,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 17,
+        "doc": "kayle",
+        "learningRate": 0.00866667,
+        "tokenIds": [
+          26,
+          10,
+          0,
+          24,
+          11,
+          4,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 18,
+        "doc": "ragnar",
+        "learningRate": 0.00858333,
+        "tokenIds": [
+          26,
+          17,
+          0,
+          6,
+          13,
+          0,
+          17,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 19,
+        "doc": "colbie",
+        "learningRate": 0.0085,
+        "tokenIds": [
+          26,
+          2,
+          14,
+          11,
+          1,
+          8,
+          4,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 20,
+        "doc": "taveon",
+        "learningRate": 0.00841667,
+        "tokenIds": [
+          26,
+          19,
+          0,
+          21,
+          4,
+          14,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 21,
+        "doc": "aki",
+        "learningRate": 0.00833333,
+        "tokenIds": [
+          26,
+          0,
+          10,
+          8,
+          26
+        ],
+        "numTargets": 4
+      },
+      {
+        "step": 22,
+        "doc": "peyten",
+        "learningRate": 0.00825,
+        "tokenIds": [
+          26,
+          15,
+          4,
+          24,
+          19,
+          4,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 23,
+        "doc": "kevari",
+        "learningRate": 0.00816667,
+        "tokenIds": [
+          26,
+          10,
+          4,
+          21,
+          0,
+          17,
+          8,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 24,
+        "doc": "joella",
+        "learningRate": 0.00808333,
+        "tokenIds": [
+          26,
+          9,
+          14,
+          4,
+          11,
+          11,
+          0,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 25,
+        "doc": "mecca",
+        "learningRate": 0.008,
+        "tokenIds": [
+          26,
+          12,
+          4,
+          2,
+          2,
+          0,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 26,
+        "doc": "egan",
+        "learningRate": 0.00791667,
+        "tokenIds": [
+          26,
+          4,
+          6,
+          0,
+          13,
+          26
+        ],
+        "numTargets": 5
+      },
+      {
+        "step": 27,
+        "doc": "justyce",
+        "learningRate": 0.00783333,
+        "tokenIds": [
+          26,
+          9,
+          20,
+          18,
+          19,
+          24,
+          2,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 28,
+        "doc": "taliyah",
+        "learningRate": 0.00775,
+        "tokenIds": [
+          26,
+          19,
+          0,
+          11,
+          8,
+          24,
+          0,
+          7,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 29,
+        "doc": "hayley",
+        "learningRate": 0.00766667,
+        "tokenIds": [
+          26,
+          7,
+          0,
+          24,
+          11,
+          4,
+          24,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 30,
+        "doc": "alleah",
+        "learningRate": 0.00758333,
+        "tokenIds": [
+          26,
+          0,
+          11,
+          11,
+          4,
+          0,
+          7,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 31,
+        "doc": "kymberlynn",
+        "learningRate": 0.0075,
+        "tokenIds": [
+          26,
+          10,
+          24,
+          12,
+          1,
+          4,
+          17,
+          11,
+          24,
+          13,
+          13,
+          26
+        ],
+        "numTargets": 11
+      },
+      {
+        "step": 32,
+        "doc": "parrish",
+        "learningRate": 0.00741667,
+        "tokenIds": [
+          26,
+          15,
+          0,
+          17,
+          17,
+          8,
+          18,
+          7,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 33,
+        "doc": "houstyn",
+        "learningRate": 0.00733333,
+        "tokenIds": [
+          26,
+          7,
+          14,
+          20,
+          18,
+          19,
+          24,
+          13,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 34,
+        "doc": "jamaya",
+        "learningRate": 0.00725,
+        "tokenIds": [
+          26,
+          9,
+          0,
+          12,
+          0,
+          24,
+          0,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 35,
+        "doc": "ahmod",
+        "learningRate": 0.00716667,
+        "tokenIds": [
+          26,
+          0,
+          7,
+          12,
+          14,
+          3,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 36,
+        "doc": "nivin",
+        "learningRate": 0.00708333,
+        "tokenIds": [
+          26,
+          13,
+          8,
+          21,
+          8,
+          13,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 37,
+        "doc": "milli",
+        "learningRate": 0.007,
+        "tokenIds": [
+          26,
+          12,
+          8,
+          11,
+          11,
+          8,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 38,
+        "doc": "cristiana",
+        "learningRate": 0.00691667,
+        "tokenIds": [
+          26,
+          2,
+          17,
+          8,
+          18,
+          19,
+          8,
+          0,
+          13,
+          0,
+          26
+        ],
+        "numTargets": 10
+      },
+      {
+        "step": 39,
+        "doc": "jaimee",
+        "learningRate": 0.00683333,
+        "tokenIds": [
+          26,
+          9,
+          0,
+          8,
+          12,
+          4,
+          4,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 40,
+        "doc": "mitchell",
+        "learningRate": 0.00675,
+        "tokenIds": [
+          26,
+          12,
+          8,
+          19,
+          2,
+          7,
+          4,
+          11,
+          11,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 41,
+        "doc": "nairah",
+        "learningRate": 0.00666667,
+        "tokenIds": [
+          26,
+          13,
+          0,
+          8,
+          17,
+          0,
+          7,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 42,
+        "doc": "lorena",
+        "learningRate": 0.00658333,
+        "tokenIds": [
+          26,
+          11,
+          14,
+          17,
+          4,
+          13,
+          0,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 43,
+        "doc": "gentrie",
+        "learningRate": 0.0065,
+        "tokenIds": [
+          26,
+          6,
+          4,
+          13,
+          19,
+          17,
+          8,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 44,
+        "doc": "torrion",
+        "learningRate": 0.00641667,
+        "tokenIds": [
+          26,
+          19,
+          14,
+          17,
+          17,
+          8,
+          14,
+          13,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 45,
+        "doc": "savian",
+        "learningRate": 0.00633333,
+        "tokenIds": [
+          26,
+          18,
+          0,
+          21,
+          8,
+          0,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 46,
+        "doc": "benjamine",
+        "learningRate": 0.00625,
+        "tokenIds": [
+          26,
+          1,
+          4,
+          13,
+          9,
+          0,
+          12,
+          8,
+          13,
+          4,
+          26
+        ],
+        "numTargets": 10
+      },
+      {
+        "step": 47,
+        "doc": "airess",
+        "learningRate": 0.00616667,
+        "tokenIds": [
+          26,
+          0,
+          8,
+          17,
+          4,
+          18,
+          18,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 48,
+        "doc": "knute",
+        "learningRate": 0.00608333,
+        "tokenIds": [
+          26,
+          10,
+          13,
+          20,
+          19,
+          4,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 49,
+        "doc": "sultana",
+        "learningRate": 0.006,
+        "tokenIds": [
+          26,
+          18,
+          20,
+          11,
+          19,
+          0,
+          13,
+          0,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 50,
+        "doc": "danai",
+        "learningRate": 0.00591667,
+        "tokenIds": [
+          26,
+          3,
+          0,
+          13,
+          0,
+          8,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 51,
+        "doc": "azzan",
+        "learningRate": 0.00583333,
+        "tokenIds": [
+          26,
+          0,
+          25,
+          25,
+          0,
+          13,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 52,
+        "doc": "issabelle",
+        "learningRate": 0.00575,
+        "tokenIds": [
+          26,
+          8,
+          18,
+          18,
+          0,
+          1,
+          4,
+          11,
+          11,
+          4,
+          26
+        ],
+        "numTargets": 10
+      },
+      {
+        "step": 53,
+        "doc": "abrahim",
+        "learningRate": 0.00566667,
+        "tokenIds": [
+          26,
+          0,
+          1,
+          17,
+          0,
+          7,
+          8,
+          12,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 54,
+        "doc": "aislyn",
+        "learningRate": 0.00558333,
+        "tokenIds": [
+          26,
+          0,
+          8,
+          18,
+          11,
+          24,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 55,
+        "doc": "aerys",
+        "learningRate": 0.0055,
+        "tokenIds": [
+          26,
+          0,
+          4,
+          17,
+          24,
+          18,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 56,
+        "doc": "malaiya",
+        "learningRate": 0.00541667,
+        "tokenIds": [
+          26,
+          12,
+          0,
+          11,
+          0,
+          8,
+          24,
+          0,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 57,
+        "doc": "kieon",
+        "learningRate": 0.00533333,
+        "tokenIds": [
+          26,
+          10,
+          8,
+          4,
+          14,
+          13,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 58,
+        "doc": "ayansh",
+        "learningRate": 0.00525,
+        "tokenIds": [
+          26,
+          0,
+          24,
+          0,
+          13,
+          18,
+          7,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 59,
+        "doc": "berklee",
+        "learningRate": 0.00516667,
+        "tokenIds": [
+          26,
+          1,
+          4,
+          17,
+          10,
+          11,
+          4,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 60,
+        "doc": "emmakate",
+        "learningRate": 0.00508333,
+        "tokenIds": [
+          26,
+          4,
+          12,
+          12,
+          0,
+          10,
+          0,
+          19,
+          4,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 61,
+        "doc": "avaneesh",
+        "learningRate": 0.005,
+        "tokenIds": [
+          26,
+          0,
+          21,
+          0,
+          13,
+          4,
+          4,
+          18,
+          7,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 62,
+        "doc": "amenadiel",
+        "learningRate": 0.00491667,
+        "tokenIds": [
+          26,
+          0,
+          12,
+          4,
+          13,
+          0,
+          3,
+          8,
+          4,
+          11,
+          26
+        ],
+        "numTargets": 10
+      },
+      {
+        "step": 63,
+        "doc": "renardo",
+        "learningRate": 0.00483333,
+        "tokenIds": [
+          26,
+          17,
+          4,
+          13,
+          0,
+          17,
+          3,
+          14,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 64,
+        "doc": "brekken",
+        "learningRate": 0.00475,
+        "tokenIds": [
+          26,
+          1,
+          17,
+          4,
+          10,
+          10,
+          4,
+          13,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 65,
+        "doc": "kamry",
+        "learningRate": 0.00466667,
+        "tokenIds": [
+          26,
+          10,
+          0,
+          12,
+          17,
+          24,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 66,
+        "doc": "wylin",
+        "learningRate": 0.00458333,
+        "tokenIds": [
+          26,
+          22,
+          24,
+          11,
+          8,
+          13,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 67,
+        "doc": "trixie",
+        "learningRate": 0.0045,
+        "tokenIds": [
+          26,
+          19,
+          17,
+          8,
+          23,
+          8,
+          4,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 68,
+        "doc": "breslynn",
+        "learningRate": 0.00441667,
+        "tokenIds": [
+          26,
+          1,
+          17,
+          4,
+          18,
+          11,
+          24,
+          13,
+          13,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 69,
+        "doc": "bianka",
+        "learningRate": 0.00433333,
+        "tokenIds": [
+          26,
+          1,
+          8,
+          0,
+          13,
+          10,
+          0,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 70,
+        "doc": "mordchai",
+        "learningRate": 0.00425,
+        "tokenIds": [
+          26,
+          12,
+          14,
+          17,
+          3,
+          2,
+          7,
+          0,
+          8,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 71,
+        "doc": "haoyu",
+        "learningRate": 0.00416667,
+        "tokenIds": [
+          26,
+          7,
+          0,
+          14,
+          24,
+          20,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 72,
+        "doc": "frankie",
+        "learningRate": 0.00408333,
+        "tokenIds": [
+          26,
+          5,
+          17,
+          0,
+          13,
+          10,
+          8,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 73,
+        "doc": "josselin",
+        "learningRate": 0.004,
+        "tokenIds": [
+          26,
+          9,
+          14,
+          18,
+          18,
+          4,
+          11,
+          8,
+          13,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 74,
+        "doc": "saila",
+        "learningRate": 0.00391667,
+        "tokenIds": [
+          26,
+          18,
+          0,
+          8,
+          11,
+          0,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 75,
+        "doc": "kionna",
+        "learningRate": 0.00383333,
+        "tokenIds": [
+          26,
+          10,
+          8,
+          14,
+          13,
+          13,
+          0,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 76,
+        "doc": "jennings",
+        "learningRate": 0.00375,
+        "tokenIds": [
+          26,
+          9,
+          4,
+          13,
+          13,
+          8,
+          13,
+          6,
+          18,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 77,
+        "doc": "arlington",
+        "learningRate": 0.00366667,
+        "tokenIds": [
+          26,
+          0,
+          17,
+          11,
+          8,
+          13,
+          6,
+          19,
+          14,
+          13,
+          26
+        ],
+        "numTargets": 10
+      },
+      {
+        "step": 78,
+        "doc": "jupiter",
+        "learningRate": 0.00358333,
+        "tokenIds": [
+          26,
+          9,
+          20,
+          15,
+          8,
+          19,
+          4,
+          17,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 79,
+        "doc": "aleisha",
+        "learningRate": 0.0035,
+        "tokenIds": [
+          26,
+          0,
+          11,
+          4,
+          8,
+          18,
+          7,
+          0,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 80,
+        "doc": "kemorah",
+        "learningRate": 0.00341667,
+        "tokenIds": [
+          26,
+          10,
+          4,
+          12,
+          14,
+          17,
+          0,
+          7,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 81,
+        "doc": "denisse",
+        "learningRate": 0.00333333,
+        "tokenIds": [
+          26,
+          3,
+          4,
+          13,
+          8,
+          18,
+          18,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 82,
+        "doc": "zada",
+        "learningRate": 0.00325,
+        "tokenIds": [
+          26,
+          25,
+          0,
+          3,
+          0,
+          26
+        ],
+        "numTargets": 5
+      },
+      {
+        "step": 83,
+        "doc": "kaydynce",
+        "learningRate": 0.00316667,
+        "tokenIds": [
+          26,
+          10,
+          0,
+          24,
+          3,
+          24,
+          13,
+          2,
+          4,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 84,
+        "doc": "bari",
+        "learningRate": 0.00308333,
+        "tokenIds": [
+          26,
+          1,
+          0,
+          17,
+          8,
+          26
+        ],
+        "numTargets": 5
+      },
+      {
+        "step": 85,
+        "doc": "darya",
+        "learningRate": 0.003,
+        "tokenIds": [
+          26,
+          3,
+          0,
+          17,
+          24,
+          0,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 86,
+        "doc": "ellieanne",
+        "learningRate": 0.00291667,
+        "tokenIds": [
+          26,
+          4,
+          11,
+          11,
+          8,
+          4,
+          0,
+          13,
+          13,
+          4,
+          26
+        ],
+        "numTargets": 10
+      },
+      {
+        "step": 87,
+        "doc": "gretel",
+        "learningRate": 0.00283333,
+        "tokenIds": [
+          26,
+          6,
+          17,
+          4,
+          19,
+          4,
+          11,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 88,
+        "doc": "mahnoor",
+        "learningRate": 0.00275,
+        "tokenIds": [
+          26,
+          12,
+          0,
+          7,
+          13,
+          14,
+          14,
+          17,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 89,
+        "doc": "aryo",
+        "learningRate": 0.00266667,
+        "tokenIds": [
+          26,
+          0,
+          17,
+          24,
+          14,
+          26
+        ],
+        "numTargets": 5
+      },
+      {
+        "step": 90,
+        "doc": "miles",
+        "learningRate": 0.00258333,
+        "tokenIds": [
+          26,
+          12,
+          8,
+          11,
+          4,
+          18,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 91,
+        "doc": "evalise",
+        "learningRate": 0.0025,
+        "tokenIds": [
+          26,
+          4,
+          21,
+          0,
+          11,
+          8,
+          18,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 92,
+        "doc": "igor",
+        "learningRate": 0.00241667,
+        "tokenIds": [
+          26,
+          8,
+          6,
+          14,
+          17,
+          26
+        ],
+        "numTargets": 5
+      },
+      {
+        "step": 93,
+        "doc": "thoren",
+        "learningRate": 0.00233333,
+        "tokenIds": [
+          26,
+          19,
+          7,
+          14,
+          17,
+          4,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 94,
+        "doc": "hector",
+        "learningRate": 0.00225,
+        "tokenIds": [
+          26,
+          7,
+          4,
+          2,
+          19,
+          14,
+          17,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 95,
+        "doc": "anuel",
+        "learningRate": 0.00216667,
+        "tokenIds": [
+          26,
+          0,
+          13,
+          20,
+          4,
+          11,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 96,
+        "doc": "emmerie",
+        "learningRate": 0.00208333,
+        "tokenIds": [
+          26,
+          4,
+          12,
+          12,
+          4,
+          17,
+          8,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 97,
+        "doc": "erian",
+        "learningRate": 0.002,
+        "tokenIds": [
+          26,
+          4,
+          17,
+          8,
+          0,
+          13,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 98,
+        "doc": "blakeleigh",
+        "learningRate": 0.00191667,
+        "tokenIds": [
+          26,
+          1,
+          11,
+          0,
+          10,
+          4,
+          11,
+          4,
+          8,
+          6,
+          7,
+          26
+        ],
+        "numTargets": 11
+      },
+      {
+        "step": 99,
+        "doc": "madina",
+        "learningRate": 0.00183333,
+        "tokenIds": [
+          26,
+          12,
+          0,
+          3,
+          8,
+          13,
+          0,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 100,
+        "doc": "fatumata",
+        "learningRate": 0.00175,
+        "tokenIds": [
+          26,
+          5,
+          0,
+          19,
+          20,
+          12,
+          0,
+          19,
+          0,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 101,
+        "doc": "amberle",
+        "learningRate": 0.00166667,
+        "tokenIds": [
+          26,
+          0,
+          12,
+          1,
+          4,
+          17,
+          11,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 102,
+        "doc": "kessa",
+        "learningRate": 0.00158333,
+        "tokenIds": [
+          26,
+          10,
+          4,
+          18,
+          18,
+          0,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 103,
+        "doc": "rukaya",
+        "learningRate": 0.0015,
+        "tokenIds": [
+          26,
+          17,
+          20,
+          10,
+          0,
+          24,
+          0,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 104,
+        "doc": "dimitry",
+        "learningRate": 0.00141667,
+        "tokenIds": [
+          26,
+          3,
+          8,
+          12,
+          8,
+          19,
+          17,
+          24,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 105,
+        "doc": "conlin",
+        "learningRate": 0.00133333,
+        "tokenIds": [
+          26,
+          2,
+          14,
+          13,
+          11,
+          8,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 106,
+        "doc": "diary",
+        "learningRate": 0.00125,
+        "tokenIds": [
+          26,
+          3,
+          8,
+          0,
+          17,
+          24,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 107,
+        "doc": "giavonni",
+        "learningRate": 0.00116667,
+        "tokenIds": [
+          26,
+          6,
+          8,
+          0,
+          21,
+          14,
+          13,
+          13,
+          8,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 108,
+        "doc": "kyrin",
+        "learningRate": 0.00108333,
+        "tokenIds": [
+          26,
+          10,
+          24,
+          17,
+          8,
+          13,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 109,
+        "doc": "kesean",
+        "learningRate": 0.001,
+        "tokenIds": [
+          26,
+          10,
+          4,
+          18,
+          4,
+          0,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 110,
+        "doc": "addie",
+        "learningRate": 0.00091667,
+        "tokenIds": [
+          26,
+          0,
+          3,
+          3,
+          8,
+          4,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 111,
+        "doc": "immanuel",
+        "learningRate": 0.00083333,
+        "tokenIds": [
+          26,
+          8,
+          12,
+          12,
+          0,
+          13,
+          20,
+          4,
+          11,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 112,
+        "doc": "caedyn",
+        "learningRate": 0.00075,
+        "tokenIds": [
+          26,
+          2,
+          0,
+          4,
+          3,
+          24,
+          13,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 113,
+        "doc": "tyreik",
+        "learningRate": 0.00066667,
+        "tokenIds": [
+          26,
+          19,
+          24,
+          17,
+          4,
+          8,
+          10,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 114,
+        "doc": "marty",
+        "learningRate": 0.00058333,
+        "tokenIds": [
+          26,
+          12,
+          0,
+          17,
+          19,
+          24,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 115,
+        "doc": "makelle",
+        "learningRate": 0.0005,
+        "tokenIds": [
+          26,
+          12,
+          0,
+          10,
+          4,
+          11,
+          11,
+          4,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 116,
+        "doc": "nahshon",
+        "learningRate": 0.00041667,
+        "tokenIds": [
+          26,
+          13,
+          0,
+          7,
+          18,
+          7,
+          14,
+          13,
+          26
+        ],
+        "numTargets": 8
+      },
+      {
+        "step": 117,
+        "doc": "brantley",
+        "learningRate": 0.00033333,
+        "tokenIds": [
+          26,
+          1,
+          17,
+          0,
+          13,
+          19,
+          11,
+          4,
+          24,
+          26
+        ],
+        "numTargets": 9
+      },
+      {
+        "step": 118,
+        "doc": "bryli",
+        "learningRate": 0.00025,
+        "tokenIds": [
+          26,
+          1,
+          17,
+          24,
+          11,
+          8,
+          26
+        ],
+        "numTargets": 6
+      },
+      {
+        "step": 119,
+        "doc": "evella",
+        "learningRate": 0.00016667,
+        "tokenIds": [
+          26,
+          4,
+          21,
+          4,
+          11,
+          11,
+          0,
+          26
+        ],
+        "numTargets": 7
+      },
+      {
+        "step": 120,
+        "doc": "westley",
+        "learningRate": 0.00008333,
+        "tokenIds": [
+          26,
+          22,
+          4,
+          18,
+          19,
+          11,
+          4,
+          24,
+          26
+        ],
+        "numTargets": 8
       }
     ],
     "samples": [

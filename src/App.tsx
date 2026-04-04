@@ -12,7 +12,7 @@ import { PrimitiveInventorySection } from './sections/PrimitiveInventorySection'
 import { ReferenceRunSection } from './sections/ReferenceRunSection'
 import { SingleFileAtlasSection } from './sections/SingleFileAtlasSection'
 import { TradeoffSection } from './sections/TradeoffSection'
-import { useI18n } from './i18n'
+import { useI18n } from './i18n-context'
 
 function App() {
   const { locale } = useI18n()

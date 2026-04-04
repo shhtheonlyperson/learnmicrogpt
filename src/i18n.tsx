@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-
-export type Locale = 'zh-TW' | 'en'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { I18nContext, type I18nContextValue } from './i18n-context'
+import type { Locale } from './locale'
 
 const STORAGE_KEY = 'microgpt-locale'
 
@@ -17,14 +17,6 @@ const detectInitialLocale = (): Locale => {
 
   return normalizeLocale(window.navigator.language)
 }
-
-type I18nContextValue = {
-  locale: Locale
-  setLocale: (locale: Locale) => void
-  toggleLabel: string
-}
-
-const I18nContext = createContext<I18nContextValue | null>(null)
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(detectInitialLocale)
@@ -44,14 +36,4 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   )
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
-}
-
-export function useI18n() {
-  const context = useContext(I18nContext)
-  if (!context) throw new Error('useI18n must be used inside I18nProvider')
-  return context
-}
-
-export function pickLocale<T>(locale: Locale, values: { 'zh-TW': T; en: T }): T {
-  return values[locale]
 }

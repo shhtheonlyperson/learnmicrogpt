@@ -1,7 +1,14 @@
+import { Suspense, lazy } from 'react'
 import { FLOW_TOTAL_MS, LearningLoopFilm } from '../LearningLoopFilm'
 import { SourceMeta } from '../components/SourceMeta'
 import { SectionIntro } from '../components/SectionIntro'
+import { TokenizerPlayground } from '../components/TokenizerPlayground'
 import type { getCopy, LoopStep } from '../content/copy'
+
+const ForwardPassPlayground = lazy(async () => {
+  const module = await import('../components/ForwardPassPlayground')
+  return { default: module.ForwardPassPlayground }
+})
 
 type LearningLoopSectionProps = {
   activeStep: LoopStep
@@ -82,6 +89,34 @@ export function LearningLoopSection({
             </div>
             <p className="source-panel-hint">{copy.ui.labels.rightPanelHint}</p>
           </article>
+
+          {activeStep.visualKind === 'chars' ? (
+            <TokenizerPlayground
+              key={`tokenizer-${activeStep.id}-${copy.ui.labels.loopBody}`}
+              step={activeStep}
+            />
+          ) : null}
+
+          {['merge', 'attention', 'logits'].includes(activeStep.visualKind) ? (
+            <Suspense
+              fallback={
+                <article className="internals-playground reveal">
+                  <div className="internals-header">
+                    <div>
+                      <p className="eyebrow">{copy.ui.labels.loopEyebrow}</p>
+                      <h3>{activeStep.title}</h3>
+                    </div>
+                    <p>{copy.ui.labels.loopBody}</p>
+                  </div>
+                </article>
+              }
+            >
+              <ForwardPassPlayground
+                key={`internals-${activeStep.id}-${copy.ui.labels.loopBody}`}
+                step={activeStep}
+              />
+            </Suspense>
+          ) : null}
         </div>
       </div>
     </section>

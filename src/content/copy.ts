@@ -1,6 +1,6 @@
 import { getEvidencePack, type EvidenceLossPoint } from './evidencePack'
 import { sourceLinks, gistRangeHref } from './sources'
-import type { Locale } from '../i18n'
+import type { Locale } from '../locale'
 
 export type HeroMetric = {
   value: string

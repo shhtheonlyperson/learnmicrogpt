@@ -31,4 +31,9 @@ npm run generate:evidence
 ```
 
 This fetches the raw `microgpt.py` gist, runs a deterministic 120-step reference pass,
-and writes the app's committed evidence artifact to `src/content/evidence-pack.json`.
+and writes the app's committed evidence artifacts to:
+
+- `src/content/evidence-pack.en.json`
+- `src/content/evidence-pack.zh-TW.json`
+- `src/content/forward-pass.en.json`
+- `src/content/forward-pass.zh-TW.json`

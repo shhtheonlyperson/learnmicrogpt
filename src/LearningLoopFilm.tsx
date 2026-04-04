@@ -1,7 +1,7 @@
 import { motion, useAnimationFrame, useSpring } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getCopy, type LoopStep } from './content/copy'
-import { useI18n } from './i18n'
+import { useI18n } from './i18n-context'
 
 type LearningLoopFilmProps = {
   selectedStepId: string
@@ -190,10 +190,10 @@ const StageNode = ({
         borderRadius: '1.35rem',
         border: `1px solid ${withAlpha(step.palette.glow, 0.12 + emphasis * 0.28)}`,
         background: [
-          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha(step.palette.accent, 0.08 + emphasis * 0.14)})`,
-          withAlpha('#0f1217', 0.78 + emphasis * 0.08),
+          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha('#7a7a7a', 0.06 + emphasis * 0.12)})`,
+          withAlpha('#141414', 0.82 + emphasis * 0.06),
         ].join(','),
-        boxShadow: isCurrent || isNext ? `0 20px 60px ${withAlpha(step.palette.accent, 0.18)}` : 'none',
+        boxShadow: isCurrent || isNext ? `0 18px 40px ${withAlpha('#000000', 0.16)}` : 'none',
         overflow: 'hidden',
       }}
       transition={{ type: 'spring', stiffness: 260, damping: 28 }}
@@ -297,10 +297,10 @@ const CompactStageCard = ({
         borderRadius: '1.2rem',
         border: `1px solid ${withAlpha(step.palette.glow, active ? 0.28 : 0.18)}`,
         background: [
-          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha(step.palette.accent, active ? 0.16 : 0.1)})`,
-          withAlpha('#0f1217', 0.82),
+          `linear-gradient(180deg, ${withAlpha('#ffffff', 0.08)}, ${withAlpha('#7a7a7a', active ? 0.14 : 0.08)})`,
+          withAlpha('#141414', 0.84),
         ].join(','),
-        boxShadow: active ? `0 16px 42px ${withAlpha(step.palette.accent, 0.16)}` : 'none',
+        boxShadow: active ? `0 14px 32px ${withAlpha('#000000', 0.14)}` : 'none',
       }}
       transition={{ type: 'spring', stiffness: 220, damping: 24 }}
     >
@@ -383,7 +383,6 @@ const CompactStageCard = ({
 
 const renderCompactFilm = (
   scene: LoopScene,
-  packetX: ReturnType<typeof useSpring>,
   progressScale: ReturnType<typeof useSpring>,
   typedTranscript: string,
   ui: ReturnType<typeof getCopy>['ui'],
@@ -502,36 +501,10 @@ const renderCompactFilm = (
             scaleX: progressScale,
             transformOrigin: 'left center',
             borderRadius: '999px',
-            background: `linear-gradient(90deg, ${scene.currentStep.palette.accent}, ${scene.nextStep.palette.accent})`,
+            background: `linear-gradient(90deg, ${withAlpha('#6a6a6a', 0.95)}, ${withAlpha('#222222', 0.95)})`,
           }}
         />
       </div>
-
-      <motion.div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          x: packetX,
-          y: '-50%',
-          minWidth: '4.75rem',
-          minHeight: '2.35rem',
-          padding: '0 0.9rem',
-          borderRadius: '999px',
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontFamily: '"IBM Plex Mono", monospace',
-          fontSize: '0.72rem',
-          letterSpacing: '0.05em',
-          color: '#fff7ee',
-          background: `linear-gradient(135deg, ${withAlpha(scene.currentStep.palette.glow, 0.24)}, ${withAlpha(scene.nextStep.palette.accent, 0.28)})`,
-          border: `1px solid ${withAlpha('#ffffff', 0.12)}`,
-          boxShadow: `0 0 28px ${withAlpha(scene.currentStep.palette.glow, 0.22)}`,
-        }}
-      >
-        {scene.currentStep.targetLabel}
-      </motion.div>
     </div>
 
     <CompactStageCard label={ui.labels.nextStage} progress={scene.progress + 0.18} step={scene.nextStep} tone="next" />
@@ -630,14 +603,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
   const [scene, setScene] = useState<LoopScene>(() => getScene(initialOffset))
   const isCompact = useMediaQuery(COMPACT_QUERY)
 
-  useEffect(() => {
-    startOffsetRef.current = initialOffset
-    animationStartRef.current = null
-    setScene(getScene(initialOffset))
-  }, [initialOffset, locale])
-
   const railX = useSpring(0, { stiffness: 170, damping: 26 })
-  const packetX = useSpring(-44, { stiffness: 220, damping: 24 })
   const progressScale = useSpring(0, { stiffness: 190, damping: 28 })
 
   useAnimationFrame((time) => {
@@ -650,7 +616,6 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
     const scenePosition = nextScene.segmentIndex + nextScene.progress
 
     railX.set(-(scenePosition * TRACK_SPACING) - CARD_WIDTH / 2)
-    packetX.set(-44 + nextScene.progress * 88)
     progressScale.set(nextScene.progress)
     setScene(nextScene)
   })
@@ -660,7 +625,7 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
   const railWidth = (loopSteps.length - 1) * TRACK_SPACING + CARD_WIDTH
 
   if (isCompact) {
-    return renderCompactFilm(scene, packetX, progressScale, typedTranscript, copy.ui)
+    return renderCompactFilm(scene, progressScale, typedTranscript, copy.ui)
   }
 
   return (
@@ -871,12 +836,12 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
                   borderRadius: '50%',
                   background:
                     index === scene.segmentIndex || index === (scene.segmentIndex + 1) % loopSteps.length
-                      ? step.palette.accent
+                      ? '#3f3f3f'
                       : withAlpha('#ffffff', 0.18),
                   border: `1px solid ${withAlpha('#ffffff', 0.16)}`,
                   boxShadow:
                     index === scene.segmentIndex
-                      ? `0 0 20px ${withAlpha(step.palette.glow, 0.44)}`
+                      ? `0 0 14px ${withAlpha('#000000', 0.22)}`
                       : 'none',
                 }}
                 transition={{ type: 'spring', stiffness: 260, damping: 22 }}
@@ -919,37 +884,10 @@ export const LearningLoopFilm = ({ selectedStepId }: LearningLoopFilmProps) => {
                 scaleX: progressScale,
                 transformOrigin: 'left center',
                 borderRadius: '999px',
-                background: `linear-gradient(90deg, ${scene.currentStep.palette.accent}, ${scene.nextStep.palette.accent})`,
+                background: `linear-gradient(90deg, ${withAlpha('#6a6a6a', 0.95)}, ${withAlpha('#222222', 0.95)})`,
               }}
             />
           </div>
-
-          <motion.div
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              x: packetX,
-              y: '-50%',
-              minWidth: '4.5rem',
-              minHeight: '2.25rem',
-              padding: '0 0.85rem',
-              borderRadius: '999px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: '"IBM Plex Mono", monospace',
-              fontSize: '0.74rem',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: '#fff7ee',
-              background: `linear-gradient(135deg, ${withAlpha(scene.currentStep.palette.glow, 0.24)}, ${withAlpha(scene.nextStep.palette.accent, 0.28)})`,
-              border: `1px solid ${withAlpha('#ffffff', 0.12)}`,
-              boxShadow: `0 0 32px ${withAlpha(scene.currentStep.palette.glow, 0.24)}`,
-            }}
-          >
-            {scene.currentStep.targetLabel}
-          </motion.div>
         </div>
       </div>
 

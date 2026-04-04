@@ -1,4 +1,6 @@
+import { InferencePlayground } from '../components/InferencePlayground'
 import { SectionIntro } from '../components/SectionIntro'
+import { TrainingPlayground } from '../components/TrainingPlayground'
 import type { getCopy } from '../content/copy'
 
 type ReferenceRunSectionProps = {
@@ -47,14 +49,15 @@ export function ReferenceRunSection({ copy }: ReferenceRunSectionProps) {
         </article>
 
         <div className="reference-stack">
-          <div className="babble-grid reveal">
-            {copy.proofArtifacts.generatedNames.map((name) => (
-              <article className="babble-card" key={name}>
-                <span>sample</span>
-                <strong>{name}</strong>
-              </article>
-            ))}
-          </div>
+          <TrainingPlayground
+            accentColor="#202020"
+            key={`training-${copy.ui.labels.proofTitle}-${copy.proofArtifacts.lossTrace[0]?.loss ?? 0}`}
+          />
+
+          <InferencePlayground
+            key={`inference-${copy.ui.labels.lossTitle}-${copy.proofArtifacts.generatedNames[0] ?? 'sample'}`}
+            referenceNames={copy.proofArtifacts.generatedNames}
+          />
 
           <aside className="notes-card reveal">
             <p className="eyebrow">{copy.ui.labels.readProof}</p>
