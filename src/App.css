@@ -1,7 +1,10 @@
 .page-shell {
-  width: min(1240px, calc(100% - 1.75rem));
-  margin: 0 auto;
-  padding: 1.25rem 0 max(3rem, calc(2rem + env(safe-area-inset-bottom)));
+  width: 100%;
+  min-height: 100svh;
+  margin: 0;
+  padding: 1.25rem 1.25rem max(3rem, calc(2rem + env(safe-area-inset-bottom)));
+  display: grid;
+  gap: 1.25rem;
 }
 
 .source-workbench,
@@ -26,7 +29,7 @@
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
   gap: 1.5rem;
   padding: 1.5rem;
-  min-height: min(92svh, 920px);
+  min-height: calc(100svh - 2.5rem);
 }
 
 .hero-panel::after,
@@ -59,7 +62,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 390px);
   gap: 1.25rem;
-  margin-top: 1.25rem;
+  margin-top: 0;
   align-items: start;
 }
 
@@ -380,7 +383,8 @@
 }
 
 .content-section {
-  margin-top: 1.25rem;
+  min-height: calc(100svh - 2.5rem);
+  margin-top: 0;
   padding: clamp(1.2rem, 3vw, 2rem);
 }
 
@@ -2017,6 +2021,10 @@
     min-height: auto;
   }
 
+  .content-section {
+    min-height: auto;
+  }
+
   .source-workbench-aside {
     position: static;
     order: 0;
@@ -2047,8 +2055,9 @@
 
 @media (max-width: 760px) {
   .page-shell {
-    width: min(100% - 0.75rem, 1240px);
-    padding-top: 0.4rem;
+    width: 100%;
+    padding: 0.4rem 0.4rem max(1.25rem, calc(0.9rem + env(safe-area-inset-bottom)));
+    gap: 0.4rem;
   }
 
   .hero-panel,
