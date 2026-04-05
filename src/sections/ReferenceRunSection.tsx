@@ -13,7 +13,7 @@ export function ReferenceRunSection({ copy }: ReferenceRunSectionProps) {
     <section className="content-section" id="proof">
       <SectionIntro
         description={copy.ui.sectionDescriptions.proof}
-        number="03"
+        number="04"
         title={copy.ui.sectionTitles.proof}
       />
 

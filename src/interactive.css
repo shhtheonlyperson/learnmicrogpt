@@ -1,0 +1,876 @@
+.hero-explorer,
+.lab-overview {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.hero-explorer {
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--line);
+}
+
+.hero-explorer-copy,
+.lab-overview-copy,
+.lab-active-header,
+.lab-evidence-note {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.hero-explorer-copy h2,
+.lab-overview-copy h3,
+.lab-active-header h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  color: var(--text-strong);
+}
+
+.hero-explorer-copy h2,
+.lab-overview-copy h3 {
+  font-size: clamp(1.95rem, 4vw, 2.7rem);
+  line-height: 0.96;
+}
+
+.hero-explorer-copy p:last-child,
+.lab-overview-copy p:last-child,
+.lab-evidence-note p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.hero-explorer-list,
+.lab-overview-list {
+  display: grid;
+  gap: 0;
+}
+
+.hero-explorer-link,
+.lab-overview-button {
+  display: grid;
+  grid-template-columns: 3.3rem minmax(0, 1fr);
+  gap: 0.85rem;
+  padding: 1rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.hero-explorer-link:last-child,
+.lab-overview-button:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-explorer-link:hover,
+.hero-explorer-link.active,
+.lab-overview-button:hover,
+.lab-overview-button.active {
+  transform: translateX(6px);
+  border-color: var(--line-strong);
+}
+
+.hero-explorer-link span,
+.lab-overview-button span,
+.lab-anchor span {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--muted-strong);
+}
+
+.hero-explorer-link span,
+.lab-overview-button span {
+  grid-row: 1 / span 2;
+}
+
+.hero-explorer-link strong,
+.lab-overview-button strong,
+.lab-anchor strong {
+  grid-column: 2;
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--text-strong);
+}
+
+.hero-explorer-link p,
+.lab-overview-button p {
+  grid-column: 2;
+  margin: 0;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.interactive-lab-section {
+  overflow: hidden;
+}
+
+.lab-overview {
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+}
+
+.lab-active-shell {
+  display: grid;
+  gap: 1rem;
+  padding: 1.2rem;
+  border-radius: 1.35rem;
+  border: 1px solid rgba(22, 19, 15, 0.9);
+  background:
+    radial-gradient(circle at top left, rgba(212, 151, 85, 0.16), transparent 28%),
+    linear-gradient(180deg, #201b16, #15120f);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 220, 0.1),
+    0 26px 60px rgba(20, 15, 10, 0.18);
+}
+
+.lab-active-header {
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  align-items: start;
+}
+
+.lab-active-header .eyebrow,
+.lab-active-header h3,
+.lab-active-header p,
+.lab-evidence-note .eyebrow {
+  color: #f6ebdc;
+}
+
+.lab-active-header p:last-child {
+  margin: 0;
+  line-height: 1.7;
+  color: rgba(246, 235, 220, 0.76);
+}
+
+.lab-active-header h3 {
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  line-height: 0.96;
+}
+
+.lab-prompt-row,
+.lab-anchor-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.lab-active-shell .detail-chip {
+  border-color: rgba(255, 244, 220, 0.08);
+  background: rgba(255, 244, 220, 0.06);
+  color: #f6ebdc;
+}
+
+.lab-anchor {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 11rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.45);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.lab-anchor:hover,
+.lab-anchor.active {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  background: var(--paper);
+}
+
+.lab-evidence-note {
+  margin-top: 0.25rem;
+  padding: 1rem;
+  border-radius: 1.15rem;
+  border: 1px solid rgba(22, 19, 15, 0.9);
+  background:
+    radial-gradient(circle at top left, rgba(212, 151, 85, 0.12), transparent 30%),
+    linear-gradient(180deg, #1d1813, #14110d);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 220, 0.08);
+}
+
+.lab-evidence-note .editorial-code {
+  margin: 0;
+  border-color: rgba(255, 244, 220, 0.08);
+  background: rgba(255, 244, 220, 0.05);
+  color: #f6ebdc;
+}
+
+.tokenizer-playground,
+.internals-playground,
+.training-playground,
+.inference-playground {
+  display: grid;
+  gap: 1rem;
+  padding: 1.05rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255, 244, 220, 0.09);
+  background:
+    linear-gradient(180deg, rgba(255, 247, 234, 0.06), rgba(255, 247, 234, 0.02)),
+    rgba(10, 8, 6, 0.34);
+  color: #f6ebdc;
+}
+
+.tokenizer-playground-header,
+.tokenizer-card-header,
+.internals-header,
+.internals-card-header,
+.training-header,
+.training-card-header,
+.inference-header,
+.inference-trace-header,
+.inference-trace-copy {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tokenizer-playground-header,
+.internals-header,
+.training-header,
+.inference-header {
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  align-items: start;
+}
+
+.tokenizer-playground h3,
+.internals-playground h3,
+.training-playground h3,
+.inference-playground h3,
+.tokenizer-card-header h4,
+.internals-card-header h4,
+.training-card-header h4,
+.inference-trace-header h4 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  color: #f6ebdc;
+}
+
+.tokenizer-playground h3,
+.internals-playground h3,
+.training-playground h3,
+.inference-playground h3 {
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  line-height: 0.98;
+}
+
+.tokenizer-card-header h4,
+.internals-card-header h4,
+.training-card-header h4,
+.inference-trace-header h4 {
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.tokenizer-playground p,
+.internals-playground p,
+.training-playground p,
+.inference-playground p {
+  margin: 0;
+}
+
+.tokenizer-playground .eyebrow,
+.internals-playground .eyebrow,
+.training-playground .eyebrow,
+.inference-playground .eyebrow,
+.tokenizer-playground span,
+.internals-playground span,
+.training-playground span,
+.inference-playground span,
+.tokenizer-playground small,
+.internals-playground small,
+.training-playground small,
+.inference-playground small {
+  color: rgba(246, 235, 220, 0.7);
+}
+
+.tokenizer-playground strong,
+.internals-playground strong,
+.training-playground strong,
+.inference-playground strong,
+.tokenizer-playground code,
+.internals-playground code,
+.training-playground code,
+.inference-playground code {
+  color: #f6ebdc;
+}
+
+.tokenizer-playground-header p:last-child,
+.tokenizer-card-header p:last-child,
+.internals-header p:last-child,
+.internals-card-header p:last-child,
+.training-header p:last-child,
+.training-card-header p:last-child,
+.training-trace-note p,
+.inference-header p:last-child,
+.inference-trace-header p:last-child,
+.inference-trace-copy p:last-child,
+.inference-empty {
+  color: rgba(246, 235, 220, 0.74);
+}
+
+.tokenizer-stat-strip,
+.internals-token-row,
+.training-stat-strip,
+.inference-stat-strip {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.tokenizer-stat-strip,
+.inference-stat-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.internals-token-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.training-stat-strip {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.tokenizer-stat-card,
+.internals-stat-card,
+.training-stat-card,
+.inference-stat-card,
+.training-trace-note {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 244, 220, 0.08);
+  background: rgba(255, 244, 220, 0.05);
+}
+
+.tokenizer-stat-card span,
+.internals-stat-card span,
+.training-stat-card span,
+.inference-stat-card span,
+.training-trace-note span,
+.training-baseline span,
+.tokenizer-input-wrap span,
+.inference-slider-copy span,
+.training-speed-wrap span,
+.internals-attention-view span {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.tokenizer-stat-card strong,
+.internals-stat-card strong,
+.training-stat-card strong,
+.inference-stat-card strong,
+.training-trace-note strong,
+.inference-slider-copy strong {
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.tokenizer-grid,
+.internals-layout,
+.training-layout,
+.inference-layout {
+  display: grid;
+  gap: 1rem;
+}
+
+.tokenizer-grid,
+.training-layout,
+.inference-layout {
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+}
+
+.internals-layout {
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+}
+
+.tokenizer-card,
+.internals-stage-card,
+.internals-context-card,
+.training-chart-card,
+.training-phase-card,
+.inference-trace-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 244, 220, 0.08);
+  background: rgba(255, 244, 220, 0.04);
+}
+
+.tokenizer-vocab-grid,
+.internals-vector-grid,
+.training-phase-grid,
+.babble-grid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.tokenizer-vocab-grid {
+  grid-template-columns: repeat(auto-fit, minmax(4.2rem, 1fr));
+}
+
+.tokenizer-vocab-tile,
+.tokenizer-token-chip,
+.internals-vector-cell,
+.training-phase-step,
+.babble-card {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0.8rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(255, 244, 220, 0.08);
+  background: rgba(255, 244, 220, 0.04);
+}
+
+.tokenizer-vocab-tile.active,
+.tokenizer-vocab-tile.bos,
+.tokenizer-pair-button.active {
+  border-color: var(--tokenizer-accent-strong, #d49755);
+  background: rgba(212, 151, 85, 0.16);
+}
+
+.internals-position-chip.active,
+.internals-stage-chip.active,
+.internals-head-chip.active {
+  border-color: var(--internals-accent-strong, #d49755);
+  background: rgba(102, 217, 217, 0.15);
+}
+
+.training-speed-button.active,
+.training-phase-step.active,
+.training-bar-wrap.active .training-bar {
+  border-color: var(--training-accent, #d49755);
+  background: rgba(212, 151, 85, 0.16);
+}
+
+.babble-card.active {
+  border-color: #d49755;
+  background: rgba(212, 151, 85, 0.16);
+}
+
+.tokenizer-vocab-tile strong,
+.tokenizer-token-chip strong,
+.internals-vector-cell strong,
+.training-phase-step strong,
+.babble-card strong {
+  font-size: 1rem;
+}
+
+.tokenizer-input-row,
+.internals-control-bar,
+.training-control-bar,
+.inference-control-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tokenizer-input-wrap,
+.inference-slider-wrap {
+  display: grid;
+  gap: 0.45rem;
+  flex: 1 1 18rem;
+}
+
+.tokenizer-input-wrap input,
+.tokenizer-reset,
+.internals-reset,
+.training-actions button,
+.training-speed-button,
+.inference-actions button,
+.inference-slider,
+.training-scrubber {
+  appearance: none;
+}
+
+.tokenizer-input-wrap input,
+.tokenizer-reset,
+.internals-reset,
+.training-actions button,
+.training-speed-button,
+.inference-actions button,
+.internals-position-chip,
+.internals-stage-chip,
+.internals-head-chip,
+.tokenizer-pair-button,
+.babble-card-button {
+  min-height: 2.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 244, 220, 0.1);
+  background: rgba(255, 244, 220, 0.04);
+  color: #f6ebdc;
+  transition:
+    transform 150ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.tokenizer-input-wrap input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  font-family: var(--body);
+  font-size: 1rem;
+  outline: none;
+}
+
+.tokenizer-input-wrap input:focus,
+.tokenizer-reset:hover,
+.internals-reset:hover,
+.training-actions button:hover,
+.training-speed-button:hover,
+.inference-actions button:hover,
+.internals-position-chip:hover,
+.internals-stage-chip:hover,
+.internals-head-chip:hover,
+.tokenizer-pair-button:hover,
+.babble-card-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 244, 220, 0.2);
+}
+
+.tokenizer-reset,
+.internals-reset,
+.training-actions button,
+.training-speed-button,
+.inference-actions button,
+.internals-position-chip,
+.internals-stage-chip,
+.internals-head-chip,
+.tokenizer-pair-button,
+.babble-card-button {
+  padding: 0.75rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.training-actions,
+.training-speed-row,
+.inference-actions,
+.internals-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.tokenizer-helper,
+.inference-slider-wrap p {
+  color: rgba(246, 235, 220, 0.7);
+}
+
+.tokenizer-sequence,
+.tokenizer-pair-rail,
+.internals-sample-rail,
+.internals-position-rail {
+  display: flex;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding-bottom: 0.15rem;
+}
+
+.tokenizer-id-strip,
+.tokenizer-history,
+.inference-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.tokenizer-id-strip code,
+.tokenizer-history code {
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.7rem;
+  background: rgba(255, 244, 220, 0.05);
+}
+
+.tokenizer-current-pair {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 244, 220, 0.08);
+  background:
+    radial-gradient(circle at top left, var(--tokenizer-glow, rgba(212, 151, 85, 0.18)), transparent 46%),
+    rgba(255, 244, 220, 0.05);
+}
+
+.internals-position-chip,
+.internals-stage-chip,
+.internals-head-chip {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 7rem;
+}
+
+.internals-stage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.7rem;
+}
+
+.internals-vector-grid {
+  grid-template-columns: repeat(auto-fit, minmax(5.6rem, 1fr));
+}
+
+.internals-attention-list,
+.internals-output-list,
+.inference-trace-rail {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.internals-attention-row,
+.internals-output-row,
+.inference-trace-step {
+  display: grid;
+  grid-template-columns: minmax(3rem, auto) minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.8rem 0.85rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(255, 244, 220, 0.08);
+  background: rgba(255, 244, 220, 0.03);
+}
+
+.internals-attention-row div,
+.internals-output-row div {
+  height: 0.6rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 244, 220, 0.06);
+}
+
+.internals-attention-bar,
+.internals-output-bar,
+.training-bar {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.internals-attention-bar {
+  background: linear-gradient(
+    90deg,
+    var(--internals-accent, #66d9d9),
+    var(--internals-accent-strong, #d49755)
+  );
+}
+
+.internals-output-bar {
+  background: linear-gradient(
+    90deg,
+    var(--internals-accent-strong, #d49755),
+    rgba(255, 244, 220, 0.35)
+  );
+}
+
+.training-chart-shell {
+  position: relative;
+  min-height: 13.5rem;
+  padding-top: 1rem;
+}
+
+.training-chart-grid {
+  display: grid;
+  gap: 0.22rem;
+  align-items: end;
+  min-height: 12rem;
+  padding: 0.5rem 0;
+}
+
+.training-bar-wrap {
+  display: flex;
+  align-items: end;
+}
+
+.training-bar {
+  width: 100%;
+  min-height: 1rem;
+  background: linear-gradient(180deg, var(--training-accent, #d49755), rgba(255, 244, 220, 0.12));
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+}
+
+.training-bar-wrap.active .training-bar {
+  transform: translateY(-3px);
+  filter: saturate(1.12);
+}
+
+.training-baseline {
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.training-baseline span {
+  padding: 0.25rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 244, 220, 0.07);
+}
+
+.training-phase-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.training-scrubber,
+.inference-slider {
+  width: 100%;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 244, 220, 0.08);
+  outline: none;
+  cursor: pointer;
+}
+
+.training-scrubber::-webkit-slider-thumb,
+.inference-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 0;
+  background: #f6ebdc;
+  box-shadow: 0 0 0 4px rgba(212, 151, 85, 0.22);
+}
+
+.training-scrubber::-moz-range-thumb,
+.inference-slider::-moz-range-thumb {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 0;
+  background: #f6ebdc;
+  box-shadow: 0 0 0 4px rgba(212, 151, 85, 0.22);
+}
+
+.inference-slider-copy {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.inference-slider-copy strong em {
+  margin-left: 0.45rem;
+  font-style: normal;
+  color: rgba(246, 235, 220, 0.68);
+}
+
+.inference-card-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.babble-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.babble-card-button {
+  display: grid;
+  gap: 0.35rem;
+  border-radius: 1rem;
+  min-height: 0;
+  padding: 0.9rem;
+  text-align: left;
+}
+
+.babble-card span,
+.babble-card small,
+.inference-pill-row span,
+.inference-trace-step small {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.inference-pill-row span {
+  padding: 0.45rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 244, 220, 0.08);
+  background: rgba(255, 244, 220, 0.04);
+}
+
+.inference-playground .inference-bos-note {
+  border-color: rgba(255, 244, 220, 0.08);
+  background: rgba(255, 244, 220, 0.04);
+}
+
+.inference-playground .inference-bos-note strong,
+.inference-playground .inference-bos-note p {
+  color: #f6ebdc;
+}
+
+.inference-trace-step.terminal {
+  border-style: dashed;
+}
+
+@media (max-width: 1040px) {
+  .hero-explorer,
+  .lab-overview,
+  .lab-active-header,
+  .tokenizer-playground-header,
+  .internals-header,
+  .training-header,
+  .inference-header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tokenizer-grid,
+  .internals-layout,
+  .training-layout,
+  .inference-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .training-stat-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-explorer-link,
+  .lab-overview-button {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tokenizer-stat-strip,
+  .internals-token-row,
+  .training-stat-strip,
+  .inference-stat-strip,
+  .training-phase-grid,
+  .babble-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lab-anchor {
+    min-width: 0;
+    flex: 1 1 10rem;
+  }
+}

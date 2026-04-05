@@ -24,7 +24,7 @@ export function PrimitiveInventorySection({ copy }: PrimitiveInventorySectionPro
     <section className="content-section" id="core-ideas">
       <SectionIntro
         description={sectionCopy.description}
-        number="02"
+        number="03"
         title={sectionCopy.title}
       />
 

@@ -1,11 +1,27 @@
+import { startTransition } from 'react'
 import { LocaleToggle } from '../components/LocaleToggle'
 import type { getCopy } from '../content/copy'
+import type { InteractiveLabChapter, InteractiveLabId } from '../content/interactiveLab'
 
 type HeroSectionProps = {
+  activeLabId: InteractiveLabId
   copy: ReturnType<typeof getCopy>
+  labChapters: InteractiveLabChapter[]
+  labHeroBody: string
+  labHeroEyebrow: string
+  labHeroTitle: string
+  onSelectLab: (id: InteractiveLabId) => void
 }
 
-export function HeroSection({ copy }: HeroSectionProps) {
+export function HeroSection({
+  activeLabId,
+  copy,
+  labChapters,
+  labHeroBody,
+  labHeroEyebrow,
+  labHeroTitle,
+  onSelectLab,
+}: HeroSectionProps) {
   return (
     <section className="hero-panel" id="top">
       <div className="hero-topbar">
@@ -55,6 +71,33 @@ export function HeroSection({ copy }: HeroSectionProps) {
             <pre className="editorial-code">{copy.heroContent.coreMoveSnippet}</pre>
           </article>
         </aside>
+      </div>
+
+      <div className="hero-explorer reveal">
+        <div className="hero-explorer-copy">
+          <p className="eyebrow">{labHeroEyebrow}</p>
+          <h2>{labHeroTitle}</h2>
+          <p>{labHeroBody}</p>
+        </div>
+
+        <div className="hero-explorer-list" aria-label={labHeroTitle}>
+          {labChapters.map((chapter) => (
+            <a
+              className={chapter.id === activeLabId ? 'hero-explorer-link active' : 'hero-explorer-link'}
+              href="#interactive-lab"
+              key={chapter.id}
+              onClick={() =>
+                startTransition(() => {
+                  onSelectLab(chapter.id)
+                })
+              }
+            >
+              <span>{chapter.number}</span>
+              <strong>{chapter.title}</strong>
+              <p>{chapter.body}</p>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   )
