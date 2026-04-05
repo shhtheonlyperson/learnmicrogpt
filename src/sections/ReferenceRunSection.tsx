@@ -21,7 +21,6 @@ export function ReferenceRunSection({ copy }: ReferenceRunSectionProps) {
         <article className="proof-panel reveal">
           <div className="proof-panel-header">
             <div>
-              <p className="eyebrow">{copy.ui.labels.quickSlice}</p>
               <h3>{copy.ui.labels.lossTitle}</h3>
             </div>
             <p>{copy.ui.labels.lossBody}</p>
@@ -58,7 +57,6 @@ export function ReferenceRunSection({ copy }: ReferenceRunSectionProps) {
           <div className="proof-panel-header">
             <div>
               <p className="eyebrow">{copy.ui.labels.readProof}</p>
-              <h3>{copy.ui.labels.proofTitle}</h3>
             </div>
             <p>{copy.tradeoffContent.conclusion}</p>
           </div>

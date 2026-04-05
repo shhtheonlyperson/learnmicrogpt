@@ -238,7 +238,6 @@
   color: var(--text-strong);
 }
 
-.sample-strip,
 .detail-token-row,
 .name-board {
   display: flex;
@@ -246,7 +245,6 @@
   gap: 0.55rem;
 }
 
-.sample-strip span,
 .detail-chip,
 .name-board span {
   display: inline-flex;
@@ -260,10 +258,6 @@
   font-size: 0.8rem;
   letter-spacing: 0.03em;
   color: var(--text-strong);
-}
-
-.sample-strip span {
-  background: transparent;
 }
 
 .content-section {

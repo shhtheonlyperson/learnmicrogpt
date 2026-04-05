@@ -46,34 +46,13 @@ export function HeroSection({ copy }: HeroSectionProps) {
           </div>
         </div>
 
-        <aside className="hero-evidence reveal" aria-label={copy.heroContent.terminalLabel}>
+        <aside className="hero-evidence reveal" aria-label={copy.ui.sectionTitles.proof}>
           <article className="evidence-panel">
-            <div className="evidence-panel-header">
-              <p className="eyebrow">{copy.heroContent.terminalLabel}</p>
-              <h2>{copy.ui.sectionTitles.proof}</h2>
-            </div>
             <pre className="editorial-code">{copy.proofArtifacts.referenceRun}</pre>
           </article>
 
           <article className="evidence-panel">
-            <div className="evidence-panel-header">
-              <p className="eyebrow">{copy.heroContent.coreMoveLabel}</p>
-              <h2>{copy.ui.sectionTitles.loop}</h2>
-            </div>
             <pre className="editorial-code">{copy.heroContent.coreMoveSnippet}</pre>
-          </article>
-
-          <article className="evidence-panel hero-sample-panel">
-            <div className="evidence-panel-header">
-              <p className="eyebrow">{copy.ui.labels.proofTitle}</p>
-              <h2>{copy.ui.labels.quickSlice}</h2>
-            </div>
-
-            <div className="sample-strip">
-              {copy.proofArtifacts.generatedNames.slice(0, 8).map((name) => (
-                <span key={name}>{name}</span>
-              ))}
-            </div>
           </article>
         </aside>
       </div>
