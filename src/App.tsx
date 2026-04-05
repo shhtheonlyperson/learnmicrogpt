@@ -60,10 +60,6 @@ function App() {
     stepsById.get('06') ??
     copy.loopSteps.find((step) => step.visualKind === 'attention') ??
     copy.loopSteps[0]!
-  const trainingStep =
-    stepsById.get('08') ??
-    copy.loopSteps.find((step) => step.visualKind === 'loss') ??
-    copy.loopSteps[0]!
 
   const [inputValue, setInputValue] = useState(config.exampleName)
   const [draftValue, setDraftValue] = useState(config.exampleName)
