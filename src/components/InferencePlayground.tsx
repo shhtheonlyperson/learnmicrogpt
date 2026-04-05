@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import {
   createReferenceInferenceSamples,
   generateInferenceSamples,
@@ -15,14 +15,22 @@ type InferencePlaygroundProps = {
 const formatTraceToken = (token: string) => (token === 'BOS' ? 'BOS' : token)
 
 const clampTemperature = (value: number) => Math.min(1.6, Math.max(0.2, value))
+const DEFAULT_TEMPERATURE = 0.55
 
 export function InferencePlayground({ referenceNames }: InferencePlaygroundProps) {
   const { locale } = useI18n()
   const samplerMeta = getInferenceSamplerMeta(locale)
-  const initialSamples = createReferenceInferenceSamples(locale, referenceNames)
-  const [temperature, setTemperature] = useState(0.55)
+  const initialSamples = useMemo(
+    () => createReferenceInferenceSamples(locale, referenceNames),
+    [locale, referenceNames],
+  )
+  const [temperature, setTemperature] = useState(DEFAULT_TEMPERATURE)
   const [samples, setSamples] = useState<InferenceSample[]>(initialSamples)
   const [selectedId, setSelectedId] = useState(initialSamples[0]?.id ?? '')
+  const [lastGeneratedCount, setLastGeneratedCount] = useState(
+    Math.max(1, Math.min(initialSamples.length, 10)),
+  )
+  const [sampleMode, setSampleMode] = useState<'reference' | 'generated'>('reference')
 
   const copy = pickLocale(locale, {
     en: {
@@ -41,6 +49,9 @@ export function InferencePlayground({ referenceNames }: InferencePlaygroundProps
       selectedBody: 'Click any generated card to inspect the autoregressive trace.',
       trace: 'Sampling trace',
       traceBody: 'Each hop is the current token and the next token the sampler decided to emit.',
+      bos: 'BOS means Beginning of Sequence.',
+      bosBody:
+        'In this tiny script it marks the sequence boundary, so sampling starts at BOS and stops when BOS shows up again.',
       tagReference: 'reference run',
       tagGenerated: 'generated now',
       tagSeen: 'seen shape',
@@ -68,6 +79,8 @@ export function InferencePlayground({ referenceNames }: InferencePlaygroundProps
       selectedBody: '點任一張卡片，就能看它在自回歸抽樣時經過哪些 token。',
       trace: '抽樣軌跡',
       traceBody: '每一步都代表：目前 token 是什麼，下一個 token 又被抽成了哪個字。',
+      bos: 'BOS 指的是 Beginning of Sequence。',
+      bosBody: '在這個小 script 裡，它是序列邊界 token，所以抽樣從 BOS 開始，再次抽到 BOS 就停下來。',
       tagReference: 'reference run',
       tagGenerated: '剛生成',
       tagSeen: '語料裡看過',
@@ -85,10 +98,28 @@ export function InferencePlayground({ referenceNames }: InferencePlaygroundProps
   const temperatureMood =
     temperature < 0.45 ? copy.mood.cool : temperature < 0.95 ? copy.mood.warm : copy.mood.hot
 
-  const handleGenerate = (count: number) => {
-    const nextSamples = generateInferenceSamples(locale, temperature, count)
+  const updateGeneratedSamples = (nextTemperature: number, count: number) => {
+    const nextSamples = generateInferenceSamples(locale, nextTemperature, count)
     setSamples(nextSamples)
     setSelectedId(nextSamples[0]?.id ?? '')
+    setLastGeneratedCount(count)
+    setSampleMode('generated')
+  }
+
+  const handleTemperatureChange = (value: number) => {
+    const nextTemperature = clampTemperature(value)
+    setTemperature(nextTemperature)
+
+    const count =
+      sampleMode === 'generated'
+        ? lastGeneratedCount
+        : Math.max(1, samples.length || lastGeneratedCount)
+
+    updateGeneratedSamples(nextTemperature, count)
+  }
+
+  const handleGenerate = (count: number) => {
+    updateGeneratedSamples(temperature, count)
   }
 
   return (
@@ -114,7 +145,7 @@ export function InferencePlayground({ referenceNames }: InferencePlaygroundProps
             className="inference-slider"
             max="1.6"
             min="0.2"
-            onChange={(event) => setTemperature(clampTemperature(Number(event.target.value)))}
+            onChange={(event) => handleTemperatureChange(Number(event.target.value))}
             step="0.05"
             type="range"
             value={temperature}
@@ -131,8 +162,10 @@ export function InferencePlayground({ referenceNames }: InferencePlaygroundProps
           </button>
           <button
             onClick={() => {
+              setTemperature(DEFAULT_TEMPERATURE)
               setSamples(initialSamples)
               setSelectedId(initialSamples[0]?.id ?? '')
+              setSampleMode('reference')
             }}
             type="button"
           >
@@ -194,6 +227,11 @@ export function InferencePlayground({ referenceNames }: InferencePlaygroundProps
               <div className="inference-trace-copy">
                 <p className="eyebrow">{copy.trace}</p>
                 <p>{copy.traceBody}</p>
+              </div>
+
+              <div className="inference-bos-note">
+                <strong>{copy.bos}</strong>
+                <p>{copy.bosBody}</p>
               </div>
 
               <div className="inference-trace-rail">
