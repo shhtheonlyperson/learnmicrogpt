@@ -219,11 +219,12 @@
   gap: 1rem;
   padding: 1.05rem;
   border-radius: 1.2rem;
-  border: 1px solid rgba(255, 244, 220, 0.09);
+  border: 1px solid rgba(0, 0, 0, 0.14);
   background:
-    linear-gradient(180deg, rgba(255, 247, 234, 0.06), rgba(255, 247, 234, 0.02)),
-    rgba(10, 8, 6, 0.34);
-  color: #f6ebdc;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 244, 244, 0.94)),
+    rgba(255, 255, 255, 0.96);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: #111111;
 }
 
 .tokenizer-playground-header,
@@ -258,7 +259,7 @@
   margin: 0;
   font-family: var(--display);
   font-weight: 400;
-  color: #f6ebdc;
+  color: #111111;
 }
 
 .tokenizer-playground h3,
@@ -296,7 +297,7 @@
 .internals-playground small,
 .training-playground small,
 .inference-playground small {
-  color: rgba(246, 235, 220, 0.7);
+  color: rgba(0, 0, 0, 0.62);
 }
 
 .tokenizer-playground strong,
@@ -307,7 +308,7 @@
 .internals-playground code,
 .training-playground code,
 .inference-playground code {
-  color: #f6ebdc;
+  color: #111111;
 }
 
 .tokenizer-playground-header p:last-child,
@@ -321,7 +322,7 @@
 .inference-trace-header p:last-child,
 .inference-trace-copy p:last-child,
 .inference-empty {
-  color: rgba(246, 235, 220, 0.74);
+  color: rgba(0, 0, 0, 0.78);
 }
 
 .tokenizer-stat-strip,
@@ -354,8 +355,8 @@
   gap: 0.25rem;
   padding: 0.9rem;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 244, 220, 0.08);
-  background: rgba(255, 244, 220, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .tokenizer-stat-card span,
@@ -411,8 +412,8 @@
   gap: 0.9rem;
   padding: 1rem;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 244, 220, 0.08);
-  background: rgba(255, 244, 220, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .tokenizer-vocab-grid,
@@ -436,34 +437,50 @@
   gap: 0.2rem;
   padding: 0.85rem 0.8rem;
   border-radius: 0.95rem;
-  border: 1px solid rgba(255, 244, 220, 0.08);
-  background: rgba(255, 244, 220, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 .tokenizer-vocab-tile.active,
 .tokenizer-vocab-tile.bos,
-.tokenizer-pair-button.active {
-  border-color: var(--tokenizer-accent-strong, #d49755);
-  background: rgba(212, 151, 85, 0.16);
-}
-
+.tokenizer-pair-button.active,
 .internals-position-chip.active,
 .internals-stage-chip.active,
-.internals-head-chip.active {
-  border-color: var(--internals-accent-strong, #d49755);
-  background: rgba(102, 217, 217, 0.15);
-}
-
+.internals-head-chip.active,
 .training-speed-button.active,
 .training-phase-step.active,
-.training-bar-wrap.active .training-bar {
-  border-color: var(--training-accent, #d49755);
-  background: rgba(212, 151, 85, 0.16);
+.babble-card.active {
+  border-color: #111111;
+  background: #111111;
+  color: #ffffff;
 }
 
-.babble-card.active {
-  border-color: #d49755;
-  background: rgba(212, 151, 85, 0.16);
+.training-bar-wrap.active .training-bar {
+  background: #111111;
+}
+
+.tokenizer-vocab-tile.active strong,
+.tokenizer-vocab-tile.active span,
+.tokenizer-vocab-tile.bos strong,
+.tokenizer-vocab-tile.bos span,
+.tokenizer-pair-button.active strong,
+.tokenizer-pair-button.active span,
+.internals-position-chip.active strong,
+.internals-position-chip.active span,
+.internals-position-chip.active small,
+.internals-stage-chip.active strong,
+.internals-stage-chip.active span,
+.internals-stage-chip.active small,
+.internals-head-chip.active strong,
+.internals-head-chip.active span,
+.internals-head-chip.active small,
+.training-speed-button.active,
+.training-phase-step.active strong,
+.training-phase-step.active span,
+.babble-card.active strong,
+.babble-card.active span,
+.babble-card.active small {
+  color: #ffffff;
 }
 
 .tokenizer-vocab-tile strong,
@@ -516,9 +533,9 @@
 .babble-card-button {
   min-height: 2.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 244, 220, 0.1);
-  background: rgba(255, 244, 220, 0.04);
-  color: #f6ebdc;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.98);
+  color: #111111;
   transition:
     transform 150ms ease,
     border-color 150ms ease,
@@ -546,7 +563,7 @@
 .tokenizer-pair-button:hover,
 .babble-card-button:hover {
   transform: translateY(-1px);
-  border-color: rgba(255, 244, 220, 0.2);
+  border-color: rgba(0, 0, 0, 0.55);
 }
 
 .tokenizer-reset,
@@ -578,7 +595,7 @@
 
 .tokenizer-helper,
 .inference-slider-wrap p {
-  color: rgba(246, 235, 220, 0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .tokenizer-sequence,
@@ -604,7 +621,7 @@
 .tokenizer-history code {
   padding: 0.35rem 0.55rem;
   border-radius: 0.7rem;
-  background: rgba(255, 244, 220, 0.05);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .tokenizer-current-pair {
@@ -612,10 +629,10 @@
   gap: 0.55rem;
   padding: 1rem;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 244, 220, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.16);
   background:
-    radial-gradient(circle at top left, var(--tokenizer-glow, rgba(212, 151, 85, 0.18)), transparent 46%),
-    rgba(255, 244, 220, 0.05);
+    radial-gradient(circle at top left, rgba(0, 0, 0, 0.06), transparent 46%),
+    rgba(255, 255, 255, 0.98);
 }
 
 .internals-position-chip,
@@ -652,8 +669,8 @@
   align-items: center;
   padding: 0.8rem 0.85rem;
   border-radius: 0.95rem;
-  border: 1px solid rgba(255, 244, 220, 0.08);
-  background: rgba(255, 244, 220, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 .internals-attention-row div,
@@ -661,7 +678,7 @@
   height: 0.6rem;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(255, 244, 220, 0.06);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .internals-attention-bar,
@@ -672,19 +689,11 @@
 }
 
 .internals-attention-bar {
-  background: linear-gradient(
-    90deg,
-    var(--internals-accent, #66d9d9),
-    var(--internals-accent-strong, #d49755)
-  );
+  background: linear-gradient(90deg, #111111, #666666);
 }
 
 .internals-output-bar {
-  background: linear-gradient(
-    90deg,
-    var(--internals-accent-strong, #d49755),
-    rgba(255, 244, 220, 0.35)
-  );
+  background: linear-gradient(90deg, #111111, #9a9a9a);
 }
 
 .training-chart-shell {
@@ -709,7 +718,7 @@
 .training-bar {
   width: 100%;
   min-height: 1rem;
-  background: linear-gradient(180deg, var(--training-accent, #d49755), rgba(255, 244, 220, 0.12));
+  background: linear-gradient(180deg, #111111, rgba(17, 17, 17, 0.18));
   transition:
     transform 180ms ease,
     filter 180ms ease;
@@ -732,7 +741,7 @@
 .training-baseline span {
   padding: 0.25rem 0.45rem;
   border-radius: 999px;
-  background: rgba(255, 244, 220, 0.07);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .training-phase-grid {
@@ -744,7 +753,7 @@
   width: 100%;
   height: 0.75rem;
   border-radius: 999px;
-  background: rgba(255, 244, 220, 0.08);
+  background: rgba(0, 0, 0, 0.14);
   outline: none;
   cursor: pointer;
 }
@@ -756,8 +765,8 @@
   height: 1.1rem;
   border-radius: 50%;
   border: 0;
-  background: #f6ebdc;
-  box-shadow: 0 0 0 4px rgba(212, 151, 85, 0.22);
+  background: #111111;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
 .training-scrubber::-moz-range-thumb,
@@ -766,8 +775,8 @@
   height: 1.1rem;
   border-radius: 50%;
   border: 0;
-  background: #f6ebdc;
-  box-shadow: 0 0 0 4px rgba(212, 151, 85, 0.22);
+  background: #111111;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
 .inference-slider-copy {
@@ -780,7 +789,7 @@
 .inference-slider-copy strong em {
   margin-left: 0.45rem;
   font-style: normal;
-  color: rgba(246, 235, 220, 0.68);
+  color: rgba(0, 0, 0, 0.58);
 }
 
 .inference-card-grid {
@@ -813,18 +822,19 @@
 .inference-pill-row span {
   padding: 0.45rem 0.6rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 244, 220, 0.08);
-  background: rgba(255, 244, 220, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.96);
+  color: rgba(0, 0, 0, 0.76);
 }
 
 .inference-playground .inference-bos-note {
-  border-color: rgba(255, 244, 220, 0.08);
-  background: rgba(255, 244, 220, 0.04);
+  border-color: rgba(0, 0, 0, 0.16);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .inference-playground .inference-bos-note strong,
 .inference-playground .inference-bos-note p {
-  color: #f6ebdc;
+  color: #111111;
 }
 
 .inference-trace-step.terminal {
