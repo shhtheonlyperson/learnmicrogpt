@@ -1,6 +1,7 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ChangeEvent,
   type CompositionEvent,
@@ -21,15 +22,18 @@ import { useI18n } from './i18n-context'
 
 const pageLocale = 'zh-TW' as const
 
-const navigation = [
-  { label: 'Home', href: '#top' },
-  { label: 'Tokenizer', href: '#tokenizer', active: true },
-  { label: '中文姓名語料', href: '#examples' },
-  { label: 'Token Sequence', href: '#sequence' },
-  { label: 'Forward Pass', href: '#forward-pass' },
-  { label: 'Training', href: '#training' },
-  { label: 'Inference', href: '#inference' },
-  { label: 'Real GPTs', href: '#real-gpts' },
+type NavItem = {
+  id: string
+  number: string
+  label: string
+}
+
+const navigation: NavItem[] = [
+  { id: 'tokenizer', number: '1', label: 'Tokenizer' },
+  { id: 'embeddings', number: '2', label: 'Embeddings (wte/wpe)' },
+  { id: 'forward-pass', number: '3', label: 'Forward Pass' },
+  { id: 'training', number: '4', label: 'Training' },
+  { id: 'inference', number: '5', label: 'Inference' },
 ]
 
 const renderToken = (token: string) => token
@@ -64,6 +68,27 @@ function App() {
   const [inputValue, setInputValue] = useState(config.exampleName)
   const [draftValue, setDraftValue] = useState(config.exampleName)
   const [isComposing, setIsComposing] = useState(false)
+  const [activeSection, setActiveSection] = useState('tokenizer')
+
+  const mainRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const sections = navigation.map((item) => document.getElementById(item.id)).filter(Boolean)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.target.id) {
+            setActiveSection(entry.target.id)
+          }
+        }
+      },
+      { rootMargin: '-10% 0px -70% 0px', threshold: 0 },
+    )
+    for (const section of sections) {
+      observer.observe(section!)
+    }
+    return () => observer.disconnect()
+  }, [])
 
   const nameChars = useMemo(() => Array.from(inputValue), [inputValue])
   const activeChars = useMemo(() => new Set(nameChars), [nameChars])
@@ -77,19 +102,16 @@ function App() {
     [bosId, charToId, tokens],
   )
 
-  const characterPairs = useMemo(
+  const transitions = useMemo(
     () =>
-      nameChars.map((char) => ({
-        char,
-        id: charToId.get(char) ?? bosId,
+      tokens.slice(0, -1).map((from, index) => ({
+        from,
+        to: tokens[index + 1] ?? BOS_TOKEN,
+        fromId: tokenIds[index] ?? bosId,
+        toId: tokenIds[index + 1] ?? bosId,
       })),
-    [bosId, charToId, nameChars],
+    [bosId, tokenIds, tokens],
   )
-
-  const breakdown = characterPairs.map(({ char, id }) => `${char}→${id}`)
-  const summary = characterPairs.length
-    ? `你的輸入「${inputValue}」被轉成 ${tokens.length} 個 token：開頭 1 個 BOS、名字裡 ${characterPairs.length} 個字元 token（${breakdown.join('、')}），最後再補 1 個 BOS。模型實際看到的整數序列是 [${tokenIds.join(', ')}]。`
-    : `目前輸入沒有落在語料字表內的字元，所以序列只剩下開頭和結尾的 BOS。模型看到的是 [${tokenIds.join(', ')}]。`
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const nextDraft = event.target.value
@@ -119,117 +141,95 @@ function App() {
   }
 
   return (
-    <main className="tokenizer-page" id="top">
-      <div className="page-orb page-orb-left" />
-      <div className="page-orb page-orb-right" />
+    <div className="viz-layout">
+      <aside className="viz-sidebar">
+        <div className="viz-brand">
+          <strong>MicroGPT</strong>
+          <small>Visual Explorer — 中文名字</small>
+        </div>
 
-      <header className="site-header">
-        <a className="brand" href="#top">
-          <span className="brand-mark">01</span>
-          <span className="brand-copy">
-            <strong>MicroGPT</strong>
-            <small>中文名字 tokenizer</small>
-          </span>
-        </a>
-
-        <nav aria-label="Tokenizer sections" className="chapter-nav">
+        <nav className="viz-nav" aria-label="Sections">
           {navigation.map((item) => (
             <a
-              aria-current={item.active ? 'page' : undefined}
-              className={item.active ? 'chapter-link active' : 'chapter-link'}
-              href={item.href}
-              key={item.label}
+              className={activeSection === item.id ? 'viz-nav-item active' : 'viz-nav-item'}
+              href={`#${item.id}`}
+              key={item.id}
+              onClick={() => setActiveSection(item.id)}
             >
-              {item.label}
+              <span className="viz-nav-number">{item.number}</span>
+              <span className="viz-nav-label">{item.label}</span>
             </a>
           ))}
         </nav>
-      </header>
 
-      <section className="hero-panel" id="tokenizer">
-        <div className="hero-copy">
-          <p className="eyebrow">01</p>
-          <h1>Tokenizer</h1>
-          <p className="hero-lede">
-            模型看不懂筆畫、聲調或姓名的文化背景，它只認得整數。這一頁把 reference tokenizer
-            demo 改成中文姓名版本，讓每個字都直接映射成一個 token id，並在前後補上一個 BOS
-            來標記邊界。
-          </p>
-          <div className="hero-metadata">
-            <div className="meta-card">
-              <span>姓名語料</span>
-              <strong>{config.corpus.length}</strong>
-              <p>直接來自本地中文姓名資料，互動範例全部用這份字表。</p>
-            </div>
-            <div className="meta-card">
-              <span>字元詞彙表</span>
-              <strong>{config.chars.length + 1}</strong>
-              <p>所有中文姓名字元加上 1 個 BOS special token。</p>
-            </div>
-            <div className="meta-card">
-              <span>名字長度上限</span>
-              <strong>{config.maxNameLength}</strong>
-              <p>輸入超過上限會被截掉，語料外字元會被忽略。</p>
-            </div>
-          </div>
-        </div>
+        <a
+          className="viz-guide-btn"
+          href="https://gist.github.com/karpathy/bda7b67e57ee4e55a80390c0e34260a8"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Read Official Guide
+        </a>
 
-        <aside className="hero-note">
-          <p className="eyebrow">Character → ID Mapping</p>
-          <h2>每個字都先被壓成一個整數。</h2>
+        <div className="viz-sidebar-footer">
           <p>
-            跟 reference 頁面一樣，最重要的第一步不是 attention，而是先把離散符號編碼成模型能吃的
-            id。綠色標記的是你目前輸入名字裡實際用到的字。
+            Built with AI. Based on{' '}
+            <a href="https://gist.github.com/karpathy/bda7b67e57ee4e55a80390c0e34260a8" rel="noreferrer" target="_blank">
+              Karpathy's microgpt.py
+            </a>
+            .
           </p>
-          <div className="note-chip-row">
-            <span className="note-chip active">目前輸入：{inputValue || '尚未輸入'}</span>
-            <span className="note-chip">BOS id：{bosId}</span>
-          </div>
-        </aside>
-      </section>
+        </div>
+      </aside>
 
-      <section className="content-grid">
-        <article className="surface-card mapping-card" id="vocab">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Character → ID Mapping</p>
-              <h2>中文字元表</h2>
+      <main className="viz-main" ref={mainRef}>
+        {/* ── 1. Tokenizer ── */}
+        <section className="viz-section" id="tokenizer">
+          <h2 className="viz-section-title">
+            <span className="viz-section-number">1.</span> Tokenizer
+          </h2>
+          <p className="viz-section-intro">
+            模型看不懂筆畫或姓名背景，它只認得整數。Tokenizer 把每個中文字元轉成一個數字
+            id，並在名字前後各加一個 BOS（Begin/End of Sequence）標記邊界。
+          </p>
+
+          {/* Character → ID Mapping */}
+          <div className="viz-card">
+            <h3 className="viz-card-title">Character → ID Mapping</h3>
+            <div className="viz-callout">
+              語料裡的每個獨立字元都分配到一個 <strong>numeric ID</strong>。
+              共有 <strong>{config.chars.length}</strong> 個中文字元加上一個特殊 <strong>BOS</strong> token
+              (id={bosId})。詞彙表大小：<strong>{config.chars.length + 1}</strong>。
             </div>
-            <p>字表比英文字母大得多，所以這裡保留同樣的 mapping 概念，但改成可捲動的字元牆。</p>
-          </div>
 
-          <div className="mapping-grid" aria-label="Chinese character to token id mapping">
-            {config.chars.map((char, index) => (
-              <article
-                className={activeChars.has(char) ? 'mapping-tile active' : 'mapping-tile'}
-                key={`${char}-${index}`}
-              >
-                <strong>{char}</strong>
-                <span>id {index}</span>
-              </article>
-            ))}
-
-            <article className="mapping-tile bos">
-              <strong>{BOS_TOKEN}</strong>
-              <span>id {bosId}</span>
-            </article>
-          </div>
-        </article>
-
-        <div className="interaction-stack">
-          <article className="surface-card" id="examples">
-            <div className="section-heading compact">
-              <div>
-                <p className="eyebrow">Try it</p>
-                <h2>輸入中文名字</h2>
+            <div className="viz-vocab-grid">
+              {config.chars.map((char, index) => (
+                <div
+                  className={activeChars.has(char) ? 'viz-vocab-tile active' : 'viz-vocab-tile'}
+                  key={`${char}-${index}`}
+                >
+                  <strong>{char}</strong>
+                  <span>{index}</span>
+                </div>
+              ))}
+              <div className="viz-vocab-tile bos">
+                <strong>{BOS_TOKEN}</strong>
+                <span>{bosId}</span>
               </div>
-              <p>點一個範例，或直接輸入你想看的中文姓名。</p>
+            </div>
+          </div>
+
+          {/* Try It: Type a Name */}
+          <div className="viz-card">
+            <h3 className="viz-card-title">Try It: 輸入中文名字</h3>
+            <div className="viz-callout">
+              輸入任意中文名字，觀察它怎麼變成一串 token ID。模型就是從這樣的序列學會預測下一個 token。
             </div>
 
-            <div className="example-row" aria-label="Chinese name examples">
+            <div className="viz-example-row">
               {exampleNames.map((name) => (
                 <button
-                  className={name === inputValue ? 'example-chip active' : 'example-chip'}
+                  className={name === inputValue ? 'viz-example-chip active' : 'viz-example-chip'}
                   key={name}
                   onClick={() => {
                     setInputValue(name)
@@ -242,147 +242,152 @@ function App() {
               ))}
             </div>
 
-            <label className="input-shell">
-              <span>Type a Chinese name</span>
-              <input
-                lang="zh-Hant"
-                onChange={handleInputChange}
-                onCompositionEnd={handleCompositionEnd}
-                onCompositionStart={handleCompositionStart}
-                placeholder={config.exampleName}
-                type="text"
-                value={draftValue}
-              />
-            </label>
+            <input
+              className="viz-input"
+              lang="zh-Hant"
+              onChange={handleInputChange}
+              onCompositionEnd={handleCompositionEnd}
+              onCompositionStart={handleCompositionStart}
+              placeholder={config.exampleName}
+              type="text"
+              value={draftValue}
+            />
 
-            <p className="helper-copy">
-              只保留語料中存在的中文字，空白會被拿掉，最多 {config.maxNameLength} 個字。
-            </p>
-          </article>
-
-          <article className="surface-card" id="sequence">
-            <div className="section-heading compact">
-              <div>
-                <p className="eyebrow">Token Sequence</p>
-                <h2>名字變成怎樣的 token 序列</h2>
-              </div>
-              <p>名字前後各補一個 BOS，讓模型明確知道「從哪裡開始、在哪裡結束」。</p>
-            </div>
-
-            <div className="token-strip">
+            <div className="viz-token-chain">
               {tokens.map((token, index) => (
-                <article
-                  className={token === BOS_TOKEN ? 'token-card bos' : 'token-card'}
-                  key={`${token}-${index}`}
-                >
-                  <strong>{renderToken(token)}</strong>
-                  <span>id {tokenIds[index] ?? bosId}</span>
-                </article>
+                <span key={`${token}-${index}`}>
+                  {index > 0 && <span className="viz-arrow">→</span>}
+                  <span className={token === BOS_TOKEN ? 'viz-token bos' : 'viz-token'}>
+                    <strong>{renderToken(token)}</strong>
+                    <span>id: {tokenIds[index] ?? bosId}</span>
+                  </span>
+                </span>
               ))}
             </div>
-
-            <div className="id-readout">
-              <span>raw ids</span>
-              <code>[{tokenIds.join(', ')}]</code>
-            </div>
-
-            <div className="explanation-card">
-              <p className="eyebrow">What just happened</p>
-              <p>{summary}</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="surface-card lab-section">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">MicroGPT journey</p>
-            <h2>Tokenizer 後面那三段也直接攤開</h2>
           </div>
-          <p>
-            你要的 embeddings、forward pass、training、inference 我都留在同一頁了。上半段先把名字壓成
-            ids，下半段接著把這些 ids 怎麼變成向量、loss 和新名字，一路接下去。
-          </p>
-        </div>
 
-        <div className="lab-stack">
-          <section className="lab-stage" id="forward-pass">
-            <div className="lab-stage-copy">
-              <div>
-                <p className="eyebrow">02</p>
-                <h3>Embeddings + forward pass</h3>
-              </div>
-              <p>
-                這一段把 token ids 拉成 embedding 向量，經過 attention 和 MLP，再吐出每個位置的下一個
-                token logits。它沿用專案裡已經整理好的證據資料，所以不是假數字。
-              </p>
+          {/* What the model must learn */}
+          <div className="viz-card">
+            <h3 className="viz-card-title">模型要學什麼：</h3>
+            <div className="viz-callout">
+              每個位置，模型看到 <strong>current token</strong> 必須預測 <strong>next token</strong>。
+              這就是 <strong>next-token prediction</strong> — GPT 的核心運作方式。
             </div>
-            <div className="mono-frame">
-              <ForwardPassPlayground step={forwardStep} />
-            </div>
-          </section>
 
-          <section className="lab-stage" id="training">
-            <div className="lab-stage-copy">
-              <div>
-                <p className="eyebrow">03</p>
-                <h3>Training loop</h3>
-              </div>
-              <p>
-                這裡把一次更新拆成 logits、loss、backprop 跟 Adam update。你可以直接看到一個中文名字序列
-                怎麼被 teacher forcing 逼著學下一個 token。
-              </p>
+            <div className="viz-pair-row">
+              {transitions.map((t, i) => (
+                <span className="viz-pair-chip" key={i}>
+                  {renderToken(t.from)}→{renderToken(t.to)}
+                </span>
+              ))}
             </div>
-            <div className="mono-frame">
-              <TrainingPlayground accentColor="#111111" />
-            </div>
-          </section>
-
-          <section className="lab-stage" id="inference">
-            <div className="lab-stage-copy">
-              <div>
-                <p className="eyebrow">04</p>
-                <h3>Inference</h3>
-              </div>
-              <p>
-                最後一段把訓練好的分佈拿來抽樣。調整 temperature 後，瀏覽器端 sampler 會用同一套中文姓名
-                風格去重組新名字，同時把自回歸 trace 攤給你看。
-              </p>
-            </div>
-            <div className="mono-frame">
-              <InferencePlayground referenceNames={copy.proofArtifacts.generatedNames} />
-            </div>
-          </section>
-        </div>
-      </section>
-
-      <section className="surface-card theory-card" id="real-gpts">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">How tokenization works in real GPTs</p>
-            <h2>真實 GPT 為什麼不會一個字一個 token？</h2>
           </div>
-          <p>
-            這個 branch 刻意保留最透明的 character-level tokenizer，好讓名字如何進模型一眼就看懂。
-            真實 GPT 通常會改用更大的 subword tokenizer，把常見詞片段、標點和空白模式一起打包，讓上下文利用率更高。
-          </p>
-        </div>
 
-        <div className="theory-grid">
-          <article>
-            <span>這個 demo</span>
-            <strong>character-level</strong>
-            <p>每個中文字都是一個 token，規則直白，最適合教學與拆解。</p>
-          </article>
-          <article>
-            <span>真實 GPT</span>
-            <strong>subword / BPE</strong>
-            <p>常見詞片段會合併成單一 token，詞彙表更大，但序列更短、效率更高。</p>
-          </article>
-        </div>
-      </section>
-    </main>
+          {/* How tokenization works in real GPTs */}
+          <div className="viz-card">
+            <h3 className="viz-card-title">真實 GPT 的 Tokenization</h3>
+            <div className="viz-callout">
+              這個 micro GPT 使用 <strong>character-level</strong> tokenization — 每個中文字就是一個 token。
+            </div>
+            <p className="viz-body">
+              真實 GPT（如 GPT-4）使用 subword tokenization (BPE)，常見詞片段會合併成單一
+              token。詞彙表更大（~50K-100K tokens），但序列更短、效率更高。
+            </p>
+            <p className="viz-body">
+              我們 {config.chars.length + 1} 個 token 的 tiny vocab 已經足夠學會中文名字的模式。
+            </p>
+          </div>
+        </section>
+
+        {/* ── 2. Embeddings ── */}
+        <section className="viz-section" id="embeddings">
+          <h2 className="viz-section-title">
+            <span className="viz-section-number">2.</span> Embeddings (wte/wpe)
+          </h2>
+          <p className="viz-section-intro">
+            Token ID 只是一個整數，模型需要更豐富的表示。Embedding 層把每個 token id 查表成一個 16 維向量
+            (wte)，同時再查出該位置的 position embedding (wpe)，兩者相加就是模型真正看到的輸入。
+          </p>
+
+          <div className="viz-card">
+            <h3 className="viz-card-title">Token Embedding (wte)</h3>
+            <div className="viz-callout">
+              <strong>wte</strong> 是一張 {config.chars.length + 1} × 16 的矩陣。每個 token id
+              查到一行 16 維向量，代表該字元在連續空間裡的位置。
+            </div>
+            <div className="viz-embed-example">
+              <span className="viz-embed-label">wte[{charToId.get(nameChars[0] ?? '') ?? bosId}]</span>
+              <span className="viz-embed-desc">← "{nameChars[0] ?? BOS_TOKEN}" 的 token embedding（16 維向量）</span>
+            </div>
+          </div>
+
+          <div className="viz-card">
+            <h3 className="viz-card-title">Position Embedding (wpe)</h3>
+            <div className="viz-callout">
+              <strong>wpe</strong> 是一張 block_size × 16 的矩陣。位置 0、1、2… 各有一組不同的 16
+              維向量，讓模型知道每個 token 在序列裡的先後順序。
+            </div>
+          </div>
+
+          <div className="viz-card">
+            <h3 className="viz-card-title">Combined = wte + wpe</h3>
+            <div className="viz-callout">
+              最終輸入 = token embedding + position embedding，兩個向量逐元素相加後再過一層 RMSNorm。
+              接著就進入 attention 和 MLP。
+            </div>
+            <pre className="viz-code">{`tok_emb = state_dict['wte'][token_id]
+pos_emb = state_dict['wpe'][pos_id]
+x = [t + p for t, p in zip(tok_emb, pos_emb)]
+x = rmsnorm(x)`}</pre>
+          </div>
+        </section>
+
+        {/* ── 3. Forward Pass ── */}
+        <section className="viz-section" id="forward-pass">
+          <h2 className="viz-section-title">
+            <span className="viz-section-number">3.</span> Forward Pass
+          </h2>
+          <p className="viz-section-intro">
+            Token embedding 經過 attention 和 MLP，最後變成下一個 token 的 logits。
+            這裡沿用真實 reference run 的證據資料，向量和 attention 權重都是實際訓練出來的數字。
+          </p>
+
+          <div className="viz-card viz-card-lab">
+            <ForwardPassPlayground step={forwardStep} />
+          </div>
+        </section>
+
+        {/* ── 4. Training ── */}
+        <section className="viz-section" id="training">
+          <h2 className="viz-section-title">
+            <span className="viz-section-number">4.</span> Training
+          </h2>
+          <p className="viz-section-intro">
+            模型一次更新可以拆成四步：算 logits → 算 loss → 反向傳播梯度 → Adam update。
+            拖動下方 loss 軌跡，直接看每一步的 loss 怎麼下降。
+          </p>
+
+          <div className="viz-card viz-card-lab">
+            <TrainingPlayground accentColor="#6b5c4d" />
+          </div>
+        </section>
+
+        {/* ── 5. Inference ── */}
+        <section className="viz-section" id="inference">
+          <h2 className="viz-section-title">
+            <span className="viz-section-number">5.</span> Inference
+          </h2>
+          <p className="viz-section-intro">
+            訓練完成後，模型可以從 BOS 開始自回歸地生成新名字。
+            調整 temperature 觀察 sampler 怎麼重混機率分佈、產生不同風格的中文名字。
+          </p>
+
+          <div className="viz-card viz-card-lab">
+            <InferencePlayground referenceNames={copy.proofArtifacts.generatedNames} />
+          </div>
+        </section>
+      </main>
+    </div>
   )
 }
 
