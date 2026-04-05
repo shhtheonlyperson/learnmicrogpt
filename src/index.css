@@ -5,27 +5,24 @@
   line-height: 1.72;
   font-weight: 400;
   color: var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.45), transparent 24%),
-    radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.08), transparent 28%),
-    var(--bg);
+  background: var(--page);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg: #e7e5e0;
-  --card: #f3f2ee;
-  --text: #2d2c2a;
-  --text-strong: #111111;
-  --muted: #555453;
-  --muted-strong: #6a6967;
-  --border: rgba(17, 17, 17, 0.16);
-  --accent: #4b4b4b;
-  --accent-strong: #151515;
-  --teal: #707070;
-  --teal-strong: #262626;
-  --shadow: 0 18px 48px rgba(0, 0, 0, 0.1);
+  --page: #ebe6dc;
+  --paper: #f7f3eb;
+  --surface: rgba(252, 249, 243, 0.9);
+  --surface-muted: rgba(248, 244, 236, 0.78);
+  --code-bg: #efe8dc;
+  --text: #3f382d;
+  --text-strong: #211a13;
+  --muted: #61584b;
+  --muted-strong: #7a7062;
+  --ink: #2f261c;
+  --line: rgba(47, 38, 28, 0.12);
+  --line-strong: rgba(47, 38, 28, 0.22);
 
   --display: 'Instrument Serif', 'Iowan Old Style', 'Noto Serif TC', 'Songti TC', 'Times New Roman', serif;
   --body: 'Manrope', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif;
@@ -47,17 +44,9 @@ body {
   min-height: 100svh;
   overflow-x: hidden;
   line-height: 1.72;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.12)),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.05'/%3E%3Cpath d='M12 34c39-14 80-16 124-5 28 7 49 8 72 2' stroke='rgba(0,0,0,0.08)' fill='none' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M-8 116c48-18 106-18 170-4 18 4 37 5 58 1' stroke='rgba(0,0,0,0.06)' fill='none' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E");
-  pointer-events: none;
-  opacity: 0.72;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 14rem),
+    var(--page);
 }
 
 a,
@@ -85,6 +74,6 @@ svg {
 }
 
 ::selection {
-  color: #f5f5f5;
-  background: rgba(30, 30, 30, 0.82);
+  color: #f7f3eb;
+  background: rgba(33, 26, 19, 0.8);
 }

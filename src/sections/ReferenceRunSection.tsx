@@ -1,6 +1,4 @@
-import { InferencePlayground } from '../components/InferencePlayground'
 import { SectionIntro } from '../components/SectionIntro'
-import { TrainingPlayground } from '../components/TrainingPlayground'
 import type { getCopy } from '../content/copy'
 
 type ReferenceRunSectionProps = {
@@ -15,15 +13,17 @@ export function ReferenceRunSection({ copy }: ReferenceRunSectionProps) {
     <section className="content-section" id="proof">
       <SectionIntro
         description={copy.ui.sectionDescriptions.proof}
-        number="05"
+        number="03"
         title={copy.ui.sectionTitles.proof}
       />
 
-      <div className="reference-layout">
-        <article className="loss-panel reveal">
-          <div className="loss-copy">
-            <p className="eyebrow">{copy.ui.labels.quickSlice}</p>
-            <h3>{copy.ui.labels.lossTitle}</h3>
+      <div className="proof-grid">
+        <article className="proof-panel reveal">
+          <div className="proof-panel-header">
+            <div>
+              <p className="eyebrow">{copy.ui.labels.quickSlice}</p>
+              <h3>{copy.ui.labels.lossTitle}</h3>
+            </div>
             <p>{copy.ui.labels.lossBody}</p>
           </div>
 
@@ -36,7 +36,7 @@ export function ReferenceRunSection({ copy }: ReferenceRunSectionProps) {
           >
             {copy.proofArtifacts.lossTrace.map((point) => {
               const ratio = (point.loss - lossMin) / (lossMax - lossMin || 1)
-              const height = `${36 + (1 - ratio) * 84}px`
+              const height = `${28 + (1 - ratio) * 108}px`
 
               return (
                 <div className="loss-bar-wrap" key={`${point.step}-${point.loss}`}>
@@ -46,38 +46,40 @@ export function ReferenceRunSection({ copy }: ReferenceRunSectionProps) {
               )
             })}
           </div>
+
+          <ul className="proof-checkpoints">
+            {copy.proofArtifacts.checkpoints.map((checkpoint) => (
+              <li key={checkpoint}>{checkpoint}</li>
+            ))}
+          </ul>
         </article>
 
-        <div className="reference-stack">
-          <TrainingPlayground
-            accentColor="#202020"
-            key={`training-${copy.ui.labels.proofTitle}-${copy.proofArtifacts.lossTrace[0]?.loss ?? 0}`}
-          />
-
-          <InferencePlayground
-            key={`inference-${copy.ui.labels.lossTitle}-${copy.proofArtifacts.generatedNames[0] ?? 'sample'}`}
-            referenceNames={copy.proofArtifacts.generatedNames}
-          />
-
-          <aside className="notes-card reveal">
-            <p className="eyebrow">{copy.ui.labels.readProof}</p>
-            <h3>{copy.ui.labels.proofTitle}</h3>
-            <ul>
-              {copy.proofArtifacts.checkpoints.map((checkpoint) => (
-                <li key={checkpoint}>{checkpoint}</li>
-              ))}
-            </ul>
-
-            <div className="reference-list">
-              {copy.references.map((reference) => (
-                <a href={reference.href} key={reference.label} rel="noreferrer" target="_blank">
-                  <strong>{reference.label}</strong>
-                  <span>{reference.detail}</span>
-                </a>
-              ))}
+        <article className="proof-panel reveal">
+          <div className="proof-panel-header">
+            <div>
+              <p className="eyebrow">{copy.ui.labels.readProof}</p>
+              <h3>{copy.ui.labels.proofTitle}</h3>
             </div>
-          </aside>
-        </div>
+            <p>{copy.tradeoffContent.conclusion}</p>
+          </div>
+
+          <pre className="editorial-code">{copy.proofArtifacts.referenceRun}</pre>
+
+          <div className="name-board">
+            {copy.proofArtifacts.generatedNames.map((name) => (
+              <span key={name}>{name}</span>
+            ))}
+          </div>
+
+          <div className="reference-list">
+            {copy.references.map((reference) => (
+              <a href={reference.href} key={reference.label} rel="noreferrer" target="_blank">
+                <strong>{reference.label}</strong>
+                <span>{reference.detail}</span>
+              </a>
+            ))}
+          </div>
+        </article>
       </div>
     </section>
   )
